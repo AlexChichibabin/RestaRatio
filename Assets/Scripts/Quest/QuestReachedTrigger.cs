@@ -4,7 +4,7 @@ public class QuestReachedTrigger : Quest
 {
     [SerializeField] private GameObject m_Owner;
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject != m_Owner)
         {
@@ -27,5 +27,5 @@ public class QuestReachedTrigger : Quest
             if (Player.Instance == null) return;
             m_Owner = Player.Instance.gameObject;
         }
-    }
+    }*/
 }

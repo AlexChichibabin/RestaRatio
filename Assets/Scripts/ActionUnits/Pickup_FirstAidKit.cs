@@ -10,9 +10,9 @@ public class Pickup_FirstAidKit : TriggerInteraction
     {
         base.OnEndAction(owner);
 
-        Destructible des = owner.transform.root.GetComponent<Destructible>();
+        //Destructible des = owner.transform.root.GetComponent<Destructible>();
 
-        if (des != null) des.HealFull();
+        //if (des != null) des.HealFull();
 
         Destroy(gameObject); 
     }

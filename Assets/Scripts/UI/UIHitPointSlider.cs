@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class UIHitPointSlider : MonoBehaviour
 {
-    [SerializeField] private Destructible m_Destructible;
+    /*[SerializeField] private Destructible m_Destructible;
 
     [SerializeField] private Slider m_Slider;
 
@@ -21,16 +21,16 @@ public class UIHitPointSlider : MonoBehaviour
     private void Update()
     {
         m_Slider.value = m_Destructible.CurrentHitPoints;
-        /*if (m_TargetDestructible.EnergyIsRestored == true) m_CurrentHitImage.color = Color.red;
-        else m_CurrentHitImage.color = defaultEnergyColor;*/
+        if (m_TargetDestructible.EnergyIsRestored == true) m_CurrentHitImage.color = Color.red;
+        else m_CurrentHitImage.color = defaultEnergyColor;
 
         //SetActiveImages(m_TargetWeapon.PrimaryEnergy != m_TargetWeapon.PrimaryMaxEnergy);
     }
-    private void SetActiveImages(bool isActive)
+  private void SetActiveImages(bool isActive)
     {
         for (int i = 0; i < Images.Length; i++)
         {
             Images[i].enabled = isActive;
         }
-    }
+    }*/
 }

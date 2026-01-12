@@ -6,7 +6,7 @@ public class EntityAnimationAction : EntityAction
     [SerializeField] private string m_ActionAnimationName;
     [SerializeField] private float m_StartDuration;
 
-    private Timer m_Timer;
+    /*private Timer m_Timer;
     private bool m_IsPlayingAnimation;
 
     public override void StartAction()
@@ -44,5 +44,5 @@ public class EntityAnimationAction : EntityAction
             m_IsPlayingAnimation = false;
             EndAction();
         }
-    }
+    }*/
 }

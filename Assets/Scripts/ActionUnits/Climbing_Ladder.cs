@@ -10,7 +10,7 @@ public class Climbing_Ladder : TriggerInteraction
     private Vector3 m_FinalPosition => new Vector3(m_LadderStand.position.x, m_LadderStand.position.y, m_LadderStand.position.z);
 
 
-    protected override void OnStartAction(GameObject owner)
+   /* protected override void OnStartAction(GameObject owner)
     {
         base.OnStartAction(owner);
 
@@ -41,5 +41,5 @@ public class Climbing_Ladder : TriggerInteraction
         m_Action.IsCanEnd = true;
         m_Action.EventOnEnd?.Invoke();
         StopCoroutine(ClimbNumerator(owner, des));
-    }
+    }*/
 }

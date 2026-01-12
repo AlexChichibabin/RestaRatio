@@ -11,7 +11,7 @@ public class FootStepSound : MonoBehaviour
 {
     [SerializeField] private FootStepProperties[] m_Properties;
     [SerializeField] private CharacterController m_CharacterController;
-    [SerializeField] private NoiseAudioSource m_NoiseAudioSource;
+   /* [SerializeField] private NoiseAudioSource m_NoiseAudioSource;
     [SerializeField] private so_Sounds m_so_Sounds;
 
     private float Delay;
@@ -56,5 +56,5 @@ public class FootStepSound : MonoBehaviour
             }
         }
         return m_Properties[m_Properties.Length - 1].Delay;
-    }
+    }*/
 }

@@ -43,7 +43,7 @@ public class SceneSerializer : MonoBehaviour
     {
         List<SceneObjectState> savedObjects = new List<SceneObjectState>();
 
-        foreach (var entity in FindObjectsByType<Entity>(FindObjectsSortMode.None))
+        /*foreach (var entity in FindObjectsByType<Entity>(FindObjectsSortMode.None))
         {
             ISerializableEntity serializableEntity = entity as ISerializableEntity;
 
@@ -61,7 +61,7 @@ public class SceneSerializer : MonoBehaviour
         {
             Debug.Log("List saved objects is empty!");
             return;
-        }
+        }*/
 
 
         BinaryFormatter bf = new BinaryFormatter();
@@ -75,7 +75,7 @@ public class SceneSerializer : MonoBehaviour
     }
     private void LoadFromFile(string path)
     {
-        if(Player.Instance != null) Player.Instance.Destroy();
+        /*if(Player.Instance != null) Player.Instance.Destroy();
         if(Camera.main != null) Destroy(Camera.main.gameObject);
 
         foreach (var entity in FindObjectsByType<Entity>(FindObjectsSortMode.None))
@@ -102,13 +102,14 @@ public class SceneSerializer : MonoBehaviour
             loadedObjects.Remove(v);
             break;
         }
-
-        foreach (var v in loadedObjects)
+        */
+        /*foreach (var v in loadedObjects)
         {
             GameObject go = m_PrefabsDataBase.CreateEntityFromId(v.entityId);
 
             if(go!= null) go.GetComponent<ISerializableEntity>().DeserializeState(v.state);
         }
         Debug.Log("Scene loaded! File path: " + Application.persistentDataPath + "/" + path);
+        */
     }
 }

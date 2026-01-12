@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class QuestKillDestructibles : Quest
 {
-    [SerializeField] private Destructible[] m_Destructibles;
+    /*[SerializeField] private Destructible[] m_Destructibles;
     private long[] m_DestructiblesId;
     private int destrutiblesTeamId;
     private int AmountDestructibleDead = 0;
@@ -72,5 +72,5 @@ public class QuestKillDestructibles : Quest
                 Completed.Invoke();
             }
         }
-    }
+    }*/
 }

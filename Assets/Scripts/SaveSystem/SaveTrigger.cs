@@ -15,7 +15,7 @@ public class SaveTrigger : MonoBehaviour
     {
         if(isActive == false) return;
 
-        if (other.transform.root.GetComponent<Player>() == null) return;
+        //if (other.transform.root.GetComponent<Player>() == null) return;
         if (serializer == null)
         {
             serializer = FindAnyObjectByType<SceneSerializer>();

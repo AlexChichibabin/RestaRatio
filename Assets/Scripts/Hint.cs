@@ -24,7 +24,7 @@ public class Hint : MonoBehaviour
     {
         if (m_Target == null)
         {
-            if(Player.Instance != null) m_Target = Player.Instance.transform;
+            //if(Player.Instance != null) m_Target = Player.Instance.transform;
             if (m_Target == null) return;
         }
         m_Hint.transform.LookAt(m_LookTransform);

@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PrefabsDataBase", menuName = "Scriptable Objects/PrefabsDataBase")]
 public class PrefabsDataBase : ScriptableObject
 {
-    public Entity PlayerPrefab;
+    /*public Entity PlayerPrefab;
     public List<Entity> AllPrefabs;
 
     public GameObject CreateEntityFromId(long id)
@@ -27,5 +27,5 @@ public class PrefabsDataBase : ScriptableObject
     public GameObject CreatePlayer()
     {
         return Instantiate(PlayerPrefab.gameObject);
-    }
+    }*/
 }
