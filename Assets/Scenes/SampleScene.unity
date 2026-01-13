@@ -1872,6 +1872,7 @@ GameObject:
   - component: {fileID: 1011297256}
   - component: {fileID: 1011297258}
   - component: {fileID: 1011297257}
+  - component: {fileID: 1011297259}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Untagged
@@ -1889,7 +1890,7 @@ Rigidbody:
   serializedVersion: 5
   m_Mass: 1
   m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_AngularDamping: 2.91
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1960,8 +1961,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HeroMovement
   characterController: {fileID: 1011297256}
-  viewTransform: {fileID: 1011297255}
+  viewTransform: {fileID: 1651740672}
   movementSpeed: 5
+  dirLerpFactor: 5
+  TargetDirectionControl: {x: 0, y: 0, z: 0}
 --- !u!114 &1011297258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1975,6 +1978,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HeroInput
   heroMovement: {fileID: 1011297257}
+--- !u!114 &1011297259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011297252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de7115de0e00d34a89ee4b0b01a2de1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HeroAnimator
+  characterController: {fileID: 1011297256}
+  animator: {fileID: 1651740676}
 --- !u!1 &1125207450
 GameObject:
   m_ObjectHideFlags: 0
@@ -2697,10 +2714,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 2560, y: 1440}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -2841,6 +2858,11 @@ MonoBehaviour:
   - m_Rig: {fileID: 0}
     m_Active: 1
   m_Effectors: []
+--- !u!95 &1651740676 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: d3be2383560c8bd4cbdb3bd3a02b3dc0, type: 3}
+  m_PrefabInstance: {fileID: 1942686090}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1672519323 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3393346964045152416, guid: d3be2383560c8bd4cbdb3bd3a02b3dc0, type: 3}

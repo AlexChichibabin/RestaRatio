@@ -1,3 +1,4 @@
+using System;
 using UniRx;
 using Zenject;
 
@@ -9,7 +10,11 @@ public class GameInstaller : MonoInstaller
 		BindAssetProvider();*/
 		//BindCoroutineRunner();
 		BindInputService();
+		BindInputSystem();
 	}
+
+	private void BindInputSystem() => 
+		Container.Bind<PlayerInputActions>().FromNew().AsSingle();
 
 	private void BindInputService() =>
 		Container.Bind<IInputService>().To<InputService>().AsSingle();

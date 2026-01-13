@@ -1,26 +1,30 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using Zenject;
 
 public class InputService : IInputService
 {
-    private const string HorizontalAxisName = "Horizontal";
-    private const string VerticalAxisName = "Vertical";
+	private PlayerInputActions input;
+	private bool enabled = true;
 
-    private bool enabled = true;
-    public bool Enabled { get => enabled; set => enabled = value; }
-    public Vector2 MovementAxis
+    public bool Enabled { get => enabled; set  => enabled = value; }
+	public PlayerInputActions Input => input;
+	public Vector2 MovementAxis
     {
         get
         {
             return GetMovementAxis();
         }
     }
-    private Vector2 GetMovementAxis()
-    {
-        if (enabled == false) return Vector2.zero;
+	public InputService(PlayerInputActions input)
+	{
+		this.input = input;
+	}
 
-        /*if (VirtualJoystick.Value != Vector2.zero)
-            return VirtualJoystick.Value;*/
+	private Vector2 GetMovementAxis()
+	{
+		if (enabled == false) return Vector2.zero;
 
-        return new Vector2(Input.GetAxis(HorizontalAxisName), Input.GetAxis(VerticalAxisName));
-    }
+		return input.Gameplay.Move.ReadValue<Vector2>();
+	}
 }
