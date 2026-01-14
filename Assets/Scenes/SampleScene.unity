@@ -1963,7 +1963,8 @@ MonoBehaviour:
   characterController: {fileID: 1011297256}
   viewTransform: {fileID: 1011297255}
   movementSpeed: 5
-  dirLerpFactor: 5
+  movementLerpFactor: 8
+  rotationLerpFactor: 15.21
   TargetDirectionControl: {x: 0, y: 0, z: 0}
 --- !u!114 &1011297258
 MonoBehaviour:

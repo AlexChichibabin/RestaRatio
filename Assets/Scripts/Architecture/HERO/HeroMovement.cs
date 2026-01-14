@@ -5,7 +5,8 @@ public class HeroMovement : MonoBehaviour
     [SerializeField] private CharacterController characterController;
     [SerializeField] private Transform viewTransform;
     [SerializeField] private float movementSpeed;
-    [SerializeField] private float dirLerpFactor;
+    [SerializeField] private float movementLerpFactor;
+    [SerializeField] private float rotationLerpFactor;
 
     private Vector3 directionControl;
 
@@ -14,12 +15,14 @@ public class HeroMovement : MonoBehaviour
 
     private void Update()
     {
-		directionControl = Vector3.Lerp(directionControl, TargetDirectionControl, Time.deltaTime * dirLerpFactor);
-        Debug.Log(directionControl);
+		directionControl = Vector3.Lerp(directionControl, TargetDirectionControl, Time.deltaTime * movementLerpFactor);
+
 		characterController.Move(directionControl * movementSpeed * Time.deltaTime);
+
 		if (TargetDirectionControl.magnitude > 0)
         {
-            viewTransform.rotation = Quaternion.LookRotation(directionControl);
+            //viewTransform.rotation = Quaternion.LookRotation(directionControl);
+            viewTransform.rotation = Quaternion.Lerp(viewTransform.rotation, Quaternion.LookRotation(directionControl), Time.deltaTime * rotationLerpFactor);
         }
 
     }
