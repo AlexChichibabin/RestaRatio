@@ -15,8 +15,8 @@ public class HeroAnimator : MonoBehaviour
     {
         // velocity и magnitude равны 0, если Update HeroАниматора вызывается до HeroMovement. Временно исправил через ExecutionOrder в Unity
         //animator.SetBool(IsMoving, characterController.velocity.magnitude >= MovementThreshold);
-		animator.SetFloat(NormMoveX, characterController.velocity.normalized.x);
-		animator.SetFloat(NormMoveY, characterController.velocity.normalized.z);
+		//animator.SetFloat(NormMoveX, characterController.velocity.normalized.x);
+		animator.SetFloat(NormMoveY, Mathf.Clamp01(characterController.velocity.magnitude));
 	}
     public void Attack()
     {

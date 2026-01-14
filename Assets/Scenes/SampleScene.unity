@@ -1961,7 +1961,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HeroMovement
   characterController: {fileID: 1011297256}
-  viewTransform: {fileID: 1651740672}
+  viewTransform: {fileID: 1011297255}
   movementSpeed: 5
   dirLerpFactor: 5
   TargetDirectionControl: {x: 0, y: 0, z: 0}

@@ -16,15 +16,12 @@ public class HeroMovement : MonoBehaviour
     {
 		directionControl = Vector3.Lerp(directionControl, TargetDirectionControl, Time.deltaTime * dirLerpFactor);
         Debug.Log(directionControl);
-        if (directionControl.magnitude > 0)
+		characterController.Move(directionControl * movementSpeed * Time.deltaTime);
+		if (TargetDirectionControl.magnitude > 0)
         {
-            characterController.Move(directionControl * movementSpeed * Time.deltaTime);
-            //viewTransform.rotation = Quaternion.LookRotation(directionControl);
+            viewTransform.rotation = Quaternion.LookRotation(directionControl);
         }
-        else
-        {
-            characterController.Move(Vector3.zero);
-        }
+
     }
     public void SetMoveDirection(Vector2 moveDirection)
     {

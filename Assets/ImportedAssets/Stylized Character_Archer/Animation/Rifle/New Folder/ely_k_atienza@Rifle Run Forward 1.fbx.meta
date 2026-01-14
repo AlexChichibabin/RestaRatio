@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 4b1daf191196db44fbaf5eacc455d39c
+guid: 5b0159dbb6c3dea4eab821a3cf16b610
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Rifle Run Backward
+    second: Rifle Run Forward
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -25,7 +25,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 0
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -34,11 +34,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Rifle Run Backward
+      name: Rifle Run Forward
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 21
+      lastFrame: 22
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
