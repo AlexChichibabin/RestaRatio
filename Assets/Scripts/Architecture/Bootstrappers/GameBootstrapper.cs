@@ -3,15 +3,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
 
-public class GameBootstrapper : MonoBootstrapper
+public class GameBootstrapper : IInitializable
 {
     private IGameStateSwitcher gameStateSwitcher;
     private GameBootstrappState gameBootstrappState;
     private LoadNextLevelState loadNextLevelState;
     private LoadMainMenuState loadMainMenuState;
 
-    [Inject]
-    public void Constructor(
+
+    public GameBootstrapper(
         IGameStateSwitcher gameStateSwitcher, 
         GameBootstrappState gameBootstrappState, 
         LoadNextLevelState loadNextLevelState,
@@ -24,8 +24,9 @@ public class GameBootstrapper : MonoBootstrapper
         this.loadMainMenuState = loadMainMenuState;
     }
 
-    public override void OnBindResolved()
+    public void Initialize()
     {
+        Debug.Log("GLOBAL: Boot");
         InitGameStateMachine();
     }
 

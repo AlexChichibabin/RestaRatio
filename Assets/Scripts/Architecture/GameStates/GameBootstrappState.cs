@@ -6,24 +6,24 @@ using UnityEngine.SceneManagement;
 public class GameBootstrappState : IEnterableState
 {
     private IGameStateSwitcher gameStateSwitcher;
-    //private IConfigProvider configProvider;
+    private IConfigProvider configProvider;
     //private IProgressSaver progressSaver;
     //private IUIFactory uIFactory;
     //private IAdsService adsService;
 
-    /*public GameBootstrappState(
+    public GameBootstrappState(
         IGameStateSwitcher gameStateSwitcher, 
-        IConfigProvider configProvider,
+        IConfigProvider configProvider/*,
         IProgressSaver progressSaver,
         IUIFactory uIFactory,
-        IAdsService adsService)
+        IAdsService adsService*/)
     {
         this.gameStateSwitcher = gameStateSwitcher;
         this.configProvider = configProvider;
-        this.progressSaver = progressSaver;
-        this.uIFactory = uIFactory;
-        this.adsService = adsService;
-    }*/
+        //this.progressSaver = progressSaver;
+        //this.uIFactory = uIFactory;
+        //this.adsService = adsService;
+    }
 
     public void Enter()
     {
@@ -31,24 +31,24 @@ public class GameBootstrappState : IEnterableState
         // Подключение к серверу
         // Подгрузка конфигов
 
-        /*uIFactory.WarmUp();
+        //uIFactory.WarmUp();
 
-        progressSaver.LoadProgress();
+        //progressSaver.LoadProgress();
 
         configProvider.Load();
 
-        adsService.Initialize();
-        adsService.LoadInterstitial();
-        adsService.LoadRewarded();*/
+        //adsService.Initialize();
+        //adsService.LoadInterstitial();
+        //adsService.LoadRewarded();
 
         Application.targetFrameRate = (int)Screen.currentResolution.refreshRateRatio.numerator;
 
-        Addressables.InitializeAsync();
+        //Addressables.InitializeAsync();
 
-        /*if (SceneManager.GetActiveScene().name == Constants.BootstrappSceneName ||
+        if (SceneManager.GetActiveScene().name == Constants.BootstrappSceneName ||
             SceneManager.GetActiveScene().name == Constants.MainMenuSceneName)
         {
             gameStateSwitcher.Enter<LoadMainMenuState>();
-        }*/
+        }
     }
 }

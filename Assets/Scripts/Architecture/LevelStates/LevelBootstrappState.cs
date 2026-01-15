@@ -12,7 +12,6 @@ public class LevelBootstrappState : IEnterableState
     private IConfigProvider configProvider;
     //private IProgressSaver progressSaver;
 
-    [Inject]
     public LevelBootstrappState(
         IGameFactory gameFactory,  
         ILevelStateSwitcher levelStateSwitcher,

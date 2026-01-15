@@ -7,25 +7,25 @@ public class LevelResearchState : IEnterableState, ITickableState, IExitableStat
 {
     private IGameFactory gameFactory;
     private ILevelStateSwitcher levelStateSwitcher;
-    //private IConfigProvider configProvider;
+    private IConfigProvider configProvider;
 
-    //private LevelConfig levelConfig;
+    private LevelConfig levelConfig;
 
     [Inject]
     public LevelResearchState(IGameFactory gameFactory, 
         ILevelStateSwitcher levelStateSwitcher
-        /*,IConfigProvider configProvider*/)
+        ,IConfigProvider configProvider)
     {
         this.gameFactory = gameFactory;
         this.levelStateSwitcher = levelStateSwitcher;
-        /*this.configProvider = configProvider;*/
+        this.configProvider = configProvider;
     }
 
     public void Enter()
     {
         //gameFactory.HeroHealth.Die += OnHeroDie;
 
-        //levelConfig = configProvider.GetLevel(SceneManager.GetActiveScene().name);
+        levelConfig = configProvider.GetLevel(SceneManager.GetActiveScene().name);
     }
     public void Exit()
     {

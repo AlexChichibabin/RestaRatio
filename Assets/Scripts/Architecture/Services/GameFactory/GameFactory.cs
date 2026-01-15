@@ -1,12 +1,3 @@
-//using CodeBase.Config;
-//using CodeBase.Gameplay;
-//using CodeBase.Gameplay.Enemy;
-//using CodeBase.Gameplay.Hero;
-//using CodeBase.Infrastructure.AssetManagement;
-//using CodeBase.Infrastructure.DependencyInjection;
-//using CodeBase.Infrastructure.Services.ConfigProvider;
-//using CodeBase.Infrastructure.Services.PlayerProgressProvider;
-//using CodeBase.Infrastructure.Services.PlayerProgressSaver;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -16,23 +7,23 @@ using Zenject;
 
 public class GameFactory : IGameFactory
 {
-    //private IAssetProvider assetProvider;
-    //private DIContainer dIContainer;
-    //private IConfigProvider configProvider;
+    private IAssetProvider assetProvider;
+    private IConfigProvider configProvider;
+    private DiContainer container;
     //private IProgressSaver progressSaver;
 
-    /*public GameFactory(
+    public GameFactory(
         IAssetProvider assetProvider,
-        DIContainer dIContainer,
         IConfigProvider configProvider,
+        DiContainer container/*,
         IProgressSaver progressSaver,
-        IProgressProvider progressProvider)
+        IProgressProvider progressProvider*/)
     {
         this.assetProvider = assetProvider;
-        this.dIContainer = dIContainer;
         this.configProvider = configProvider;
-        this.progressSaver = progressSaver;
-    }*/
+        this.container = container;
+        //this.progressSaver = progressSaver;
+    }
 
     //public VirtualJoystick VirtualJoystick { get; private set; }
     public GameObject HeroObject { get; private set; }
@@ -62,7 +53,14 @@ public class GameFactory : IGameFactory
         
         return HeroObject;
     }
+    private async Task<GameObject> InstantiateAndInject(string address)
+    {
+        GameObject newGameObject = await Addressables.InstantiateAsync(address).Task;
+        container.InjectGameObject(newGameObject);
+        //Container.InjectToGameObject(newGameObject);
 
+        return newGameObject;
+    }
     //public async Task<FollowCamera> CreateFollowCameraAsync()
     //{
     //    GameObject followCameraObject = await InstantiateAndInject(AssetAddress.FollowCameraAddress);
@@ -70,35 +68,29 @@ public class GameFactory : IGameFactory
     //    return FollowCamera;
     //}
 
-    /*public async Task<VirtualJoystick> CreateVirtualJoystickAsync()
-    {
-        GameObject virtualJoystickObject = await InstantiateAndInject(AssetAddress.VirtualJoystickAddress);
-        VirtualJoystick = virtualJoystickObject.GetComponent<VirtualJoystick>();
-        return VirtualJoystick;
-    }*/
-    /*public async Task<GameObject> CreateEnemy(EnemyId id, Vector3 position)
-    {
-        EnemyConfig config = configProvider.GetEnemy(id);
+    //public async Task<VirtualJoystick> CreateVirtualJoystickAsync()
+    //{
+    //    GameObject virtualJoystickObject = await InstantiateAndInject(AssetAddress.VirtualJoystickAddress);
+    //    VirtualJoystick = virtualJoystickObject.GetComponent<VirtualJoystick>();
+    //    return VirtualJoystick;
+    //}
 
-        GameObject enemyPrefab = await assetProvider.Load<GameObject>(config.PrefabReference);
-        GameObject enemy = dIContainer.Instantiate(enemyPrefab);
+    //public async Task<GameObject> CreateEnemy(EnemyId id, Vector3 position)
+    //{
+    //    EnemyConfig config = configProvider.GetEnemy(id);
 
-        enemy.transform.position = position;
+    //    GameObject enemyPrefab = await assetProvider.Load<GameObject>(config.PrefabReference);
+    //    GameObject enemy = dIContainer.Instantiate(enemyPrefab);
 
-        IEnemyConfigInstaller[] enemyConfigInstallers = enemy.GetComponentsInChildren<IEnemyConfigInstaller>();
+    //    enemy.transform.position = position;
 
-        for (int i = 0; i < enemyConfigInstallers.Length; i++)
-        {
-            enemyConfigInstallers[i].InstallConfig(config);
-        }
+    //    IEnemyConfigInstaller[] enemyConfigInstallers = enemy.GetComponentsInChildren<IEnemyConfigInstaller>();
 
-        return enemy;
-    }*/
-   private async Task<GameObject> InstantiateAndInject(string address)
-    {
-        GameObject newGameObject = await Addressables.InstantiateAsync(address).Task;
-        //dIContainer.InjectToGameObject(newGameObject);
+    //    for (int i = 0; i < enemyConfigInstallers.Length; i++)
+    //    {
+    //        enemyConfigInstallers[i].InstallConfig(config);
+    //    }
 
-        return newGameObject;
-    }
+    //    return enemy;
+    //}
 }

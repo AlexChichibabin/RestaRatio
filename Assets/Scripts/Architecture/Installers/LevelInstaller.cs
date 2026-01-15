@@ -10,10 +10,11 @@ public class LevelInstaller : MonoInstaller
     {
         Debug.Log("LEVEL: Install");
 
-        Container.Bind<LevelStateMachineTicker>().FromInstance(levelStateMachineTicker).AsSingle();
-
 		RegisterLevelStateMachine();
-	}
+
+        Container.Bind<LevelStateMachineTicker>().FromInstance(levelStateMachineTicker).AsSingle();
+        Container.Bind<IInitializable>().To<LevelBootstrapper>().AsSingle().NonLazy();
+    }
 
 
 	private void OnDestroy()
