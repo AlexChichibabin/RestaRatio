@@ -2,8 +2,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Zenject;
-//using UnityEngine.AddressableAssets;
-//using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class GameFactory : IGameFactory
 {
@@ -33,7 +32,6 @@ public class GameFactory : IGameFactory
     //public async Task WarmUp()
     //{
     //    EnemyConfig[] enemyConfigs = configProvider.GetAllEnemies();
-
     //    for (int i = 0; i < enemyConfigs.Length; i++)
     //    {
     //        await assetProvider.Load<GameObject>(enemyConfigs[i].PrefabReference);
@@ -48,7 +46,6 @@ public class GameFactory : IGameFactory
         HeroObject.transform.rotation = rotation;
 
         //HeroHealth = HeroObject.GetComponent<HeroHealth>();
-
         //progressSaver.AddObject(HeroObject);
         
         return HeroObject;
@@ -57,9 +54,8 @@ public class GameFactory : IGameFactory
     {
         GameObject newGameObject = await Addressables.InstantiateAsync(address).Task;
         container.InjectGameObject(newGameObject);
-        //Container.InjectToGameObject(newGameObject);
 
-        return newGameObject;
+		return newGameObject;
     }
     //public async Task<FollowCamera> CreateFollowCameraAsync()
     //{

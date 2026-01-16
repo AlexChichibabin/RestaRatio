@@ -25,7 +25,9 @@ public class GameInstaller : MonoInstaller
 		BindInputService();
 		BindInputSystem();
         BindConfigProvider();
-        BindGameFactory();
+		BindWindowProvider();
+		BindGameFactory();
+		BindUIFactory();
 	}
 
     private void RegisterGameStateMachine()
@@ -41,7 +43,6 @@ public class GameInstaller : MonoInstaller
 	private void BindInputService() =>
 		Container.Bind<IInputService>().To<InputService>().AsSingle();
 	private void BindGameFactory() =>
-		//Container.BindFactory<>
 		Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
 	private void BindSceneLoader() =>
 		Container.Bind<ISceneLoader>().To<SceneLoader>().AsSingle();
@@ -51,4 +52,8 @@ public class GameInstaller : MonoInstaller
 		Container.Bind<ICoroutineRunner>().To<CoroutineRunner>().AsSingle();
     private void BindConfigProvider() => 
 		Container.Bind<IConfigProvider>().To<ConfigProvider>().AsSingle();
+	private void BindWindowProvider() => 
+		Container.Bind<IWindowProvider>().To<WindowProvider>().AsSingle();
+	private void BindUIFactory() =>
+		Container.Bind<IUIFactory>().To<UIFactory>().AsSingle();
 }

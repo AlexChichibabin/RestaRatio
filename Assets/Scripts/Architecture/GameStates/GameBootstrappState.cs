@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 public class GameBootstrappState : IEnterableState
 {

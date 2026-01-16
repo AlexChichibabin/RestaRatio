@@ -9,7 +9,7 @@ public class ConfigProvider : IConfigProvider
 	private const string WindowsConfigPath = "Configs/Windows";
 	//private Dictionary<EnemyId, EnemyConfig> enemies;
 	private Dictionary<string, LevelConfig> levels;
-	//private Dictionary<WindowId, WindowConfig> windows;
+	private Dictionary<WindowId, WindowConfig> windows;
 	private LevelConfig[] levelList;
 
 	public int LevelAmount => levelList.Length;
@@ -17,7 +17,7 @@ public class ConfigProvider : IConfigProvider
 	public void Load()
 	{
 		//enemies = Resources.LoadAll<EnemyConfig>(EnemiesConfigPath).ToDictionary(x => x.enemyId, x => x);
-		//windows = Resources.LoadAll<WindowConfig>(WindowsConfigPath).ToDictionary(x => x.WindowId, x => x);
+		windows = Resources.LoadAll<WindowConfig>(WindowsConfigPath).ToDictionary(x => x.WindowId, x => x);
 
 		levelList = Resources.LoadAll<LevelConfig>(LevelsConfigPath);
 		levels = levelList.ToDictionary(x => x.SceneName, x => x);
@@ -38,10 +38,10 @@ public class ConfigProvider : IConfigProvider
 		return levels[name];
 	}
 
-	//public WindowConfig GetWindow(WindowId windowId)
-	//{
-	//	return windows[windowId];
-	//}
+	public WindowConfig GetWindow(WindowId windowId)
+	{
+		return windows[windowId];
+	}
 
 	/*public EnemyConfig[] GetAllEnemies()
 	{

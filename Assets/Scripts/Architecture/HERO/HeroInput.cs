@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Windows;
 using Zenject;
 
 
@@ -13,13 +12,18 @@ public class HeroInput : MonoBehaviour
     public void Construct(IInputService inputService)
     {
         this.inputService = inputService;
-    }
-	private void OnEnable()
+		this.inputService.Input.Gameplay.Enable();
+	}
+    private void OnEnable()
 	{
+        if(inputService == null) return;
+
 		inputService.Input.Gameplay.Enable();
 	}
 	private void OnDisable()
 	{
+		if (inputService == null) return;
+
 		inputService.Input.Gameplay.Disable();
 	}
 	private void Update()
