@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
@@ -9,7 +10,9 @@ public class UIFactory : IUIFactory
 	private IAssetProvider assetProvider;
 	private IConfigProvider configProvider;
 
-	public UIFactory(DiContainer container, IAssetProvider assetProvider, IConfigProvider configProvider)
+	public UIFactory(DiContainer container, 
+		IAssetProvider assetProvider, 
+		IConfigProvider configProvider)
 	{
 		this.container = container;
 		this.assetProvider = assetProvider;
@@ -17,12 +20,18 @@ public class UIFactory : IUIFactory
 	}
 
 	public Transform UIRoot { get; set; }
-	public async Task WarmUp()
+	public async Task WarmUpAsync()
 	{
-		await assetProvider.Load<GameObject>(configProvider.GetWindow(WindowId.MainMenuWindow).PrefabReference);
-		await assetProvider.Load<GameObject>(configProvider.GetWindow(WindowId.VictoryWindow).PrefabReference);
-		await assetProvider.Load<GameObject>(configProvider.GetWindow(WindowId.LoseWindow).PrefabReference);
-	}
+		for (int i = 1; i < Enum.GetNames(typeof(WindowId)).Length; i++)
+		{
+            await assetProvider.LoadAsync<GameObject>(configProvider.GetWindow((WindowId)i).PrefabReference);
+            Debug.Log(configProvider.GetWindow((WindowId)i));
+        }
+        
+        //await assetProvider.Load<GameObject>(configProvider.GetWindow(WindowId.MainMenuWindow).PrefabReference);
+        //await assetProvider.Load<GameObject>(configProvider.GetWindow(WindowId.VictoryWindow).PrefabReference);
+        //await assetProvider.Load<GameObject>(configProvider.GetWindow(WindowId.LoseWindow).PrefabReference);
+    }
 	public async Task<LevelResultPresenter> CreateLevelResultWindowAsync(WindowConfig config)
 	{
 		return await CreateWindowAsync<LevelResultWindow, LevelResultPresenter>(config);
@@ -35,14 +44,15 @@ public class UIFactory : IUIFactory
 	{
 		UIRoot = new GameObject(UIRootGameObjectName).transform;
 	}
-	private async Task<TPresenter> CreateWindowAsync<TWindow, TPresenter>(WindowConfig config) where TWindow : WindowBase where TPresenter : WindowPresenterBase<TWindow>
+	private async Task<TPresenter> CreateWindowAsync<TWindow, TPresenter>(WindowConfig config) 
+		where TWindow : WindowBase where TPresenter : WindowPresenterBase<TWindow>
 	{
-		GameObject prefab = await assetProvider.Load<GameObject>(config.PrefabReference);
-		TWindow window = container.InstantiatePrefab(prefab).GetComponent<TWindow>(); // Может не сработать проверить
+		GameObject prefab = await assetProvider.LoadAsync<GameObject>(config.PrefabReference);
+		TWindow window = container.InstantiatePrefab(prefab).GetComponent<TWindow>();
 		window.transform.SetParent(UIRoot);
 		window.SetTitle(config.Title);
 
-		TPresenter presenter = container.Instantiate<TPresenter>(); // Может не сработать. Надо создать ипрокинуть зависимости
+		TPresenter presenter = container.Instantiate<TPresenter>();
 		presenter.SetWindow(window);
 
 		return presenter;

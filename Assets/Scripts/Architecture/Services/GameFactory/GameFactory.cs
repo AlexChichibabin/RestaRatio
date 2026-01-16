@@ -45,7 +45,6 @@ public class GameFactory : IGameFactory
         HeroObject.transform.position = position;
         HeroObject.transform.rotation = rotation;
 
-        //HeroHealth = HeroObject.GetComponent<HeroHealth>();
         //progressSaver.AddObject(HeroObject);
         
         return HeroObject;

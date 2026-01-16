@@ -24,17 +24,17 @@ public class MainMenuPresenter : WindowPresenterBase<MainMenuWindow>
 
 	public override void SetWindow(MainMenuWindow window)
 	{
-		//this.window = window;
+		this.window = window;
 
 		//int currentLevelIndex = progressProvider.PlayerProgress.CurrentLevelIndex;
 
-		//if(currentLevelIndex == configProvider.LevelAmount)
-		//	window.HidePlayButton();
-		//else
-		//	window.SetLevelIndex(currentLevelIndex);
+		/*if (currentLevelIndex == configProvider.LevelAmount)
+			window.HidePlayButton();
+		else
+			window.SetLevelIndex(currentLevelIndex);*/
 
-		//window.playButtonClicked += OnPlayButtonClicked;
-		//window.Cleanuped += OnCleanuped;
+		window.playButtonClicked += OnPlayButtonClicked;
+		window.Cleanuped += OnCleanuped;
 	}
 
 	private void OnCleanuped()

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MainMenuWindow
   m_EditorClassIdentifier: Assembly-CSharp::WindowConfig
   WindowId: 1
-  Title: Main Menu
+  Title: RESTA RATIO
   PrefabReference:
     m_AssetGUID: 293152d875b436f4883ec63df601cf5f
     m_SubObjectName: 

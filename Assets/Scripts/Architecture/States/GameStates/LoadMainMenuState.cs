@@ -20,7 +20,7 @@ public class LoadMainMenuState : IEnterableState
     {
         assetProvider.Cleanup();
 
-        sceneLoader.Load(Constants.MainMenuSceneName, onLoaded: () => windowProvider.Open(WindowId.MainMenuWindow));
-        //sceneLoader.Load(Constants.MainMenuSceneName, null);
+        sceneLoader.Load(Constants.MainMenuSceneName, onLoaded: () =>
+            windowProvider.Open(WindowId.MainMenuWindow));
     }
 }

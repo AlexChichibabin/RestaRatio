@@ -8,5 +8,5 @@ public interface IUIFactory
 	Task<LevelResultPresenter> CreateLevelResultWindowAsync(WindowConfig config);
 	Task<MainMenuPresenter> CreateMainMenuWindowAsync(WindowConfig config);
 	void CreateUIRoot();
-	Task WarmUp();
+	Task WarmUpAsync();
 }

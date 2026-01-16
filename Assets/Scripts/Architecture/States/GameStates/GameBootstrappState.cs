@@ -9,20 +9,20 @@ public class GameBootstrappState : IEnterableState
     private IGameStateSwitcher gameStateSwitcher;
     private IConfigProvider configProvider;
     //private IProgressSaver progressSaver;
-    //private IUIFactory uIFactory;
+    private IUIFactory uIFactory;
     //private IAdsService adsService;
 
     public GameBootstrappState(
         IGameStateSwitcher gameStateSwitcher, 
-        IConfigProvider configProvider/*,
-        IProgressSaver progressSaver,
-        IUIFactory uIFactory,
-        IAdsService adsService*/)
+        IConfigProvider configProvider,
+        IUIFactory uIFactory
+        //IProgressSaver progressSaver,
+        /*IAdsService adsService*/)
     {
         this.gameStateSwitcher = gameStateSwitcher;
         this.configProvider = configProvider;
+        this.uIFactory = uIFactory;
         //this.progressSaver = progressSaver;
-        //this.uIFactory = uIFactory;
         //this.adsService = adsService;
     }
 
@@ -32,11 +32,11 @@ public class GameBootstrappState : IEnterableState
         // Подключение к серверу
         // Подгрузка конфигов
 
-        //uIFactory.WarmUp();
-
-        //progressSaver.LoadProgress();
+        uIFactory.WarmUpAsync();
 
         configProvider.Load();
+
+        //progressSaver.LoadProgress();
 
         //adsService.Initialize();
         //adsService.LoadInterstitial();
@@ -44,7 +44,7 @@ public class GameBootstrappState : IEnterableState
 
         Application.targetFrameRate = (int)Screen.currentResolution.refreshRateRatio.numerator;
 
-        //Addressables.InitializeAsync();
+        Addressables.InitializeAsync();
 
         if (SceneManager.GetActiveScene().name == Constants.BootstrappSceneName ||
             SceneManager.GetActiveScene().name == Constants.MainMenuSceneName)

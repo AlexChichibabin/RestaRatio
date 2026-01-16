@@ -18,7 +18,7 @@ public class AssetProvider : IAssetProvider
 		T obj = Resources.Load<T>(prefabPath);
 		return GameObject.Instantiate(obj);
 	}
-	public async Task<TType> Load<TType>(AssetReference assetReference) where TType : class
+	public async Task<TType> LoadAsync<TType>(AssetReference assetReference) where TType : class
 	{
 		if (cacheHandle.TryGetValue(assetReference.AssetGUID, out AsyncOperationHandle handle) == true)
 		{
