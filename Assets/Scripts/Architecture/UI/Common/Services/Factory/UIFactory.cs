@@ -23,14 +23,7 @@ public class UIFactory : IUIFactory
 	public async Task WarmUpAsync()
 	{
 		for (int i = 1; i < Enum.GetNames(typeof(WindowId)).Length; i++)
-		{
             await assetProvider.LoadAsync<GameObject>(configProvider.GetWindow((WindowId)i).PrefabReference);
-            Debug.Log(configProvider.GetWindow((WindowId)i));
-        }
-        
-        //await assetProvider.Load<GameObject>(configProvider.GetWindow(WindowId.MainMenuWindow).PrefabReference);
-        //await assetProvider.Load<GameObject>(configProvider.GetWindow(WindowId.VictoryWindow).PrefabReference);
-        //await assetProvider.Load<GameObject>(configProvider.GetWindow(WindowId.LoseWindow).PrefabReference);
     }
 	public async Task<LevelResultPresenter> CreateLevelResultWindowAsync(WindowConfig config)
 	{
