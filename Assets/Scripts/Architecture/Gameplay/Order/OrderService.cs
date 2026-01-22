@@ -2,19 +2,19 @@ using System;
 using System.Linq;
 using UniRx;
 
-public sealed class OrderService : IOrderService, IDisposable
+public class OrderService : IOrderService, IDisposable
 {
     public IReadOnlyReactiveCollection<IOrder> ActiveOrders => activeOrders;
     public IObservable<IOrder> OrderCreated => orderCreated;
     public IObservable<IOrder> OrderCompleted => orderCompleted;
     public IObservable<IOrder> OrderFailed => orderFailed;
 
-    private readonly ReactiveCollection<IOrder> activeOrders = new();
-    private readonly Subject<IOrder> orderCreated = new();
-    private readonly Subject<IOrder> orderCompleted = new();
-    private readonly Subject<IOrder> orderFailed = new();
+    private ReactiveCollection<IOrder> activeOrders = new();
+    private Subject<IOrder> orderCreated = new();
+    private Subject<IOrder> orderCompleted = new();
+    private Subject<IOrder> orderFailed = new();
 
-    private readonly CompositeDisposable disposables = new();
+    private CompositeDisposable disposables = new();
     private int orderSequence;
 
     public IOrder CreateOrder(float seconds)
