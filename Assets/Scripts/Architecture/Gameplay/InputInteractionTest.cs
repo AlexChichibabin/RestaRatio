@@ -4,13 +4,14 @@ using Zenject;
 public class InputInteractionTest : MonoBehaviour
 {
 	private IInputService inputService;
+	private IOrderService orderService;
 
 	[Inject]
-	public void Construct(IInputService inputService)
+	public void Construct(IInputService inputService, IOrderService orderService)
 	{
 		this.inputService = inputService;
 		this.inputService.Input.Gameplay.Enable();
-		//inputService.Input.Gameplay.Interaction.performed += GetPress();
+		this.orderService = orderService;
 	}
 	private void OnEnable()
 	{
@@ -28,10 +29,6 @@ public class InputInteractionTest : MonoBehaviour
 	{
 		if (inputService == null) return;
 
-		//if (inputService.GetPressEButton())
-		//{
-		//	Time.timeScale = Time.timeScale == 1 ? 0 : 1;
-		//}
 	}
 	private void GetPress()
 	{

@@ -12,6 +12,8 @@ public class LevelInstaller : MonoInstaller
 
 		RegisterLevelStateMachine();
 
+        RegisterGameplayServices();
+
         Container.Bind<LevelStateMachineTicker>().FromInstance(levelStateMachineTicker).AsSingle();
         Container.Bind<IInitializable>().To<LevelBootstrapper>().AsSingle().NonLazy();
     }
@@ -42,4 +44,12 @@ public class LevelInstaller : MonoInstaller
 		Container.Unbind<LevelVictoryState>();
 		Container.Unbind<LevelLostState>();
     }
+
+    private void RegisterGameplayServices()
+    {
+        BindOrderService();
+        Container.BindInterfacesTo<OrderGenerator>().AsSingle().NonLazy();
+    }
+    private void BindOrderService() => 
+        Container.Bind<IOrderService>().To<OrderService>().AsSingle();
 }
