@@ -19,7 +19,7 @@ public class LevelLostState : IEnterableState
 
     public void Enter()
     {
-        inputService.Enabled = false;
+        inputService.DisableGameplay();
         //gameFactory.VirtualJoystick.gameObject.SetActive(false);
 
         //windowProvider.Open(WindowId.LoseWindow);

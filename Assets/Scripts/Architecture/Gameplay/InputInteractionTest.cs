@@ -10,28 +10,28 @@ public class InputInteractionTest : MonoBehaviour
 	public void Construct(IInputService inputService, IOrderService orderService)
 	{
 		this.inputService = inputService;
-		this.inputService.Input.Gameplay.Enable();
+		//this.inputService.EnableGameplay();
 		this.orderService = orderService;
 	}
-	private void OnEnable()
-	{
-		if (inputService == null) return;
+	//private void OnEnable()
+	//{
+	//	if (inputService == null) return;
 
-		inputService.Input.Gameplay.Enable();
-	}
-	private void OnDisable()
-	{
-		if (inputService == null) return;
+	//	inputService.EnableGameplay();
+	//}
+	//private void OnDisable()
+	//{
+	//	if (inputService == null) return;
 
-		inputService.Input.Gameplay.Disable();
-	}
-	private void Update()
-	{
-		if (inputService == null) return;
+	//	inputService.DisableGameplay();
+	//}
+	//private void Update()
+	//{
+	//	if (inputService == null) return;
 
-	}
-	private void GetPress()
-	{
+	//}
+	//private void GetPress()
+	//{
 
-	}
+	//}
 }

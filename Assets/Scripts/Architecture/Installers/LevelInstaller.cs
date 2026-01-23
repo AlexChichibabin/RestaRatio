@@ -31,7 +31,7 @@ public class LevelInstaller : MonoInstaller
     {
         Container.Bind<ILevelStateSwitcher>().To<LevelStateMachine>().AsSingle();
         Container.Bind<LevelBootstrappState>().FromNew().AsSingle();
-		Container.Bind<LevelResearchState>().FromNew().AsSingle();
+		Container.Bind<LevelGameplayState>().FromNew().AsSingle();
 		Container.Bind<LevelVictoryState>().FromNew().AsSingle();
 		Container.Bind<LevelLostState>().FromNew().AsSingle();
     }
@@ -40,7 +40,7 @@ public class LevelInstaller : MonoInstaller
     {
         Container.Unbind<ILevelStateSwitcher>();
 		Container.Unbind<LevelBootstrappState>();
-		Container.Unbind<LevelResearchState>();
+		Container.Unbind<LevelGameplayState>();
 		Container.Unbind<LevelVictoryState>();
 		Container.Unbind<LevelLostState>();
     }

@@ -42,16 +42,17 @@ public class LevelBootstrappState : IEnterableState
 
         await gameFactory.CreateHeroAsync(levelConfig.HeroSpawnPoint, Quaternion.identity);
 
-        //FollowCamera followCamera = await gameFactory.CreateFollowCameraAsync();
+        levelStateSwitcher.Enter<LevelGameplayState>();
+		//FollowCamera followCamera = await gameFactory.CreateFollowCameraAsync();
 
-        //followCamera.SetTarget(gameFactory.HeroObject.transform);
+		//followCamera.SetTarget(gameFactory.HeroObject.transform);
 
-        //await gameFactory.CreateVirtualJoystickAsync();
+		//await gameFactory.CreateVirtualJoystickAsync();
 
-        //progressSaver.LoadProgress();
+		//progressSaver.LoadProgress();
 
-        //inputService.Enabled = true;
+		//inputService.Enabled = true;
 
-        //levelStateSwitcher.Enter<LevelResearchState>();
-    }
+		//levelStateSwitcher.Enter<LevelResearchState>();
+	}
 }

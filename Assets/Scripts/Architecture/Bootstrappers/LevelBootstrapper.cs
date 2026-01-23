@@ -7,14 +7,14 @@ public class LevelBootstrapper : IInitializable
 {
     private ILevelStateSwitcher levelStateSwitcher;
     private LevelBootstrappState levelBootstrappState;
-    private LevelResearchState levelResearchState;
+    private LevelGameplayState levelResearchState;
     private LevelVictoryState levelVictoryState;
     private LevelLostState levelLostState;
 
     public LevelBootstrapper(
         ILevelStateSwitcher levelStateSwitcher,
         LevelBootstrappState levelBootstrappState,
-        LevelResearchState levelResearchState,
+        LevelGameplayState levelResearchState,
         LevelVictoryState levelVictoryState,
         LevelLostState levelLostState
         )

@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UniRx;
+using UnityEngine;
 
 public interface IInputService
 {
-    bool Enabled { get; set; }
-    Vector2 MovementAxis { get; }
-    PlayerInputActions Input { get; }
-    void GetPressEButton();
+	IReadOnlyReactiveProperty<bool> Enabled { get; }
+	IObservable<Vector2> MoveAxis { get; }
+	IObservable<Unit> InteractDown { get; }
+	void EnableGameplay();
+	void DisableGameplay();
 }

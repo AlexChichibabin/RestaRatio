@@ -1,32 +1,61 @@
+using System;
+using UniRx;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class InputService : IInputService
+public class InputService : IInputService, IDisposable
 {
-	private PlayerInputActions input;
-	private bool enabled = true;
+	public IReadOnlyReactiveProperty<bool> Enabled => enabled;
+	public IObservable<Vector2> MoveAxis =>
+		moveAxis.Where(_ => enabled.Value).StartWith(Vector2.zero);
+	public IObservable<Unit> InteractDown =>
+		interactDown.Where(_ => enabled.Value);
 
-    public bool Enabled { get => enabled; set  => enabled = value; }
-	public PlayerInputActions Input => input;
-	public Vector2 MovementAxis
-    {
-        get
-        {
-            return GetMovementAxis();
-        }
-    }
+	private PlayerInputActions input;
+
+	private ReactiveProperty<bool> enabled = new(true);
+	private Subject<Vector2> moveAxis = new();
+	private Subject<Unit> interactDown = new();
+
+	private CompositeDisposable disposables = new();
+
 	public InputService(PlayerInputActions input)
 	{
 		this.input = input;
+
+		this.input.Gameplay.Move.performed += OnMove;
+		this.input.Gameplay.Move.canceled += OnMoveCanceled;
+		this.input.Gameplay.Interaction.performed += OnInteractPerformed;
+
+		enabled
+			.Where(x => x == false)
+			.Subscribe(_ => moveAxis.OnNext(Vector2.zero))
+			.AddTo(disposables);
 	}
 
-	private Vector2 GetMovementAxis()
-	{
-		if (enabled == false) return Vector2.zero;
+	public void EnableGameplay() => input.Gameplay.Enable();
+	public void DisableGameplay() => input.Gameplay.Disable();
 
-		return input.Gameplay.Move.ReadValue<Vector2>();
-	}
-	public void GetPressEButton()
+	private void OnMove(InputAction.CallbackContext context)
+		=> moveAxis.OnNext(context.ReadValue<Vector2>());
+
+	private void OnMoveCanceled(InputAction.CallbackContext context)
+		=> moveAxis.OnNext(Vector2.zero);
+
+	private void OnInteractPerformed(InputAction.CallbackContext context)
 	{
-		input.Gameplay.Interaction.IsPressed();
+		interactDown.OnNext(Unit.Default);
+	}
+
+	public void Dispose()
+	{
+		input.Gameplay.Move.performed -= OnMove;
+		input.Gameplay.Move.canceled -= OnMoveCanceled;
+		input.Gameplay.Interaction.performed -= OnInteractPerformed;
+
+		disposables.Dispose();
+		moveAxis.Dispose();
+		interactDown.Dispose();
+		enabled.Dispose();
 	}
 }

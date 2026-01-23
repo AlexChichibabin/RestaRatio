@@ -1,34 +1,48 @@
+using UniRx;
 using UnityEngine;
 using Zenject;
 
-
 public class HeroInput : MonoBehaviour
 {
-    [SerializeField] private HeroMovement heroMovement;
+	[SerializeField] private HeroMovement heroMovement;
 
-    private IInputService inputService;
+	private IInputService input;
+	private readonly CompositeDisposable disposables = new();
 
-    [Inject]
-    public void Construct(IInputService inputService)
-    {
-        this.inputService = inputService;
-		this.inputService.Input.Gameplay.Enable();
-	}
-    private void OnEnable()
+	[Inject]
+	public void Construct(IInputService input)
 	{
-        if(inputService == null) return;
+		this.input = input;
 
-		inputService.Input.Gameplay.Enable();
+		SubscribeOnInput();
 	}
+
+	private void OnEnable()
+	{
+		if (input == null) return;
+
+		SubscribeOnInput();
+	}
+
 	private void OnDisable()
 	{
-		if (inputService == null) return;
+		disposables.Clear();
 
-		inputService.Input.Gameplay.Disable();
+		if (heroMovement != null) heroMovement.SetMoveDirection(Vector2.zero);
 	}
-	private void Update()
-    {
-        if (inputService == null) return;
-        heroMovement.SetMoveDirection(inputService.MovementAxis);
-    }
+
+	private void SubscribeOnInput()
+	{
+		disposables.Clear();
+
+		input.MoveAxis
+			.Subscribe(dir => heroMovement.SetMoveDirection(dir))
+			.AddTo(disposables);
+
+		input.InteractDown
+			.Subscribe(_ => Debug.Log("Interact!"))
+			.AddTo(disposables);
+	}
+
+	private void OnDestroy() => disposables.Dispose();
 }
