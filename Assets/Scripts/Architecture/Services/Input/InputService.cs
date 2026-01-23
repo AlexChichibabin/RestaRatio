@@ -1,14 +1,9 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using Zenject;
 
 public class InputService : IInputService
 {
 	private PlayerInputActions input;
 	private bool enabled = true;
-
-	
 
     public bool Enabled { get => enabled; set  => enabled = value; }
 	public PlayerInputActions Input => input;
