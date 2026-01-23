@@ -1,11 +1,12 @@
 using System;
+using UnityEngine;
 using UniRx;
 using Zenject;
 
 public class OrderGenerator : IInitializable, IDisposable
 {
-    private readonly IOrderService orderService;
-    private readonly CompositeDisposable disposables = new();
+    private IOrderService orderService;
+    private CompositeDisposable disposables = new();
 
     public OrderGenerator(IOrderService orderService)
     {
@@ -14,11 +15,13 @@ public class OrderGenerator : IInitializable, IDisposable
 
     public void Initialize()
     {
-        Observable.Interval(TimeSpan.FromSeconds(10))
+        Observable.Interval(TimeSpan.FromSeconds(3))
             .Subscribe(_ =>
             {
-                if (orderService.ActiveOrders.Count <= 5) // TODO fix hardcode
-                    orderService.CreateOrder(50f);
+                if (orderService.ActiveOrders.Count < 5) // TODO fix hardcode
+                {
+                    orderService.CreateOrder(5f);
+                }
             })
             .AddTo(disposables);
     }

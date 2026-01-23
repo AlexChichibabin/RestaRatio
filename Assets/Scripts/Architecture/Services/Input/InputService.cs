@@ -11,13 +11,15 @@ public class InputService : IInputService, IDisposable
 	public IObservable<Unit> InteractDown =>
 		interactDown.Where(_ => enabled.Value);
 
-	private PlayerInputActions input;
+
+    private PlayerInputActions input;
 
 	private ReactiveProperty<bool> enabled = new(true);
 	private Subject<Vector2> moveAxis = new();
 	private Subject<Unit> interactDown = new();
+    //private Subject<Unit> interactUp = new();
 
-	private CompositeDisposable disposables = new();
+    private CompositeDisposable disposables = new();
 
 	public InputService(PlayerInputActions input)
 	{

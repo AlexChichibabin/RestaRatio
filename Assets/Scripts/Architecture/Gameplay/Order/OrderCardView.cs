@@ -13,7 +13,11 @@ public class OrderCardView : MonoBehaviour
         disposables.Clear();
 
         order.Progress01
-            .Subscribe(v => progressFill.fillAmount = v)
+            .Subscribe(v =>
+            {
+                progressFill.color = v >= 0.3f ? Color.green : Color.red;
+                progressFill.fillAmount = v;
+            })
             .AddTo(disposables);
     }
 

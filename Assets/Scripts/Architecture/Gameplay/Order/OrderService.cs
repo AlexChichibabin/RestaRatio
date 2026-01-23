@@ -36,10 +36,10 @@ public class OrderService : IOrderService, IDisposable
             })
             .AddTo(disposables);
 
-        order.Failed
+        order?.Failed
             .Subscribe(_ =>
             {
-                orderFailed.OnNext(order);
+                orderFailed?.OnNext(order);
                 RemoveOrder(order.Id);
             })
             .AddTo(disposables);

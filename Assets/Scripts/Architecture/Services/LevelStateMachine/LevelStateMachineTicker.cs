@@ -13,7 +13,7 @@ public class LevelStateMachineTicker : MonoBehaviour
 
     private void Update()
     {
-        levelStateSwitcher.UpdateTick();
+        //levelStateSwitcher.UpdateTick();
 
         //Debug.Log(levelStateSwitcher.CurrentState.ToString());
     }

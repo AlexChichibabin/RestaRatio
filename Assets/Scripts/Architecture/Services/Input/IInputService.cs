@@ -7,6 +7,7 @@ public interface IInputService
 	IReadOnlyReactiveProperty<bool> Enabled { get; }
 	IObservable<Vector2> MoveAxis { get; }
 	IObservable<Unit> InteractDown { get; }
-	void EnableGameplay();
+    //IObservable<Unit> InteractUp { get; }
+    void EnableGameplay();
 	void DisableGameplay();
 }

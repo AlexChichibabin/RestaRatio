@@ -21,13 +21,11 @@ public class Order : IOrder
     private CompositeDisposable disposables = new();
     private float totalSeconds;
 
-    public Order(string id, float totalSeconds/*, IScheduler scheduler = null*/)
+    public Order(string id, float totalSeconds)
     {
         Id = id;
         this.totalSeconds = Math.Max(0.01f, totalSeconds);
         remainingSeconds = new ReactiveProperty<float>(this.totalSeconds).AddTo(disposables);
-
-        //scheduler ??= Scheduler.MainThread; ////////////////////////////// Многопоточность?
 
         Observable.EveryUpdate()
             .Select(_ => UnityEngine.Time.deltaTime)   // можно прокинуть deltaTime иначе. Мб через UniRx
@@ -70,8 +68,8 @@ public class Order : IOrder
         if (status.Value != OrderStatus.Active) return;
 
         status.Value = OrderStatus.Failed;
-        failed.OnNext(Unit.Default);
-        failed.OnCompleted();
+        failed?.OnNext(Unit.Default);
+        failed?.OnCompleted();
 
         Dispose();
     }
@@ -79,8 +77,8 @@ public class Order : IOrder
     public void Dispose()
     {
         // Закрываем всё аккуратно
-        disposables.Dispose();
-        failed.Dispose();
+        disposables?.Dispose();
+        failed?.Dispose();
         completed.Dispose();
         status.Dispose();
         progress01.Dispose();

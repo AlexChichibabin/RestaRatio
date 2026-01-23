@@ -3,20 +3,24 @@ using Zenject;
 
 public class OrderReceiver : MonoBehaviour
 {
-    private IOrderService orderService;
+    //private IOrderService orderService;
 
-    [Inject]
-    public void Construct(IOrderService orderService)
-    {
-        this.orderService = orderService;
-    }
+    //[Inject]
+    //public void Construct(IOrderService orderService)
+    //{
+    //    this.orderService = orderService;
+    //}
 
-    private void OnTriggerEnter(Collider other)
-    {
-        HeroMovement hero = other.transform.root.GetComponent<HeroMovement>();
-        if (hero != null)
-        {
-            orderService.CreateOrder(100);
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    HeroMovement hero = other.transform.root.GetComponent<HeroMovement>();
+    //    if (hero != null)
+    //    {
+    //        if (orderService.ActiveOrders.Count < 5)
+    //        {
+    //            orderService.CreateOrder(5);
+                
+    //        }
+    //    }
+    //}
 }

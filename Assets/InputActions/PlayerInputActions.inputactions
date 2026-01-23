@@ -83,6 +83,28 @@
                 },
                 {
                     "name": "",
+                    "id": "d045e219-f34a-4be3-b633-d9422cabf38d",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b0e7f43d-c58f-42e4-908e-06648efba9e9",
+                    "path": "<Joystick>/stick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "85062974-c55e-4598-a07f-af14e489fed5",
                     "path": "<Keyboard>/#(E)",
                     "interactions": "",
