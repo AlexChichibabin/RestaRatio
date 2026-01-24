@@ -14,5 +14,5 @@ public interface IOrder : IDisposable
     IObservable<Unit> Failed { get; }
 
     bool TryComplete(); // сервис/кухня вызывает, когда блюдо готово
-    void Cancel();      // если нужно (например, конец дня)
+    void Cancel();      // возможно в конце дня)
 }

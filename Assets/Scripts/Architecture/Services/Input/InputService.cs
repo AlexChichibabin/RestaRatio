@@ -7,10 +7,9 @@ public class InputService : IInputService, IDisposable
 {
 	public IReadOnlyReactiveProperty<bool> Enabled => enabled;
 	public IObservable<Vector2> MoveAxis =>
-		moveAxis.Where(_ => enabled.Value).StartWith(Vector2.zero);
+		moveAxis.Where(_ => enabled.Value == true).StartWith(Vector2.zero);
 	public IObservable<Unit> InteractDown =>
 		interactDown.Where(_ => enabled.Value);
-
 
     private PlayerInputActions input;
 
@@ -38,16 +37,15 @@ public class InputService : IInputService, IDisposable
 	public void EnableGameplay() => input.Gameplay.Enable();
 	public void DisableGameplay() => input.Gameplay.Disable();
 
-	private void OnMove(InputAction.CallbackContext context)
-		=> moveAxis.OnNext(context.ReadValue<Vector2>());
+	private void OnMove(InputAction.CallbackContext context) =>
+		moveAxis.OnNext(context.ReadValue<Vector2>());
 
-	private void OnMoveCanceled(InputAction.CallbackContext context)
-		=> moveAxis.OnNext(Vector2.zero);
+	private void OnMoveCanceled(InputAction.CallbackContext context) =>
+		moveAxis.OnNext(Vector2.zero);
 
-	private void OnInteractPerformed(InputAction.CallbackContext context)
-	{
+	private void OnInteractPerformed(InputAction.CallbackContext context) =>
 		interactDown.OnNext(Unit.Default);
-	}
+
 
 	public void Dispose()
 	{

@@ -8,13 +8,15 @@ public class OrderService : IOrderService, IDisposable
     public IObservable<IOrder> OrderCreated => orderCreated;
     public IObservable<IOrder> OrderCompleted => orderCompleted;
     public IObservable<IOrder> OrderFailed => orderFailed;
+	public IObservable<IOrder> OrderRemoved => orderRemoved;
 
-    private ReactiveCollection<IOrder> activeOrders = new();
+	private ReactiveCollection<IOrder> activeOrders = new();
     private Subject<IOrder> orderCreated = new();
     private Subject<IOrder> orderCompleted = new();
     private Subject<IOrder> orderFailed = new();
+	private Subject<IOrder> orderRemoved = new();
 
-    private CompositeDisposable disposables = new();
+	private CompositeDisposable disposables = new();
     private int orderSequence;
 
     public IOrder CreateOrder(float seconds)
@@ -54,7 +56,9 @@ public class OrderService : IOrderService, IDisposable
 
         activeOrders.Remove(order);
         order.Dispose(); // важно: остановить таймер
-    }
+		orderRemoved.OnNext(order);
+
+	}
 
     public void Clear()
     {

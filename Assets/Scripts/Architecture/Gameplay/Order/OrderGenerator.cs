@@ -15,16 +15,17 @@ public class OrderGenerator : IInitializable, IDisposable
 
     public void Initialize()
     {
-        Observable.Interval(TimeSpan.FromSeconds(3))
-            .Subscribe(_ =>
-            {
-                if (orderService.ActiveOrders.Count < 5) // TODO fix hardcode
-                {
-                    orderService.CreateOrder(5f);
-                }
-            })
-            .AddTo(disposables);
-    }
+		Observable
+			.Timer(TimeSpan.FromSeconds(0.5f), TimeSpan.FromSeconds(20))
+			.Subscribe(_ =>
+			{
+			if (orderService.ActiveOrders.Count < 5)
+			{
+				orderService.CreateOrder(50f);
+			}
+			})
+			.AddTo(disposables);
+	}
 
-    public void Dispose() => disposables.Dispose();
+	public void Dispose() => disposables.Dispose();
 }

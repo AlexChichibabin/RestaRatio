@@ -4,8 +4,8 @@ using UniRx;
 public class Order : IOrder
 {
     public string Id { get; }
-    public OrderStatus Status => status.Value;
 
+    public OrderStatus Status => status.Value;
     public IReadOnlyReactiveProperty<float> RemainingSeconds => remainingSeconds;
     public IReadOnlyReactiveProperty<float> Progress01 => progress01;
     public IObservable<Unit> Completed => completed;
@@ -14,7 +14,6 @@ public class Order : IOrder
     private ReactiveProperty<OrderStatus> status = new(OrderStatus.Active);
     private ReactiveProperty<float> remainingSeconds;
     private ReactiveProperty<float> progress01 = new(1f);
-
     private Subject<Unit> completed = new();
     private Subject<Unit> failed = new();
 
@@ -69,14 +68,14 @@ public class Order : IOrder
 
         status.Value = OrderStatus.Failed;
         failed?.OnNext(Unit.Default);
-        failed?.OnCompleted();
+        //failed?.OnCompleted();
 
         Dispose();
     }
 
     public void Dispose()
     {
-        // Закрываем всё аккуратно
+        // Закрываем все реактивное
         disposables?.Dispose();
         failed?.Dispose();
         completed.Dispose();

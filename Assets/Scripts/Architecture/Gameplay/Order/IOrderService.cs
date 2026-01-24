@@ -9,6 +9,7 @@ public interface IOrderService
     IObservable<IOrder> OrderCreated { get; }
     IObservable<IOrder> OrderCompleted { get; }
     IObservable<IOrder> OrderFailed { get; }
+    IObservable<IOrder> OrderRemoved { get; }
 
     IOrder CreateOrder(float seconds);
     void RemoveOrder(string id);
