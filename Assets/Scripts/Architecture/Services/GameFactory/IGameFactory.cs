@@ -1,16 +1,16 @@
 //using CodeBase.Gameplay.Enemy;
 //using CodeBase.Gameplay.Hero;
 //using CodeBase.Infrastructure.DependencyInjection;
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public interface IGameFactory
 {
-	Task<GameObject> CreateHeroAsync(Vector3 position, Quaternion rotation);
-	//Task<VirtualJoystick> CreateVirtualJoystickAsync();
-	//Task<FollowCamera> CreateFollowCameraAsync();
-	//Task<GameObject> CreateEnemy(EnemyId id, Vector3 position);
-	//Task WarmUp();
+	UniTask<GameObject> CreateHeroAsync(Vector3 position, Quaternion rotation);
+	//UniTask<VirtualJoystick> CreateVirtualJoystickAsync();
+	//UniTask<FollowCamera> CreateFollowCameraAsync();
+	//UniTask<GameObject> CreateEnemy(EnemyId id, Vector3 position);
+	//UniTask WarmUpAsync();
 
 
 	//VirtualJoystick VirtualJoystick { get; }

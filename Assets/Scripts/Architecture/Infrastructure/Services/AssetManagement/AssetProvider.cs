@@ -1,5 +1,5 @@
+using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -18,7 +18,7 @@ public class AssetProvider : IAssetProvider
 		T obj = Resources.Load<T>(prefabPath);
 		return GameObject.Instantiate(obj);
 	}
-	public async Task<TType> LoadAsync<TType>(AssetReference assetReference) where TType : class
+	public async UniTask<TType> LoadAsync<TType>(AssetReference assetReference) where TType : class
 	{
 		if (cacheHandle.TryGetValue(assetReference.AssetGUID, out AsyncOperationHandle handle) == true)
 		{

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class UIQuestInfo : MonoBehaviour
 {
-    [SerializeField] private QuestCollector m_QuestCollector;
+    /*[SerializeField] private QuestCollector m_QuestCollector;
     [SerializeField] private TextMeshProUGUI m_Description;
     [SerializeField] private TextMeshProUGUI m_Task;
 
@@ -49,5 +49,5 @@ public class UIQuestInfo : MonoBehaviour
         m_Task.text = quest.Properties.Task;
         m_Description.gameObject.SetActive(true);
         m_Task.gameObject.SetActive(true);
-    }
+    }*/
 }

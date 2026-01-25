@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
+using Cysharp.Threading.Tasks;
 
 public class UIFactory : IUIFactory
 {
@@ -20,16 +21,16 @@ public class UIFactory : IUIFactory
 	}
 
 	public Transform UIRoot { get; set; }
-	public async Task WarmUpAsync()
+	public async UniTask WarmUpAsync()
 	{
 		for (int i = 1; i < Enum.GetNames(typeof(WindowId)).Length; i++)
             await assetProvider.LoadAsync<GameObject>(configProvider.GetWindow((WindowId)i).PrefabReference);
     }
-	public async Task<LevelResultPresenter> CreateLevelResultWindowAsync(WindowConfig config)
+	public async UniTask<LevelResultPresenter> CreateLevelResultWindowAsync(WindowConfig config)
 	{
 		return await CreateWindowAsync<LevelResultWindow, LevelResultPresenter>(config);
 	}
-	public async Task<MainMenuPresenter> CreateMainMenuWindowAsync(WindowConfig config)
+	public async UniTask<MainMenuPresenter> CreateMainMenuWindowAsync(WindowConfig config)
 	{
 		return await CreateWindowAsync<MainMenuWindow, MainMenuPresenter>(config);
 	}
@@ -37,7 +38,7 @@ public class UIFactory : IUIFactory
 	{
 		UIRoot = new GameObject(UIRootGameObjectName).transform;
 	}
-	private async Task<TPresenter> CreateWindowAsync<TWindow, TPresenter>(WindowConfig config) 
+	private async UniTask<TPresenter> CreateWindowAsync<TWindow, TPresenter>(WindowConfig config) 
 		where TWindow : WindowBase where TPresenter : WindowPresenterBase<TWindow>
 	{
 		GameObject prefab = await assetProvider.LoadAsync<GameObject>(config.PrefabReference);

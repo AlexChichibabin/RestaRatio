@@ -1,55 +1,48 @@
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
+using Cysharp.Threading;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
 using Zenject;
 
-public class GameBootstrappState : IEnterableState
+public class GameBootstrappState : IEnterableState          // Сделать еще загрузку сохранений и сервиса покупок/рекламы
 {
     private IGameStateSwitcher gameStateSwitcher;
     private IConfigProvider configProvider;
-    //private IProgressSaver progressSaver;
     private IUIFactory uIFactory;
-    //private IAdsService adsService;
 
-    public GameBootstrappState(
+	public GameBootstrappState(
         IGameStateSwitcher gameStateSwitcher, 
         IConfigProvider configProvider,
-        IUIFactory uIFactory
-        //IProgressSaver progressSaver,
-        /*IAdsService adsService*/)
+        IUIFactory uIFactory)
     {
         this.gameStateSwitcher = gameStateSwitcher;
         this.configProvider = configProvider;
         this.uIFactory = uIFactory;
-        //this.progressSaver = progressSaver;
-        //this.adsService = adsService;
     }
 
     public void Enter()
     {
-        Debug.Log("GLOBAL: Init");
-        // Подключение к серверу
-        // Подгрузка конфигов
+		InitAsync().Forget();
+	}
+    private async UniTaskVoid InitAsync()
+    {
+		Debug.Log("GLOBAL: Init");
 
-        uIFactory.WarmUpAsync();
+		Application.targetFrameRate = (int)Screen.currentResolution.refreshRateRatio.numerator;
 
-        configProvider.Load();
+		// Дожидаюсь Addressables
+		await Addressables.InitializeAsync().ToUniTask();
 
-        //progressSaver.LoadProgress();
+		// Подгружаю конфиги
+		configProvider.Load();
 
-        //adsService.Initialize();
-        //adsService.LoadInterstitial();
-        //adsService.LoadRewarded();
+		// Прогреваю UI
+		await uIFactory.WarmUpAsync();
 
-        Application.targetFrameRate = (int)Screen.currentResolution.refreshRateRatio.numerator;
-
-        Addressables.InitializeAsync();
-
-        if (SceneManager.GetActiveScene().name == Constants.BootstrappSceneName ||
-            SceneManager.GetActiveScene().name == Constants.MainMenuSceneName)
-        {
-            gameStateSwitcher.Enter<LoadMainMenuState>();
-        }
-    }
+		// Когда все загрузидось загружаю сцену
+		var sceneName = SceneManager.GetActiveScene().name;
+		if (sceneName == Constants.BootstrappSceneName || sceneName == Constants.MainMenuSceneName)
+			gameStateSwitcher.Enter<LoadMainMenuState>();
+	}
 }

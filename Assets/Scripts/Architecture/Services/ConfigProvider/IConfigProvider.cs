@@ -1,4 +1,6 @@
-﻿public interface IConfigProvider
+﻿using Cysharp.Threading.Tasks;
+
+public interface IConfigProvider
 {
 	int LevelAmount { get; }
 	void Load();
