@@ -1,21 +1,27 @@
 using System;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using Zenject;
 
 public class LevelInstaller : MonoInstaller
 {
     [SerializeField] private LevelStateMachineTicker levelStateMachineTicker;
+    [SerializeField] private GameObject heroPrefab;
 
     public override void InstallBindings()
     {
         Debug.Log("LEVEL: Install");
 
-		RegisterLevelStateMachine();
-
         RegisterGameplayServices();
 
+        RegisterLevelStateMachine();
+
         Container.Bind<LevelStateMachineTicker>().FromInstance(levelStateMachineTicker).AsSingle();
+
         Container.Bind<IInitializable>().To<LevelBootstrapper>().AsSingle().NonLazy();
+
+        Container.BindFactory<HeroRoot, HeroRoot.Factory>()
+            .FromComponentInNewPrefab(heroPrefab); // Потом надо брать из подгружаемых конфигов
     }
 
 
@@ -49,15 +55,13 @@ public class LevelInstaller : MonoInstaller
     {
         BindOrderService();
         BindOrderGenerator();
-		BindActionRunner();
-        BindActionResolver();
-	}
+        BindGameFactory();
+    }
     private void BindOrderService() => 
         Container.Bind<IOrderService>().To<OrderService>().AsSingle();
     private void BindOrderGenerator() => 
         Container.BindInterfacesTo<OrderGenerator>().AsSingle().NonLazy();
-	private void BindActionRunner() =>
-        Container.Bind<ActionRunner>().FromNew().AsTransient();
-    private void BindActionResolver() =>
-		Container.Bind<IActionResolver>().To<ActionResolver>().AsTransient();
+    private void BindGameFactory() =>
+    Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
+
 }

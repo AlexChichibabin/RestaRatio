@@ -1,27 +1,25 @@
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Zenject;
 using Cysharp.Threading.Tasks;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class GameFactory : IGameFactory
 {
     private IAssetProvider assetProvider;
     private IConfigProvider configProvider;
-    private DiContainer container;
+    private DiContainer ñontainer;
     //private IProgressSaver progressSaver;
 
     public GameFactory(
         IAssetProvider assetProvider,
         IConfigProvider configProvider,
-        DiContainer container/*,
+        DiContainer ñontainer/*,
         IProgressSaver progressSaver,
         IProgressProvider progressProvider*/)
     {
         this.assetProvider = assetProvider;
         this.configProvider = configProvider;
-        this.container = container;
+        this.ñontainer = ñontainer;
         //this.progressSaver = progressSaver;
     }
 
@@ -58,8 +56,8 @@ public class GameFactory : IGameFactory
     }
     private async UniTask<GameObject> InstantiateAndInject(string address)
     {
-        GameObject newGameObject = await Addressables.InstantiateAsync(address).Task;
-        container.InjectGameObject(newGameObject);
+        GameObject newGameObject = await Addressables.InstantiateAsync(address).ToUniTask();
+        ñontainer.InjectGameObject(newGameObject);
 
 		return newGameObject;
     }

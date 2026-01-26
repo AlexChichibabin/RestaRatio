@@ -11,6 +11,7 @@ public class InterationTrigger : MonoBehaviour
 		if (interactable != null)
 		{
 			this.interactable = interactable;
+			Debug.Log(this.interactable);
 		}
 	}
 	private void OnTriggerExit(Collider other)
@@ -19,6 +20,7 @@ public class InterationTrigger : MonoBehaviour
 		if (interactable != null && interactable == this.interactable)
 		{
 			this.interactable = null;
-		}
+            Debug.Log(this.interactable);
+        }
 	}
 }

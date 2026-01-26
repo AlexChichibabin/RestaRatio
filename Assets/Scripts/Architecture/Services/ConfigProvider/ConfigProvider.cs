@@ -6,7 +6,7 @@ public class ConfigProvider : IConfigProvider
 {
 	private const string LevelsConfigPath = "Configs/Levels";
 	private const string WindowsConfigPath = "Configs/Windows";
-	private Dictionary<string, LevelConfig> levels;
+    private Dictionary<string, LevelConfig> levels;
 	private Dictionary<WindowId, WindowConfig> windows;
 	private LevelConfig[] levelList;
 

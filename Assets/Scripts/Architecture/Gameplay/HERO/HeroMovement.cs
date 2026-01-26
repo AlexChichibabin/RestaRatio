@@ -11,7 +11,7 @@ public class HeroMovement : MonoBehaviour
     private Vector3 directionControl;
 
     public Vector3 DirectionControl => directionControl;
-    public Vector3 TargetDirectionControl;
+    [HideInInspector] public Vector3 TargetDirectionControl;
 
     private void Update()
     {

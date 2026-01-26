@@ -6,24 +6,24 @@ public class EntityAnimationAction : EntityAction
     [SerializeField] private string m_ActionAnimationName;
     [SerializeField] private float m_StartDuration;
 
-    /*private Timer m_Timer;
+    //private Timer m_Timer;
     private bool m_IsPlayingAnimation;
 
     public override void StartAction()
     {
         base.StartAction();
         m_Animator.CrossFade(m_ActionAnimationName, m_StartDuration);
-        m_Timer = Timer.CreateTimer(m_StartDuration, true);
-        m_Timer.OnTick += OnTimerTick;
+        //m_Timer = Timer.CreateTimer(m_StartDuration, true);
+        //m_Timer.OnTick += OnTimerTick;
     }
     private void OnDestroy()
     {
-        if(m_Timer != null) m_Timer.OnTick -= OnTimerTick;
+        //if(m_Timer != null) m_Timer.OnTick -= OnTimerTick;
     }
     public override void EndAction()
     {
         base.EndAction();
-        m_Timer.OnTick -= OnTimerTick;
+        //m_Timer.OnTick -= OnTimerTick;
         m_Animator.transform.rotation = transform.root.rotation; // HARDCODE?
         m_Animator.transform.position = transform.root.position; // HARDCODE?
     }
@@ -31,7 +31,7 @@ public class EntityAnimationAction : EntityAction
     {
         if (m_Animator == null)
         {
-            m_Timer.OnTick -= OnTimerTick;
+            //m_Timer.OnTick -= OnTimerTick;
             return;
         }
             
@@ -44,5 +44,5 @@ public class EntityAnimationAction : EntityAction
             m_IsPlayingAnimation = false;
             EndAction();
         }
-    }*/
+    }
 }

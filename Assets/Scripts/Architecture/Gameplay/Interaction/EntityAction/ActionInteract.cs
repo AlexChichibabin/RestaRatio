@@ -29,15 +29,15 @@ public class ActionInteract : EntityContextAction
     {
         Properties = props as ActionInteractProperties;
     }
-    /*public override void StartAction() // Задать в другом месте
+    public override void StartAction() // Задать в другом месте
     {
         if (IsCanStart == false) return;
 
         base.StartAction();
         
-        StartCoroutine(MoveToInteractTransformNumerator());
+        //StartCoroutine(MoveToInteractTransformNumerator());
     }
-    IEnumerator MoveToInteractTransformNumerator()
+    /*IEnumerator MoveToInteractTransformNumerator()
     {
         while (Vector3.Distance(m_Owner.position, Properties.InteractTransform.position) > 0.1f)
         {

@@ -4,11 +4,11 @@ using Zenject;
 public class OrderReceiver : MonoBehaviour
 {
     //private IOrderService orderService;
-
+    //private IActionResolver actionResolver;
     //[Inject]
-    //public void Construct(IOrderService orderService)
+    //public void Construct(IActionResolver actionResolver)
     //{
-    //    this.orderService = orderService;
+    //    this.actionResolver = actionResolver;
     //}
 
     //private void OnTriggerEnter(Collider other)
@@ -19,7 +19,7 @@ public class OrderReceiver : MonoBehaviour
     //        if (orderService.ActiveOrders.Count < 5)
     //        {
     //            orderService.CreateOrder(5);
-                
+
     //        }
     //    }
     //}

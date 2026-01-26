@@ -5,7 +5,7 @@ using Zenject;
 public class PlayerInput : MonoBehaviour
 {
 	[SerializeField] private HeroMovement playerMovement;
-	[SerializeField] private PlayerActionController playerHeroController;
+	[SerializeField] private ActionController playerHeroController;
 
 	private IInputService input;
 

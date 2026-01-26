@@ -1,6 +1,6 @@
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cysharp.Threading.Tasks;
 using Zenject;
 
 
@@ -10,23 +10,26 @@ public class LevelBootstrappState : IEnterableState
     private ILevelStateSwitcher levelStateSwitcher;
     private IInputService inputService;
     private IConfigProvider configProvider;
+    private HeroRoot.Factory heroFactory;
     //private IProgressSaver progressSaver;
 
     public LevelBootstrappState(
         IGameFactory gameFactory,  
         ILevelStateSwitcher levelStateSwitcher,
         IInputService inputService,
-        IConfigProvider configProvider/*,
+        IConfigProvider configProvider,
+        HeroRoot.Factory heroFactory/*,
         IProgressSaver progressSaver*/)
     {
         this.gameFactory = gameFactory;
         this.levelStateSwitcher = levelStateSwitcher;
         this.inputService = inputService;
         this.configProvider = configProvider;
+        this.heroFactory = heroFactory;
         //this.progressSaver = progressSaver;
     }
 
-    public async void Enter()
+    public void Enter()
     {
         Debug.Log("LEVEL: Init");
 
@@ -40,7 +43,8 @@ public class LevelBootstrappState : IEnterableState
         //EnemySpawner[] enemySpawners = Object.FindObjectsByType<EnemySpawner>(FindObjectsSortMode.None);
         //for (int i = 0; i < enemySpawners.Length; i++) enemySpawners[i].Spawn();
 
-        await gameFactory.CreateHeroAsync(levelConfig.HeroSpawnPoint, Quaternion.identity);
+        //await gameFactory.CreateHeroAsync(levelConfig.HeroSpawnPoint, Quaternion.identity);
+        CreateHero(levelConfig);
 
         levelStateSwitcher.Enter<LevelGameplayState>();
 		//FollowCamera followCamera = await gameFactory.CreateFollowCameraAsync();
@@ -55,4 +59,11 @@ public class LevelBootstrappState : IEnterableState
 
 		//levelStateSwitcher.Enter<LevelResearchState>();
 	}
+
+    private void CreateHero(LevelConfig levelConfig)  // Можно вынести потом из класса
+    {
+        heroFactory.Create().transform.SetPositionAndRotation(
+            levelConfig.HeroSpawnPoint,
+            Quaternion.identity);
+    }
 }
