@@ -48,8 +48,16 @@ public class LevelInstaller : MonoInstaller
     private void RegisterGameplayServices()
     {
         BindOrderService();
-        Container.BindInterfacesTo<OrderGenerator>().AsSingle().NonLazy();
-    }
+        BindOrderGenerator();
+		BindActionRunner();
+        BindActionResolver();
+	}
     private void BindOrderService() => 
         Container.Bind<IOrderService>().To<OrderService>().AsSingle();
+    private void BindOrderGenerator() => 
+        Container.BindInterfacesTo<OrderGenerator>().AsSingle().NonLazy();
+	private void BindActionRunner() =>
+        Container.Bind<ActionRunner>().FromNew().AsTransient();
+    private void BindActionResolver() =>
+		Container.Bind<IActionResolver>().To<ActionResolver>().AsTransient();
 }

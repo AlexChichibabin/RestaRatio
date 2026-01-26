@@ -30,8 +30,8 @@ public class LevelGameplayState : IEnterableState, ITickableState, IExitableStat
         Debug.Log("LEVEL: Gameplay");
 
         levelConfig = configProvider.GetLevel(SceneManager.GetActiveScene().name);
-
-        inputService.EnableGameplay();
+		
+		inputService.EnableGameplay();
 	}
     public void Exit()
     {

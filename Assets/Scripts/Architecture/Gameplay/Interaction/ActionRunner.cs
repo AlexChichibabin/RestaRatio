@@ -3,8 +3,8 @@ using UniRx;
 
 public class ActionRunner
 {
-    private IHoldAction _currentHold;
-    private IDisposable _holdSub;
+    private IHoldAction currentHold;
+    private IDisposable holdSub;
 
     public void Run(ActionContext ctx, IGameAction action)
     {
@@ -15,17 +15,17 @@ public class ActionRunner
     {
         CancelHold();
 
-        _currentHold = action;
-        _holdSub = action.ExecuteHold(ctx)
+        currentHold = action;
+        holdSub = action.ExecuteHold(ctx)
             .Subscribe(_ => CancelHold());
     }
 
     public void CancelHold()
     {
-        _holdSub?.Dispose();
-        _holdSub = null;
+        holdSub?.Dispose();
+        holdSub = null;
 
-        _currentHold?.Cancel();
-        _currentHold = null;
+        currentHold?.Cancel();
+        currentHold = null;
     }
 }

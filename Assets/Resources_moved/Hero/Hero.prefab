@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8742775756846405699}
   - component: {fileID: 8124544368613990571}
   - component: {fileID: 6956801873486209571}
+  - component: {fileID: 2868964327939656491}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -35,6 +36,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6499367514064125969}
+  - {fileID: 6646425128386232282}
+  - {fileID: 4351693517114554859}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &3772519728228515102
@@ -101,7 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d941846ae4adc349b289a15890131dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HeroInput
-  heroMovement: {fileID: 8124544368613990571}
+  playerMovement: {fileID: 8124544368613990571}
+  playerHeroController: {fileID: 2868964327939656491}
 --- !u!114 &8124544368613990571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,6 +138,132 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HeroAnimator
   characterController: {fileID: 227252105933141651}
   animator: {fileID: 923880610202409579}
+--- !u!114 &2868964327939656491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2756772228624974057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b90833c6dc968f4f9ebb6c78f863698, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerActionController
+  handsInventory: {fileID: 1977799571343181889}
+  interractionTrigger: {fileID: 6046468238114860138}
+--- !u!1 &5878421106259015380
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4351693517114554859}
+  - component: {fileID: 389152587479412304}
+  - component: {fileID: 6046468238114860138}
+  m_Layer: 0
+  m_Name: InteractionTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4351693517114554859
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5878421106259015380}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.731, z: 0.278}
+  m_LocalScale: {x: 1.39, y: 0.833, z: 1.3440024}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 802105588761965757}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &389152587479412304
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5878421106259015380}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6046468238114860138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5878421106259015380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c046c6809e514f24098b217ade82049b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InterationTrigger
+--- !u!1 &7909912188596603116
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6646425128386232282}
+  - component: {fileID: 1977799571343181889}
+  m_Layer: 0
+  m_Name: HandsInventory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6646425128386232282
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7909912188596603116}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.804, z: 0.541}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 802105588761965757}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1977799571343181889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7909912188596603116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1695c41b79de4a41bd1befee035362c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HandsInventory
 --- !u!1001 &6753390825951782906
 PrefabInstance:
   m_ObjectHideFlags: 0
