@@ -102,9 +102,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Interaction"",
+                    ""name"": ""Interaction1"",
                     ""type"": ""Button"",
                     ""id"": ""346a2b48-d831-4ea2-844c-db6846208148"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interaction2"",
+                    ""type"": ""Button"",
+                    ""id"": ""57c42fe7-32e1-491d-a9d8-ce09a5fe92a7"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press"",
@@ -196,7 +205,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Interaction"",
+                    ""action"": ""Interaction1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""36f01425-2dcc-416f-9782-f77b922b9289"",
+                    ""path"": ""<Keyboard>/#(Q)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interaction2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -208,7 +228,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
-        m_Gameplay_Interaction = m_Gameplay.FindAction("Interaction", throwIfNotFound: true);
+        m_Gameplay_Interaction1 = m_Gameplay.FindAction("Interaction1", throwIfNotFound: true);
+        m_Gameplay_Interaction2 = m_Gameplay.FindAction("Interaction2", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
@@ -290,7 +311,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Gameplay;
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_Move;
-    private readonly InputAction m_Gameplay_Interaction;
+    private readonly InputAction m_Gameplay_Interaction1;
+    private readonly InputAction m_Gameplay_Interaction2;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
@@ -307,9 +329,13 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Move => m_Wrapper.m_Gameplay_Move;
         /// <summary>
-        /// Provides access to the underlying input action "Gameplay/Interaction".
+        /// Provides access to the underlying input action "Gameplay/Interaction1".
         /// </summary>
-        public InputAction @Interaction => m_Wrapper.m_Gameplay_Interaction;
+        public InputAction @Interaction1 => m_Wrapper.m_Gameplay_Interaction1;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/Interaction2".
+        /// </summary>
+        public InputAction @Interaction2 => m_Wrapper.m_Gameplay_Interaction2;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -339,9 +365,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
-            @Interaction.started += instance.OnInteraction;
-            @Interaction.performed += instance.OnInteraction;
-            @Interaction.canceled += instance.OnInteraction;
+            @Interaction1.started += instance.OnInteraction1;
+            @Interaction1.performed += instance.OnInteraction1;
+            @Interaction1.canceled += instance.OnInteraction1;
+            @Interaction2.started += instance.OnInteraction2;
+            @Interaction2.performed += instance.OnInteraction2;
+            @Interaction2.canceled += instance.OnInteraction2;
         }
 
         /// <summary>
@@ -356,9 +385,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
-            @Interaction.started -= instance.OnInteraction;
-            @Interaction.performed -= instance.OnInteraction;
-            @Interaction.canceled -= instance.OnInteraction;
+            @Interaction1.started -= instance.OnInteraction1;
+            @Interaction1.performed -= instance.OnInteraction1;
+            @Interaction1.canceled -= instance.OnInteraction1;
+            @Interaction2.started -= instance.OnInteraction2;
+            @Interaction2.performed -= instance.OnInteraction2;
+            @Interaction2.canceled -= instance.OnInteraction2;
         }
 
         /// <summary>
@@ -407,11 +439,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMove(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Interaction" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Interaction1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnInteraction(InputAction.CallbackContext context);
+        void OnInteraction1(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Interaction2" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInteraction2(InputAction.CallbackContext context);
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Pickup_FirstAidKit : TriggerInteraction
+public class Pickup_FirstAidKit : TriggerCharacterInteraction
 {
     protected override void OnStartAction(GameObject owner)
     {

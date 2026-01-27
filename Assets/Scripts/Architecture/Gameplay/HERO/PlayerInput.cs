@@ -1,11 +1,14 @@
 using UniRx;
 using UnityEngine;
 using Zenject;
-
+public enum ButtonId
+{
+    Button1, Button2, Button3, Button4, Button5, Button6
+}
 public class PlayerInput : MonoBehaviour
 {
 	[SerializeField] private HeroMovement playerMovement;
-	[SerializeField] private ActionController playerHeroController;
+	[SerializeField] private ActionController actionController;
 
 	private IInputService input;
 
@@ -42,10 +45,13 @@ public class PlayerInput : MonoBehaviour
 			.Subscribe(dir => playerMovement.SetMoveDirection(dir))
 			.AddTo(disposables);
 
-		input.InteractDown
-			.Subscribe(_ => playerHeroController.OnInteractDown())
+		input.InteractDown1
+			.Subscribe(_ => actionController.OnInteractDown1())
 			.AddTo(disposables);
-	}
+        input.InteractDown2
+            .Subscribe(_ => actionController.OnInteractDown2())
+            .AddTo(disposables);
+    }
 
 	private void OnDestroy() => disposables.Dispose();
 }

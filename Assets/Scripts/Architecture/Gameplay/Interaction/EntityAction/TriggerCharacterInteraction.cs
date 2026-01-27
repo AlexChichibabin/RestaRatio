@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(BoxCollider))]
-public class TriggerInteraction : MonoBehaviour
+public class TriggerCharacterInteraction : MonoBehaviour
 {
     [SerializeField] private InteractType m_InteractType;
     [SerializeField] private int m_InteractAmount;

@@ -6,16 +6,19 @@ public sealed class ActionContext
     public IInventory Inventory;
     public IInteractable Target;
     public Vector3 Point;
+    public ButtonId Button;
 
     public ActionContext(
         GameObject actor, 
         IInventory inventory,
         IInteractable target, 
-        Vector3 point)
+        Vector3 point,
+        ButtonId button)
     {
         Actor = actor;
         Inventory = inventory;
         Target = target;
         Point = point;
+        Button = button;
     }
 }

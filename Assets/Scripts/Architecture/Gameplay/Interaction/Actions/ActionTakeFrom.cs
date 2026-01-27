@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TakeFromAction : IGameAction
+public class ActionTakeFrom : IGameAction
 {
 	public string Id => "take_from_counter";
 
@@ -10,7 +10,9 @@ public class TakeFromAction : IGameAction
 	{
 		return !ctx.Inventory.HasItem
 			&& ctx.Target.HasItem
-			&& ctx.Target is StaticInteractable;
+			&& ctx.Target is StaticInteractable
+			&& ctx.Button == ButtonId.Button1;
+
 	}
 
 

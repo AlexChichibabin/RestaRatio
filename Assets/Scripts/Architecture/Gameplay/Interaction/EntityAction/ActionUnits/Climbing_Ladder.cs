@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Climbing_Ladder : TriggerInteraction
+public class Climbing_Ladder : TriggerCharacterInteraction
 {
     [SerializeField] private Transform m_LadderTop;
     [SerializeField] private Transform m_LadderStand;

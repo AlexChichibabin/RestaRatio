@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HeroInput
   playerMovement: {fileID: 8124544368613990571}
-  playerHeroController: {fileID: 1585053803883391895}
+  actionController: {fileID: 1585053803883391895}
 --- !u!114 &8124544368613990571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5878421106259015380}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c046c6809e514f24098b217ade82049b, type: 3}
+  m_Script: {fileID: 11500000, guid: 29e874420de288e4eb06425baecf769e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InterationTrigger
 --- !u!1 &7909912188596603116
@@ -306,7 +306,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7909912188596603116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1695c41b79de4a41bd1befee035362c, type: 3}
+  m_Script: {fileID: 11500000, guid: d6dbff341b0d0fe4aae71243dc84d188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandsInventory
 --- !u!1001 &6753390825951782906

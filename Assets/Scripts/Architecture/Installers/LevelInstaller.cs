@@ -27,9 +27,9 @@ public class LevelInstaller : MonoInstaller
     }
 	private void BindActions()
 	{
-		Container.Bind<TakeFromAction>().FromNew().AsSingle();
-		Container.Bind<PutDownOnAction>().FromNew().AsSingle();
-		Container.Bind<ChopHoldAction>().FromNew().AsSingle();
+		Container.Bind<ActionTakeFrom>().FromNew().AsSingle();
+		Container.Bind<ActionPutDownOn>().FromNew().AsSingle();
+		Container.Bind<ActionChop>().FromNew().AsSingle();
 	}
 
 	private void OnDestroy()

@@ -2,7 +2,7 @@ using System;
 using UniRx;
 using UnityEngine;
 
-public sealed class ChopHoldAction : IHoldAction
+public sealed class ActionChop : IActionHold
 {
 	public string Id => "chop";
 	public int Priority => 80;
@@ -14,7 +14,8 @@ public sealed class ChopHoldAction : IHoldAction
 	public bool CanExecute(ActionContext ctx)
 		=> ctx.Target is CuttingBoard board
 		   && board.HasItemToChop
-		   && !ctx.Inventory.HasItem;
+		   && !ctx.Inventory.HasItem
+		   && ctx.Button == ButtonId.Button2;
 
 	public void Execute(ActionContext ctx) { }
 

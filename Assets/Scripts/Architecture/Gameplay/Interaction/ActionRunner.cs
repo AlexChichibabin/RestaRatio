@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ActionRunner
 {
-    private IHoldAction currentHold;
+    private IActionHold currentHold;
     private IDisposable holdSub;
 
     public void Run(ActionContext ctx, IGameAction action)
@@ -12,7 +12,7 @@ public class ActionRunner
         action.Execute(ctx);
     }
 
-    public void StartHold(ActionContext ctx, IHoldAction action)
+    public void StartHold(ActionContext ctx, IActionHold action)
     {
         CancelHold();
 

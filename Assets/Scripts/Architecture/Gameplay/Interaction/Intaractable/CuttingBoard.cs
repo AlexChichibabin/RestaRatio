@@ -6,7 +6,7 @@ public class CuttingBoard : StaticInteractable, IInteractable
 {
 	public bool HasItemToChop => itemContainer.childCount > 0;
 
-	[Inject] ChopHoldAction chopHold;
+	[Inject] ActionChop chopHold;
 
 
 	public IEnumerable<IGameAction> GetActions(ActionContext ctx)

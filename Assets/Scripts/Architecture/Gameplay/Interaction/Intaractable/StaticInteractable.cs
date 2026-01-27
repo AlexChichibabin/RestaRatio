@@ -8,11 +8,11 @@ public abstract class StaticInteractable : MonoBehaviour
 
 	[SerializeField] protected Transform itemContainer;
 
-	protected PutDownOnAction putDown;
-	protected TakeFromAction take;
+	protected ActionPutDownOn putDown;
+	protected ActionTakeFrom take;
 
 	[Inject]
-	public void Construct(PutDownOnAction putDown, TakeFromAction take)
+	public void Construct(ActionPutDownOn putDown, ActionTakeFrom take)
 	{
 		this.putDown = putDown;
 		this.take = take;

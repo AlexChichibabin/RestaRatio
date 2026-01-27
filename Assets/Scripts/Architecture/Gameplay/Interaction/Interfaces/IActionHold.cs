@@ -1,7 +1,7 @@
 using System;
 using UniRx;
 
-public interface IHoldAction : IGameAction
+public interface IActionHold : IGameAction
 {
     IObservable<Unit> ExecuteHold(ActionContext ctx); // завершение/успех
     void Cancel();
