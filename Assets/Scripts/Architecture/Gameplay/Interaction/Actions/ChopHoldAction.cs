@@ -39,6 +39,6 @@ public sealed class ChopHoldAction : IHoldAction
 	public void Cancel()
 	{
 		cancel = true;
-		progress.Value = 0f;
+		//progress.Value = 0f;
 	}
 }

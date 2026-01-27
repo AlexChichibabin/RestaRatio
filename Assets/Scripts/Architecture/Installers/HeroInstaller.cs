@@ -5,16 +5,18 @@ public class HeroInstaller : MonoInstaller
 {
     public override void InstallBindings()
     {
-        BindActionRunner();
+		//BindActions();
+
+		BindActionRunner();
         BindActionResolver();
 
-        BindActions();
+
     }
     private void BindActions()
     {
-        Container.Bind<TakeFromCounterAction>().FromNew().AsSingle();
-        Container.Bind<PutDownOnCounterAction>().FromNew().AsSingle();
-        Container.Bind<ChopHoldAction>().FromNew().AsSingle();
+        Container.Bind<TakeFromAction>().FromNew().AsSingle().NonLazy();
+        Container.Bind<PutDownOnAction>().FromNew().AsSingle().NonLazy();
+        Container.Bind<ChopHoldAction>().FromNew().AsSingle().NonLazy();
     }
   
     private void BindActionRunner() =>

@@ -14,7 +14,9 @@ public class LevelInstaller : MonoInstaller
 
         RegisterGameplayServices();
 
-        RegisterLevelStateMachine();
+        BindActions();
+
+		RegisterLevelStateMachine();
 
         Container.Bind<LevelStateMachineTicker>().FromInstance(levelStateMachineTicker).AsSingle();
 
@@ -23,7 +25,12 @@ public class LevelInstaller : MonoInstaller
         Container.BindFactory<HeroRoot, HeroRoot.Factory>()
             .FromComponentInNewPrefab(heroPrefab); // Потом надо брать из подгружаемых конфигов
     }
-
+	private void BindActions()
+	{
+		Container.Bind<TakeFromAction>().FromNew().AsSingle();
+		Container.Bind<PutDownOnAction>().FromNew().AsSingle();
+		Container.Bind<ChopHoldAction>().FromNew().AsSingle();
+	}
 
 	private void OnDestroy()
     {

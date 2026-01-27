@@ -9,7 +9,6 @@ public class ActionController : MonoBehaviour
 
     public ActionRunner runner;
     private IActionResolver actionResolver;
-    //private IActionServices actionServices;
 
     [Inject]
     public void Construct(ActionRunner runner,

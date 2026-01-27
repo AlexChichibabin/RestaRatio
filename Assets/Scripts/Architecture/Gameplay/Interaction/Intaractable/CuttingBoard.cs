@@ -4,23 +4,19 @@ using Zenject;
 
 public class CuttingBoard : StaticInteractable, IInteractable
 {
-	public bool HasItem => itemPlace.childCount > 0;
-	public bool HasItemToChop => itemPlace.childCount > 0;
+	public bool HasItemToChop => itemContainer.childCount > 0;
 
-	//[Inject] PutDownOnCounterAction putDown;
-	//[Inject] TakeFromCounterAction take;
-	//[Inject] ChopHoldAction chopHold;
+	[Inject] ChopHoldAction chopHold;
 
 
 	public IEnumerable<IGameAction> GetActions(ActionContext ctx)
 	{
-		//yield return putDown;
-		//yield return take;
-		//yield return chopHold;
-		yield return null;
+		yield return putDown;
+		yield return take;
+		yield return chopHold;
 	}
 	public void FinishChop()
 	{
-
+		Debug.Log("Блюдо нарезано");
 	}
 }

@@ -1,15 +1,17 @@
-public sealed class PutDownOnCounterAction : IGameAction
+public sealed class PutDownOnAction : IGameAction
 {
 	public string Id => "put_down_counter";
 	public int Priority => 50;
 
 	public bool CanExecute(ActionContext ctx)
-		=> ctx.Inventory.HasItem && ctx.Target is Counter;
+	{
+		return ctx.Inventory.HasItem && !ctx.Target.HasItem && ctx.Target is StaticInteractable;
+	}
 
 	public void Execute(ActionContext ctx)
 	{
 		var counter = (Counter)ctx.Target;
-		var item = ctx.Inventory.Drop();
+		var item = ctx.Inventory.ItemContainer.GetChild(0);
 		if (item == null) return;
 
 		counter.Place(item); // лучше делегировать объекту стола

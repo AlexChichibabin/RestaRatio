@@ -1,7 +1,7 @@
 using System.Collections.Generic;
+using UnityEngine;
 
-public interface IInteractable
+public interface IInteractable : IInventory
 {
     IEnumerable<IGameAction> GetActions(ActionContext ctx);
-    bool HasItem {  get; }
 }
