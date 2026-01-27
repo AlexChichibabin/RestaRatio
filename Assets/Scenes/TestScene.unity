@@ -3080,7 +3080,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3180206534290235704, guid: 8ce90b8784e940249abf89f307a832de, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.36263013
       objectReference: {fileID: 0}
     - target: {fileID: 3180206534290235704, guid: 8ce90b8784e940249abf89f307a832de, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3088,7 +3088,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3180206534290235704, guid: 8ce90b8784e940249abf89f307a832de, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1.3972187
       objectReference: {fileID: 0}
     - target: {fileID: 3180206534290235704, guid: 8ce90b8784e940249abf89f307a832de, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3119,8 +3119,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4502560885221908841, guid: 8ce90b8784e940249abf89f307a832de, type: 3}
+      propertyPath: m_Mass
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502560885221908841, guid: 8ce90b8784e940249abf89f307a832de, type: 3}
+      propertyPath: m_Interpolate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502560885221908841, guid: 8ce90b8784e940249abf89f307a832de, type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4502560885221908841, guid: 8ce90b8784e940249abf89f307a832de, type: 3}
       propertyPath: m_CollisionDetection
