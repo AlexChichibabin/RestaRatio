@@ -1,30 +1,50 @@
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 
 public class HeroMovement : MonoBehaviour
 {
-    [SerializeField] private CharacterController characterController;
+	public Vector3 DirectionControl => directionControl;
+	[HideInInspector] public Vector3 TargetDirectionControl;
+
+	[SerializeField] private CharacterController characterController;
     [SerializeField] private Transform viewTransform;
     [SerializeField] private float movementSpeed;
     [SerializeField] private float movementLerpFactor;
     [SerializeField] private float rotationLerpFactor;
 
-    private Vector3 directionControl;
+	[SerializeField] private float gravity = -20f;
+	[SerializeField] private float groundedStick = -2f;
 
-    public Vector3 DirectionControl => directionControl;
-    [HideInInspector] public Vector3 TargetDirectionControl;
+	private Vector3 directionControl;
+	private float verticalVelocity;
 
-    private void Update()
+	private void Update()
     {
 		directionControl = Vector3.Lerp(directionControl, TargetDirectionControl, Time.deltaTime * movementLerpFactor);
 
-        MoveDown();
+		var move = directionControl * movementSpeed;
 
-		characterController.Move(directionControl * movementSpeed * Time.deltaTime);
+		if (characterController.isGrounded)
+		{
+			if (verticalVelocity < 0f)
+				verticalVelocity = groundedStick;
+		}
+		else
+		{
+			verticalVelocity += gravity * Time.deltaTime;
+		}
 
-		if (TargetDirectionControl.magnitude > 0)
-        {
-            viewTransform.rotation = Quaternion.Lerp(viewTransform.rotation, Quaternion.LookRotation(directionControl), Time.deltaTime * rotationLerpFactor);
-        }
+		move.y = verticalVelocity;
+
+		characterController.Move(move * Time.deltaTime);
+
+		if (directionControl.sqrMagnitude > 0.0001f)
+		{
+			viewTransform.rotation = Quaternion.Lerp(
+				viewTransform.rotation,
+				Quaternion.LookRotation(new Vector3(directionControl.x, 0f, directionControl.z)),
+				Time.deltaTime * rotationLerpFactor);
+		}
 	}
     public void SetMoveDirection(Vector2 moveDirection)
     {

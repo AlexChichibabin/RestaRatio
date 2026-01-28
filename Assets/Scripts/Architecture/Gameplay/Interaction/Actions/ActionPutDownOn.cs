@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public sealed class ActionPutDownOn : IGameAction
 {
 	public string Id => "put_down_counter";
@@ -16,7 +18,13 @@ public sealed class ActionPutDownOn : IGameAction
 		var counter = (Counter)ctx.Target;
 		var item = ctx.Inventory.ItemContainer.GetChild(0);
 		if (item == null) return;
-
-		counter.Place(item); // лучше делегировать объекту стола
+		Pickupable pu = item.GetComponent<Pickupable>();
+		if (pu != null) pu.Put(ctx.Target.ItemContainer);
+		else
+		{
+			item.SetParent(ctx.Target.ItemContainer, false);
+			item.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+			//counter.Place(item);
+		}
 	}
 }

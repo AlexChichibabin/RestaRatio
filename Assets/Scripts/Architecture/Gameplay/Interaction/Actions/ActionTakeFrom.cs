@@ -19,7 +19,13 @@ public class ActionTakeFrom : IGameAction
 	public void Execute(ActionContext ctx)
 	{
 		Transform item = ctx.Target.ItemContainer.GetChild(0);
-		item.SetParent(ctx.Inventory.ItemContainer, false);
-		item.localPosition = Vector3.zero;
+		Pickupable pu = item.GetComponent<Pickupable>();
+		if (pu != null) pu.Take(ctx.Inventory.ItemContainer);
+		else
+		{
+			item.SetParent(ctx.Inventory.ItemContainer, false);
+			item.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity); 
+		}
+
 	}
 }

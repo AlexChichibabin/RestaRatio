@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Level_Test
   m_EditorClassIdentifier: Assembly-CSharp::LevelConfig
   SceneName: TestScene
-  HeroSpawnPoint: {x: -0.27, y: -0.026, z: 19.06}
+  HeroSpawnPoint: {x: -0.46, y: 0.0267, z: 19.06}
   enemySpawnerDatas: []

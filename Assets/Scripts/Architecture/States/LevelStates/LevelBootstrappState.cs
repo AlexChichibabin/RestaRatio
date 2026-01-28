@@ -62,8 +62,16 @@ public class LevelBootstrappState : IEnterableState
 
     private void CreateHero(LevelConfig levelConfig)  // Можно вынести потом из класса
     {
-        heroFactory.Create().transform.SetPositionAndRotation(
-            levelConfig.HeroSpawnPoint,
-            Quaternion.identity);
-    }
+        HeroRoot hero = heroFactory.Create();
+
+		if (hero.TryGetComponent<Rigidbody>(out var rb))
+		{
+			rb.position = levelConfig.HeroSpawnPoint;
+			rb.rotation = Quaternion.identity;
+		}
+		else
+		{
+			hero.transform.SetPositionAndRotation(levelConfig.HeroSpawnPoint, Quaternion.identity);
+		}
+	}
 }

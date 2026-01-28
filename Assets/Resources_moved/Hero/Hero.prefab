@@ -12,12 +12,13 @@ GameObject:
   - component: {fileID: 6132387214854358708}
   - component: {fileID: 3454667223227225795}
   - component: {fileID: -2150566322278724403}
-  - component: {fileID: 3772519728228515102}
+  - component: {fileID: 8783394654795508792}
   - component: {fileID: 227252105933141651}
   - component: {fileID: 8742775756846405699}
   - component: {fileID: 8124544368613990571}
   - component: {fileID: 6956801873486209571}
   - component: {fileID: 1585053803883391895}
+  - component: {fileID: 6588013158234626060}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -34,7 +35,7 @@ Transform:
   m_GameObject: {fileID: 2756772228624974057}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.27, y: -0.026, z: 19.06}
+  m_LocalPosition: {x: -0.27, y: 0, z: 19.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -85,7 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4fbdeb7119b6f648839f7227957c4bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HeroRoot
---- !u!54 &3772519728228515102
+--- !u!54 &8783394654795508792
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,7 +96,7 @@ Rigidbody:
   serializedVersion: 5
   m_Mass: 1
   m_LinearDamping: 0
-  m_AngularDamping: 2.91
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -107,11 +108,11 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!143 &227252105933141651
 CharacterController:
   m_ObjectHideFlags: 0
@@ -163,12 +164,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f0f4c9b8499a904d84bf70e9a7b5a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HeroMovement
+  TargetDirectionControl: {x: 0, y: 0, z: 0}
   characterController: {fileID: 227252105933141651}
   viewTransform: {fileID: 802105588761965757}
   movementSpeed: 5
   movementLerpFactor: 8
   rotationLerpFactor: 15.21
-  TargetDirectionControl: {x: 0, y: 0, z: 0}
+  gravity: -20
+  groundedStick: -2
 --- !u!114 &6956801873486209571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +200,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ActionController
   handsInventory: {fileID: 1977799571343181889}
   interractionTrigger: {fileID: 6046468238114860138}
+--- !u!114 &6588013158234626060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2756772228624974057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4803f93192d859345beddd78dd38cd59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterPush
+  pushPower: 0.5
 --- !u!1 &5878421106259015380
 GameObject:
   m_ObjectHideFlags: 0

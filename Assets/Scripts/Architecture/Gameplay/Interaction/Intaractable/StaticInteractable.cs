@@ -18,9 +18,9 @@ public abstract class StaticInteractable : MonoBehaviour
 		this.take = take;
 	}
 
-	public void Place(Transform item)
-    {
-        item.SetParent(itemContainer, false);
-		item.localPosition = Vector3.zero;
-    }
+	//public void Place(Transform item)
+ //   {
+ //       item.SetParent(itemContainer, false);
+	//	item.localPosition = Vector3.zero;
+ //   }
 }
