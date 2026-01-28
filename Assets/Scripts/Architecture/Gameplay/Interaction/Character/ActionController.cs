@@ -6,7 +6,7 @@ using Zenject;
 public class ActionController : MonoBehaviour
 {
     [SerializeField] private InventoryHands handsInventory;
-    [SerializeField] private InterationTrigger interractionTrigger;
+    [SerializeField] private InteractTriggerBase interractionTrigger;
 
     public ActionRunner runner;
     private IActionResolver actionResolver;

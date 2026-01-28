@@ -157,4 +157,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 410f96159db2c484bb602b2c1db1cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Counter
+  priority: 100
   itemContainer: {fileID: 8390538253117155360}

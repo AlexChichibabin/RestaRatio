@@ -1,12 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public interface IItemPlace
+public interface IItemContainer
 {
 	bool HasItem { get; }
 	GameObject Item { get; }
 
-	bool CanPlace(GameObject item);
-	void Place(GameObject item);
+	bool CanAdd(GameObject item);
+	void Add(GameObject item);
 
 	bool CanTake();               
 	GameObject Take();

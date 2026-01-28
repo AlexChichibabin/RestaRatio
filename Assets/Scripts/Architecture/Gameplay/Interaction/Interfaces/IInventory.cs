@@ -2,6 +2,6 @@ using UnityEngine;
 
 public interface IInventory
 {
-	bool HasItem { get; }
-	Transform ItemContainer { get; }
+	abstract bool HasItem { get; }
+    abstract Transform ItemContainer { get; }
 }

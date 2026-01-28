@@ -1,18 +1,20 @@
 using UnityEngine;
 using Zenject;
 
-public abstract class StaticInteractable : MonoBehaviour
+public abstract class StaticInteractable : InteractableBase
 {
-	public Transform ItemContainer => itemContainer;
-	public bool HasItem => itemContainer.childCount > 0;
+	[SerializeField] private float toCenterPower;
+	[SerializeField] private float unWrapDistance;
+	public override Transform ItemContainer => itemContainer;
+	public override bool HasItem => itemContainer.childCount > 0;
 
 	[SerializeField] protected Transform itemContainer;
 
-	protected ActionPutDownOn putDown;
-	protected ActionTakeFrom take;
+	protected ActionPut putDown;
+	protected ActionTake take;
 
 	[Inject]
-	public void Construct(ActionPutDownOn putDown, ActionTakeFrom take)
+	public void Construct(ActionPut putDown, ActionTake take)
 	{
 		this.putDown = putDown;
 		this.take = take;

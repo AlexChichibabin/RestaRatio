@@ -1811,6 +1811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5124d7969f61d07489d21334ca9839b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pickupable
+  priority: 10
 --- !u!1 &886272266
 GameObject:
   m_ObjectHideFlags: 0
@@ -3499,6 +3500,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f6d8f16ddae1041b472d70607f7890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CuttingBoard
+  priority: 0
+  toCenterPower: 0
+  unWrapDistance: 0
   itemContainer: {fileID: 4003521086426344546}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

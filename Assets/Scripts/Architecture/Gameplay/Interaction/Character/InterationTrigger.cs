@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class InterationTrigger : MonoBehaviour
+public class InterationTrigger : InteractTriggerBase
 {
 	private IInteractable interactable;
-	public IInteractable Interactable => interactable;
+	public override IInteractable Interactable => interactable;
 	private void OnTriggerEnter(Collider other)
 	{
 		IInteractable interactable = other.GetComponent<IInteractable>();

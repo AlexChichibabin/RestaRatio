@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IInteractable : IInventory
+public interface IInteractable : IInventory, ITargetPriority
 {
-    IEnumerable<IGameAction> GetActions(ActionContext ctx);
+    abstract IEnumerable<IGameAction> GetActions(ActionContext ctx);
 }

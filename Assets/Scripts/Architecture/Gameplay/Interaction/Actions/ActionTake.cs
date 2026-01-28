@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class ActionTakeFrom : IGameAction
+public class ActionTake : IGameAction
 {
-	public string Id => "take_from_counter";
+	public string Id => "take";
 
 	public int Priority => 50;
 

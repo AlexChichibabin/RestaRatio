@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public sealed class ActionPutDownOn : IGameAction
+public sealed class ActionPut : IGameAction
 {
-	public string Id => "put_down_counter";
+	public string Id => "put";
 	public int Priority => 50;
 
 	public bool CanExecute(ActionContext ctx)
@@ -15,7 +15,7 @@ public sealed class ActionPutDownOn : IGameAction
 
 	public void Execute(ActionContext ctx)
 	{
-		var counter = (Counter)ctx.Target;
+		//var counter = (Counter)ctx.Target;
 		var item = ctx.Inventory.ItemContainer.GetChild(0);
 		if (item == null) return;
 		Pickupable pu = item.GetComponent<Pickupable>();
@@ -24,7 +24,6 @@ public sealed class ActionPutDownOn : IGameAction
 		{
 			item.SetParent(ctx.Target.ItemContainer, false);
 			item.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-			//counter.Place(item);
 		}
 	}
 }

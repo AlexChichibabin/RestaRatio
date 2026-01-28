@@ -1,12 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
 
-public class Pickupable : MonoBehaviour, IInteractable
+public class Pickupable : InteractableBase//, IInteractable
 {
-    public bool HasItem => true;
-    public Transform ItemContainer => null;
-
+    public override bool HasItem => true;
+    public override Transform ItemContainer => null;
 
     private Rigidbody rb;
 	private Collider[] cols;
@@ -55,7 +53,7 @@ public class Pickupable : MonoBehaviour, IInteractable
 		//rb.AddForce(impulse, ForceMode.Impulse);
 	}
 
-    public IEnumerable<IGameAction> GetActions(ActionContext ctx)
+    public override IEnumerable<IGameAction> GetActions(ActionContext ctx)
     {
         throw new System.NotImplementedException();
 
