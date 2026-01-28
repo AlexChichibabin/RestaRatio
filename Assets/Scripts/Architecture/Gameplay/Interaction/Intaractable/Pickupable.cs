@@ -1,12 +1,20 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 
-public class Pickupable : MonoBehaviour
+public class Pickupable : MonoBehaviour, IInteractable
 {
-	private Rigidbody rb;
-	private Collider[] cols;
+    public bool HasItem => true;
+    public Transform ItemContainer => null;
 
-	private void Awake()
+
+    private Rigidbody rb;
+	private Collider[] cols;
+	// действие взять
+	// действие положить
+
+
+    private void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
 		cols = GetComponentsInChildren<Collider>();
@@ -46,4 +54,12 @@ public class Pickupable : MonoBehaviour
 		//rb.isKinematic = false;
 		//rb.AddForce(impulse, ForceMode.Impulse);
 	}
+
+    public IEnumerable<IGameAction> GetActions(ActionContext ctx)
+    {
+        throw new System.NotImplementedException();
+
+        // return действие взять
+        // return действие положить
+    }
 }
