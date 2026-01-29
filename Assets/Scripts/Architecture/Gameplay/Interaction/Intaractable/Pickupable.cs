@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pickupable : InteractableBase//, IInteractable
+public class Pickupable : InteractableBase
 {
     public override bool HasItem => true;
     public override Transform ItemContainer => null;
@@ -20,8 +20,8 @@ public class Pickupable : InteractableBase//, IInteractable
 
 	public void Take(Transform hand)
 	{
-		rb.linearVelocity = Vector3.zero;
-		rb.angularVelocity = Vector3.zero;
+		//rb.linearVelocity = Vector3.zero;
+		//rb.angularVelocity = Vector3.zero;
 		rb.isKinematic = true;
 
 		foreach (var c in cols)
@@ -34,9 +34,9 @@ public class Pickupable : InteractableBase//, IInteractable
 
 	public void Put(Transform place/*, Vector3 impulse*/)
 	{
-		rb.isKinematic = false;
-		rb.linearVelocity = Vector3.zero;
-		rb.angularVelocity = Vector3.zero;
+		rb.isKinematic = true;
+		//rb.linearVelocity = Vector3.zero;
+		//rb.angularVelocity = Vector3.zero;
 
 		foreach (var c in cols)
 			c.enabled = true;
@@ -52,8 +52,27 @@ public class Pickupable : InteractableBase//, IInteractable
 		//rb.isKinematic = false;
 		//rb.AddForce(impulse, ForceMode.Impulse);
 	}
+	public void Drop()
+	{
+		rb.isKinematic = false;
+		rb.linearVelocity = Vector3.zero;
+		rb.angularVelocity = Vector3.zero;
 
-    public override IEnumerable<IGameAction> GetActions(ActionContext ctx)
+		foreach (var c in cols)
+			c.enabled = true;
+
+		transform.SetParent(transform.root, false);
+
+		//transform.SetParent(null);
+
+		//foreach (var c in cols)
+		//	c.enabled = true;
+
+		//rb.isKinematic = false;
+		//rb.AddForce(impulse, ForceMode.Impulse);
+	}
+
+	public override IEnumerable<IGameAction> GetActions(ActionContext ctx)
     {
         throw new System.NotImplementedException();
 

@@ -285,7 +285,7 @@ MonoBehaviour:
   radius: 1
   interactableMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 8
   maxHits: 32
 --- !u!1 &7909912188596603116
 GameObject:
