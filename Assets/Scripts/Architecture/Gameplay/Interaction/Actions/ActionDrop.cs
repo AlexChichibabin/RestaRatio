@@ -8,20 +8,21 @@ public class ActionDrop : IGameAction
 
 	public bool CanExecute(ActionContext ctx)
 	{
-		return ctx.Inventory.HasItem
-			
-			&& ctx.Target  == null
-			&& ctx.Button == ButtonId.Button1;
+		if (ctx.Interactable == null) return false;
+		if (ctx.Interactable.Flags.HasFlag(InteractableFlags.Item)
+			&& ctx.Interactable.TryGetCapability<IItem>(out var item))
+		{
+			return item.Parent == ctx.ItemSlot.Container
+				&& ctx.Button == ButtonId.Button1;
+        }
+		return false;
 	}
 
 	public void Execute(ActionContext ctx)
 	{
-		var item = ctx.Inventory.ItemContainer.GetChild(0);
-		if (item == null) return;
-		Pickupable pu = item.GetComponent<Pickupable>();
-		if (pu != null)
+        if (ctx.Interactable.TryGetCapability<IItem>(out var item))
 		{
-			pu.Put(ctx.Target.ItemContainer);
+			item.Drop(ctx.Actor.transform.parent);
 		}
 	}
 }

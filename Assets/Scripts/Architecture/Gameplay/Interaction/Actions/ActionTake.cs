@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class ActionTake : IGameAction
 {
@@ -8,24 +9,22 @@ public class ActionTake : IGameAction
 
 	public bool CanExecute(ActionContext ctx)
 	{
-		return !ctx.Inventory.HasItem
-			&& ctx.Target.HasItem
-			&& ctx.Target is StaticInteractable
-			&& ctx.Button == ButtonId.Button1;
-
+		return !ctx.ItemSlot.HasItem
+			&& ctx.Interactable.Flags.HasFlag(InteractableFlags.ItemSlot)
+            && ctx.Interactable.TryGetCapability<IItemSlot>(out var slot)
+			&& slot.HasItem
+            && ctx.Button == ButtonId.Button1;
 	}
-
 
 	public void Execute(ActionContext ctx)
 	{
-		Transform item = ctx.Target.ItemContainer.GetChild(0);
-		Pickupable pu = item.GetComponent<Pickupable>();
-		if (pu != null) pu.Take(ctx.Inventory.ItemContainer);
-		else
+		if (ctx.Interactable.TryGetCapability<IItemSlot>(out var slot))
 		{
-			item.SetParent(ctx.Inventory.ItemContainer, false);
-			item.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity); 
+			Transform go = slot.Container.GetChild(0);
+			if (go.TryGetComponent(out IItem item))
+			{
+				item.Take(ctx.ItemSlot.Container);
+			}
 		}
-
 	}
 }

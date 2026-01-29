@@ -32,9 +32,8 @@ public class ActionController : MonoBehaviour
 
         var ctx = new ActionContext(
         actor: gameObject,
-        inventory: handsInventory,
-        target: interractionTrigger.Interactable,
-        point: handsInventory.transform.position,
+        itemSlot: handsInventory,
+        interactable: interractionTrigger.Interactable,
         button: buttonId);
 
         var action = actionResolver.Resolve(ctx);

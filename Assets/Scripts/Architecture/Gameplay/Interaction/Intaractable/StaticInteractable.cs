@@ -1,14 +1,14 @@
 using UnityEngine;
 using Zenject;
 
-public abstract class StaticInteractable : InteractableBase
+public abstract class StaticInteractable : InteractableBase, IItemSlot
 {
-	[SerializeField] private float toCenterPower;
-	[SerializeField] private float unWrapDistance;
-	public override Transform ItemContainer => itemContainer;
-	public override bool HasItem => itemContainer.childCount > 0;
+	public Transform Container => itemContainer;
+	public bool HasItem => itemContainer.childCount > 0;
 
-	[SerializeField] protected Transform itemContainer;
+    [SerializeField] private float toCenterPower;
+    [SerializeField] private float unWrapDistance;
+    [SerializeField] protected Transform itemContainer;
 
 	protected ActionPut putDown;
 	protected ActionTake take;

@@ -2,23 +2,32 @@ using UnityEngine;
 
 public sealed class ActionContext
 {
+    /// <summary>
+    /// Who wants to do action
+    /// </summary>
     public GameObject Actor;
-    public IInventory Inventory;
-    public IInteractable Target;
-    public Vector3 Point;
+    /// <summary>
+    /// Actor's inventory (his hands)
+    /// </summary>
+    public IItemSlot ItemSlot;
+    /// <summary>
+    /// What we interact to
+    /// </summary>
+    public IInteractable Interactable;
+    /// <summary>
+    /// What button has been pressed
+    /// </summary>
     public ButtonId Button;
 
     public ActionContext(
         GameObject actor, 
-        IInventory inventory,
-        IInteractable target, 
-        Vector3 point,
+        IItemSlot itemSlot,
+        IInteractable interactable, 
         ButtonId button)
     {
         Actor = actor;
-        Inventory = inventory;
-        Target = target;
-        Point = point;
+        ItemSlot = itemSlot;
+        Interactable = interactable;
         Button = button;
     }
 }

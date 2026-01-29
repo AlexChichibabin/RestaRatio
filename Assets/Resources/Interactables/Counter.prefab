@@ -158,4 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Counter
   priority: 100
+  flags: 2
+  toCenterPower: 0
+  unWrapDistance: 0
   itemContainer: {fileID: 8390538253117155360}

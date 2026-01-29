@@ -1,19 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pickupable : InteractableBase
+public class Item : InteractableBase, IItem
 {
-    public override bool HasItem => true;
-    public override Transform ItemContainer => null;
-
     private Rigidbody rb;
 	private Collider[] cols;
-	// действие взять
-	// действие положить
 
+    public Transform Parent => transform.parent;
 
-    private void Awake()
+    // действие взять
+    // действие положить
+
+    protected override void Awake()
 	{
+		base.Awake();
+
 		rb = GetComponent<Rigidbody>();
 		cols = GetComponentsInChildren<Collider>();
 	}
@@ -32,11 +33,9 @@ public class Pickupable : InteractableBase
 		transform.localRotation = Quaternion.identity;
 	}
 
-	public void Put(Transform place/*, Vector3 impulse*/)
+	public void Put(Transform place)
 	{
 		rb.isKinematic = true;
-		//rb.linearVelocity = Vector3.zero;
-		//rb.angularVelocity = Vector3.zero;
 
 		foreach (var c in cols)
 			c.enabled = true;
@@ -44,15 +43,8 @@ public class Pickupable : InteractableBase
 		transform.SetParent(place, false);
 		transform.localPosition = Vector3.zero;
 		transform.localRotation = Quaternion.identity;
-		//transform.SetParent(null);
-
-		//foreach (var c in cols)
-		//	c.enabled = true;
-
-		//rb.isKinematic = false;
-		//rb.AddForce(impulse, ForceMode.Impulse);
 	}
-	public void Drop()
+	public void Drop(Transform world)
 	{
 		rb.isKinematic = false;
 		rb.linearVelocity = Vector3.zero;
@@ -61,15 +53,7 @@ public class Pickupable : InteractableBase
 		foreach (var c in cols)
 			c.enabled = true;
 
-		transform.SetParent(transform.root, false);
-
-		//transform.SetParent(null);
-
-		//foreach (var c in cols)
-		//	c.enabled = true;
-
-		//rb.isKinematic = false;
-		//rb.AddForce(impulse, ForceMode.Impulse);
+		transform.SetParent(world, false);
 	}
 
 	public override IEnumerable<IGameAction> GetActions(ActionContext ctx)

@@ -18,24 +18,15 @@ public class LevelInstaller : MonoInstaller
 
 		RegisterLevelStateMachine();
 
-        Container.Bind<LevelStateMachineTicker>().FromInstance(levelStateMachineTicker).AsSingle();
-
         Container.Bind<IInitializable>().To<LevelBootstrapper>().AsSingle().NonLazy();
 
         Container.BindFactory<HeroRoot, HeroRoot.Factory>()
             .FromComponentInNewPrefab(heroPrefab); // Потом надо брать из подгружаемых конфигов
     }
-	private void BindActions()
-	{
-		Container.Bind<ActionTake>().FromNew().AsSingle();
-		Container.Bind<ActionPut>().FromNew().AsSingle();
-		Container.Bind<ActionChop>().FromNew().AsSingle();
-	}
+
 
 	private void OnDestroy()
     {
-        Container.Unbind<LevelStateMachineTicker>();
-
         UnregisterLevelStateMachine();
     }
 
@@ -46,7 +37,8 @@ public class LevelInstaller : MonoInstaller
         Container.Bind<LevelBootstrappState>().FromNew().AsSingle();
 		Container.Bind<LevelGameplayState>().FromNew().AsSingle();
 		Container.Bind<LevelVictoryState>().FromNew().AsSingle();
-		Container.Bind<LevelLostState>().FromNew().AsSingle();
+        Container.Bind<LevelLostState>().FromNew().AsSingle();
+        Container.Bind<LevelStateMachineTicker>().FromInstance(levelStateMachineTicker).AsSingle();
     }
 
     private void UnregisterLevelStateMachine()
@@ -56,19 +48,20 @@ public class LevelInstaller : MonoInstaller
 		Container.Unbind<LevelGameplayState>();
 		Container.Unbind<LevelVictoryState>();
 		Container.Unbind<LevelLostState>();
+        Container.Unbind<LevelStateMachineTicker>();
     }
 
     private void RegisterGameplayServices()
     {
-        BindOrderService();
-        BindOrderGenerator();
-        BindGameFactory();
-    }
-    private void BindOrderService() => 
         Container.Bind<IOrderService>().To<OrderService>().AsSingle();
-    private void BindOrderGenerator() => 
         Container.BindInterfacesTo<OrderGenerator>().AsSingle().NonLazy();
-    private void BindGameFactory() =>
-    Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
-
+        Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
+    }
+    private void BindActions()
+    {
+        Container.Bind<ActionTake>().FromNew().AsSingle();
+        Container.Bind<ActionPut>().FromNew().AsSingle();
+        Container.Bind<ActionChop>().FromNew().AsSingle();
+        Container.Bind<ActionDrop>().FromNew().AsSingle();
+    }
 }

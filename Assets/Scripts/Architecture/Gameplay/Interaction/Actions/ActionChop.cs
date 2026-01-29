@@ -12,12 +12,16 @@ public sealed class ActionChop : IActionHold
 	public IReadOnlyReactiveProperty<float> Progress01 => progress;
 
 	public bool CanExecute(ActionContext ctx)
-		=> ctx.Target is CuttingBoard board
-		   && board.HasItemToChop
-		   && !ctx.Inventory.HasItem
-		   && ctx.Button == ButtonId.Button2;
+	{
+		return false;
+		//	ctx.Interactable is CuttingBoard board
+		//&& board.HasItemToChop
+		//&& !ctx.Inventory.HasItem
+		//&& ctx.Button == ButtonId.Button2;
+	}
 
-	public void Execute(ActionContext ctx) { }
+
+    public void Execute(ActionContext ctx) { }
 
 	public IObservable<Unit> ExecuteHold(ActionContext ctx)
 	{
