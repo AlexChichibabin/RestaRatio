@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Item : InteractableBase, IItem
 {
@@ -8,6 +9,7 @@ public class Item : InteractableBase, IItem
 
     public Transform Parent => transform.parent;
 
+	private ActionDrop drop;
     // действие взять
     // действие положить
 
@@ -18,6 +20,11 @@ public class Item : InteractableBase, IItem
 		rb = GetComponent<Rigidbody>();
 		cols = GetComponentsInChildren<Collider>();
 	}
+	[Inject]
+	public void Construct(ActionDrop drop)
+	{
+		this.drop = drop;
+	}
 
 	public void Take(Transform hand)
 	{
@@ -25,8 +32,8 @@ public class Item : InteractableBase, IItem
 		//rb.angularVelocity = Vector3.zero;
 		rb.isKinematic = true;
 
-		foreach (var c in cols)
-			c.enabled = false;
+		//foreach (var c in cols)
+		//	c.enabled = false;
 
 		transform.SetParent(hand, false);
 		transform.localPosition = Vector3.zero;
@@ -37,8 +44,8 @@ public class Item : InteractableBase, IItem
 	{
 		rb.isKinematic = true;
 
-		foreach (var c in cols)
-			c.enabled = true;
+		//foreach (var c in cols)
+		//	c.enabled = true;
 
 		transform.SetParent(place, false);
 		transform.localPosition = Vector3.zero;
@@ -47,20 +54,21 @@ public class Item : InteractableBase, IItem
 	public void Drop(Transform world)
 	{
 		rb.isKinematic = false;
+
+
+		//foreach (var c in cols)
+		//	c.enabled = true;
+
+		transform.SetParent(world, true);
 		rb.linearVelocity = Vector3.zero;
 		rb.angularVelocity = Vector3.zero;
-
-		foreach (var c in cols)
-			c.enabled = true;
-
-		transform.SetParent(world, false);
 	}
 
 	public override IEnumerable<IGameAction> GetActions(ActionContext ctx)
     {
-        throw new System.NotImplementedException();
+		yield return drop;
 
-        // return действие взять
-        // return действие положить
-    }
+		// return действие взять
+		// return действие положить
+	}
 }
