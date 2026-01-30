@@ -11,10 +11,10 @@ public abstract class StaticInteractable : InteractableBase, IItemSlot
     [SerializeField] protected Transform itemContainer;
 
 	protected ActionPut putDown;
-	protected ActionTake take;
+	protected ActionTakeFrom take;
 
 	[Inject]
-	public void Construct(ActionPut putDown, ActionTake take)
+	public void Construct(ActionPut putDown, ActionTakeFrom take)
 	{
 		this.putDown = putDown;
 		this.take = take;

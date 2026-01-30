@@ -13,11 +13,15 @@ public sealed class ActionChop : IActionHold
 
 	public bool CanExecute(ActionContext ctx)
 	{
-		return false;
-		//	ctx.Interactable is CuttingBoard board
-		//&& board.HasItemToChop
-		//&& !ctx.Inventory.HasItem
-		//&& ctx.Button == ButtonId.Button2;
+		if (!ctx.Interactable.Flags.HasFlag(InteractableFlags.ChopStation)
+			|| !ctx.Interactable.TryGetCapability<IChopStation>(out var chop)) return false;
+		if(!ctx.Interactable.TryGetCapability<IItemSlot>(out var slot)) return false;
+		if(!slot.HasItem || !slot.Container.GetChild(0).GetComponent<IInteractable>()
+			.TryGetCapability<IItem>(out var item)) return false;
+		if (item.ItemFlags.HasFlag(ItemFlags.Cuttable)
+			&& ctx.Button == ButtonId.Button2) return true;
+		return false; 
+		// ≈сли в руках предмет, то начать можно, но он должен быть выкинут из рук (это уже в Execute)
 	}
 
 
@@ -25,6 +29,7 @@ public sealed class ActionChop : IActionHold
 
 	public IObservable<Unit> ExecuteHold(ActionContext ctx)
 	{
+		if (ctx.ItemSlot.HasItem) 
 		cancel = false;
 		progress.Value = 0f;
 
@@ -37,7 +42,7 @@ public sealed class ActionChop : IActionHold
 			.Do(p => progress.Value = p)
 			.Where(p => p >= 1f)
 			.Take(1)
-			.Do(_ => Debug.Log(_)/*ctx.Target.HasItem*/)
+			.Do(_ => Debug.Log("Cutted"))
 			.AsUnitObservable();
 	}
 

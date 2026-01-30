@@ -1,17 +1,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using System;
+
+[Flags]
+public enum ItemFlags
+{
+	None = 0,
+	Cuttable = 1 << 0,
+	Roastable = 1 << 1,
+}
 
 public class Item : InteractableBase, IItem
 {
+	public Transform Parent => transform.parent;
+	public ItemFlags ItemFlags => itemFlags;
+
+	[SerializeField] private ItemFlags itemFlags;
+
     private Rigidbody rb;
 	private Collider[] cols;
 
-    public Transform Parent => transform.parent;
-
 	private ActionDrop drop;
-    // действие взять
-    // действие положить
+	private ActionTakeItem takeItem;
 
     protected override void Awake()
 	{
@@ -21,9 +32,13 @@ public class Item : InteractableBase, IItem
 		cols = GetComponentsInChildren<Collider>();
 	}
 	[Inject]
-	public void Construct(ActionDrop drop)
+	public void Construct(
+		ActionDrop drop,
+		ActionTakeItem takeItem
+		)
 	{
 		this.drop = drop;
+		this.takeItem = takeItem;
 	}
 
 	public void Take(Transform hand)
@@ -55,7 +70,6 @@ public class Item : InteractableBase, IItem
 	{
 		rb.isKinematic = false;
 
-
 		//foreach (var c in cols)
 		//	c.enabled = true;
 
@@ -67,7 +81,7 @@ public class Item : InteractableBase, IItem
 	public override IEnumerable<IGameAction> GetActions(ActionContext ctx)
     {
 		yield return drop;
-
+		yield return takeItem;
 		// return действие взять
 		// return действие положить
 	}

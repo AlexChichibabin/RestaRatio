@@ -14,6 +14,7 @@ public sealed class ActionPut : IGameAction
             && ctx.Interactable.TryGetCapability<IItemSlot>(out var slot))
         {
             return !slot.HasItem
+                && ctx.ItemSlot.HasItem
                 && ctx.Button == ButtonId.Button1;
         }
         return false;

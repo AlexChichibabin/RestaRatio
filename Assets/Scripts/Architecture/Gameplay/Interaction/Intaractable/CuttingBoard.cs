@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class CuttingBoard : StaticInteractable//, IInteractable
+public class CuttingBoard : StaticInteractable, IChopStation
 {
 	public bool HasItemToChop => itemContainer.childCount > 0;
 

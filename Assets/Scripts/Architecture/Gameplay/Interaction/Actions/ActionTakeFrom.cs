@@ -1,19 +1,18 @@
 using UnityEngine;
-using static UnityEditor.Progress;
 
-public class ActionTake : IGameAction
+public class ActionTakeFrom : IGameAction
 {
-	public string Id => "take";
+	public string Id => "take_from";
 
 	public int Priority => 50;
 
 	public bool CanExecute(ActionContext ctx)
 	{
-		return !ctx.ItemSlot.HasItem
-			&& ctx.Interactable.Flags.HasFlag(InteractableFlags.ItemSlot)
-            && ctx.Interactable.TryGetCapability<IItemSlot>(out var slot)
-			&& slot.HasItem
-            && ctx.Button == ButtonId.Button1;
+		if (ctx.ItemSlot.HasItem) return false;
+		if (!ctx.Interactable.Flags.HasFlag(InteractableFlags.ItemSlot)
+			|| !ctx.Interactable.TryGetCapability<IItemSlot>(out var slot)) return false;
+		if (slot.HasItem && ctx.Button == ButtonId.Button1) return true;
+		return false;
 	}
 
 	public void Execute(ActionContext ctx)
