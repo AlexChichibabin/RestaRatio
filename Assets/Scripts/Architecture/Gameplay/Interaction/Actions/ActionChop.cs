@@ -27,26 +27,35 @@ public sealed class ActionChop : IActionHold
 
     public void Execute(ActionContext ctx) { }
 
-	public IObservable<Unit> ExecuteHold(ActionContext ctx)
-	{
-		if (ctx.ItemSlot.HasItem) 
-		cancel = false;
-		progress.Value = 0f;
+    public IObservable<Unit> ExecuteHold(ActionContext ctx)
+    {
+        return Observable.Defer(() =>
+        {
+            cancel = false;
+            progress.Value = 0f;
 
-		const float duration = 1.2f;
+            if (ctx.ItemSlot.HasItem)
+            {
+                Debug.Log("False hold execute because has item");
+                return Observable.Empty<Unit>();
+            }
 
-		return Observable.EveryUpdate()
-			.TakeWhile(_ => !cancel)
-			.Select(_ => Time.deltaTime / duration)
-			.Scan(0f, (p, dp) => Mathf.Clamp01(p + dp))
-			.Do(p => progress.Value = p)
-			.Where(p => p >= 1f)
-			.Take(1)
-			.Do(_ => Debug.Log("Cutted"))
-			.AsUnitObservable();
-	}
+            const float duration = 2f;
 
-	public void Cancel()
+            return Observable.EveryUpdate()
+                .TakeWhile(_ => cancel == false)
+                .Select(_ => Time.deltaTime / duration)
+                .Scan(0f, (p, dp) => Mathf.Clamp01(p + dp))
+                .Do(p => progress.Value = p)
+                .Where(p => p >= 1f)
+                .Take(1)
+                .Do(_ => Debug.Log("Cutted"))
+                .AsUnitObservable();
+        });
+    }
+
+
+    public void Cancel()
 	{
 		cancel = true;
 		//progress.Value = 0f;

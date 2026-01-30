@@ -1,11 +1,10 @@
 using System;
 using UniRx;
-using UnityEngine;
 
 public class ActionRunner
 {
     private IActionHold currentHold;
-    private IDisposable holdSub;
+    private IDisposable holdSub; 
 
     public void Run(ActionContext ctx, IGameAction action)
     {
@@ -17,8 +16,17 @@ public class ActionRunner
         CancelHold();
 
         currentHold = action;
+
         holdSub = action.ExecuteHold(ctx)
-            .Subscribe(_ => CancelHold());
+            .Subscribe(
+                _ => CancelHold(),  // OnNext
+                ex => // Exception
+                {
+                    UnityEngine.Debug.LogException(ex);
+                    CancelHold();
+                },
+                () => CancelHold() //OnComplete
+            );
     }
 
     public void CancelHold()
