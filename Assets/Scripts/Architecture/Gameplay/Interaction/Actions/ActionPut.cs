@@ -13,8 +13,9 @@ public sealed class ActionPut : IGameAction
         if (ctx.Interactable.Flags.HasFlag(InteractableFlags.ItemSlot)
             && ctx.Interactable.TryGetCapability<IItemSlot>(out var slot))
         {
-            return !slot.HasItem
-                && ctx.ItemSlot.HasItem
+            if (!ctx.ItemSlot.HasItem) return false;
+
+			return !slot.HasItem
                 && ctx.Button == ButtonId.Button1;
         }
         return false;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-public class InteractionRaycastTrigger : InteractTriggerBase // TODO
+public class InteractionRaycastTrigger : InteractTriggerBase
 {
     public override IInteractable Interactable => current;
 
@@ -33,8 +33,9 @@ public class InteractionRaycastTrigger : InteractTriggerBase // TODO
 	private float DistanceSqr(IInteractable inter)
 	{
 		var mb = (MonoBehaviour)inter;
-		return (mb.transform.position - characterController.transform.position).sqrMagnitude;
+		return Mathf.Sqrt((mb.transform.position - (characterController.transform.position + new Vector3(0, 2, 0))).sqrMagnitude);
 	}
+
 	private void SubscribeTargeting()
 	{
 		Observable
@@ -91,6 +92,7 @@ public class InteractionRaycastTrigger : InteractTriggerBase // TODO
 						}
 					}
 				}
+				Debug.Log(Interactable);
 			})
 			.AddTo(disposables);
 	}

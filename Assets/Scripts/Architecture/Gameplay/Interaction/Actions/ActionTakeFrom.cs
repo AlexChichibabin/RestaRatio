@@ -8,10 +8,10 @@ public class ActionTakeFrom : IGameAction
 
 	public bool CanExecute(ActionContext ctx)
 	{
-		if (ctx.ItemSlot.HasItem) return false;
-		if (!ctx.Interactable.Flags.HasFlag(InteractableFlags.ItemSlot)
-			|| !ctx.Interactable.TryGetCapability<IItemSlot>(out var slot)) return false;
-		if (slot.HasItem && ctx.Button == ButtonId.Button1) return true;
+		if (ctx.ItemSlot.HasItem) return false; // У персонажа не должно быть предмета
+		if (!ctx.Interactable.Flags.HasFlag(InteractableFlags.ItemSlot)) return false; // У интера должен быть флаг ItemSlot
+		if (!ctx.Interactable.TryGetCapability<IItemSlot>(out var slot)) return false; // У интера должен быть интерфейс ItemSlot
+		if (slot.HasItem && ctx.Button == ButtonId.Button1) return true; //
 		return false;
 	}
 

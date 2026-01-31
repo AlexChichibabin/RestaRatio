@@ -1503,10 +1503,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1320275568}
     m_Modifications:
-    - target: {fileID: 26680622195051523, guid: 20832359bdc97b343990818c1ca04ad8, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3180206534290235704, guid: 20832359bdc97b343990818c1ca04ad8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1547,20 +1543,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4502560885221908841, guid: 20832359bdc97b343990818c1ca04ad8, type: 3}
-      propertyPath: m_LinearDamping
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4502560885221908841, guid: 20832359bdc97b343990818c1ca04ad8, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 5534219030240603155, guid: 20832359bdc97b343990818c1ca04ad8, type: 3}
       propertyPath: m_Name
       value: Tomato_i_roasted
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6121420160281631429, guid: 20832359bdc97b343990818c1ca04ad8, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
