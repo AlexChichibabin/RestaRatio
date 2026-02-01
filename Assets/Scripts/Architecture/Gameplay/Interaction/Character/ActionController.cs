@@ -26,22 +26,23 @@ public class ActionController : MonoBehaviour
 
     private void InteractDown(ButtonId buttonId)
     {
-        if (interractionTrigger.Interactable == null) return;
+        if (interractionTrigger.Candidates == null
+            || interractionTrigger.Candidates.Count == 0) return;
 
         Debug.Log("Interact " + buttonId);
 
         var ctx = new ActionContext(
         actor: gameObject,
         itemSlot: handsInventory,
-        interactable: interractionTrigger.Interactable,
+        candidates: interractionTrigger.Candidates,
         button: buttonId);
 
-        var action = actionResolver.Resolve(ctx);
-        if (action == null) return;
+        var resolvedAction = actionResolver.Resolve(ctx);
+        if (!resolvedAction.HasValue) return;
 
-        if (action is IActionHold hold)
+        if (resolvedAction.Value.Action is IActionHold hold)
             runner.StartHold(ctx, hold);
         else
-            runner.Run(ctx, action);
+            runner.Run(ctx, resolvedAction.Value.Action, resolvedAction.Value.Target);
     }
 }

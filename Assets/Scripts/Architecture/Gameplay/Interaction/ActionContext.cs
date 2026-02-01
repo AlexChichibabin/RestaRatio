@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public sealed class ActionContext
@@ -13,7 +14,7 @@ public sealed class ActionContext
     /// <summary>
     /// What we interact to
     /// </summary>
-    public IInteractable Interactable;
+    public IList<IInteractable> Candidates;
     /// <summary>
     /// What button has been pressed
     /// </summary>
@@ -22,12 +23,12 @@ public sealed class ActionContext
     public ActionContext(
         GameObject actor, 
         IItemSlot itemSlot,
-        IInteractable interactable, 
+		IList<IInteractable> candidates, 
         ButtonId button)
     {
         Actor = actor;
         ItemSlot = itemSlot;
-        Interactable = interactable;
+		Candidates = candidates;
         Button = button;
     }
 }

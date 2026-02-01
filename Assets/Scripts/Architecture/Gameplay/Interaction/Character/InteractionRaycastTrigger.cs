@@ -1,20 +1,23 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UniRx;
 using UnityEngine;
 
 public class InteractionRaycastTrigger : InteractTriggerBase
 {
-    public override IInteractable Interactable => current;
+	public override IList<IInteractable> Candidates => candidates;
+	//public override IInteractable Interactable => current;
 
-    [SerializeField] private CharacterController characterController;
+	[SerializeField] private CharacterController characterController;
     [SerializeField] private float radius = 0.8f;
     [SerializeField] private LayerMask interactableMask = ~0; // ¬се интерактаблы должны быть на слое Interactable
-    [SerializeField] private int maxHits = 32;
+    [SerializeField] private int maxHits = 16;
 
     private readonly HashSet<IInteractable> set = new();
     private Collider[] hits;
-    private IInteractable current;
+    //private IInteractable current;
+	private List<IInteractable> candidates;
 
 	private CompositeDisposable disposables = new();
 
@@ -43,7 +46,8 @@ public class InteractionRaycastTrigger : InteractTriggerBase
 			.Subscribe(_ =>
 			{
 				set.Clear();
-				current = null;
+				//Candidates.Clear();
+				//current = null;
 
 				var cc = characterController;
 
@@ -65,34 +69,35 @@ public class InteractionRaycastTrigger : InteractTriggerBase
 
 					set.Add(inter);
 				}
+				candidates = set.ToList();
+				Debug.Log(candidates.Count);
+				//float bestDist = float.PositiveInfinity;
 
-				float bestDist = float.PositiveInfinity;
+				//foreach (var inter in set)
+				//{
+				//	if (current == null)
+				//	{
+				//		current = inter;
+				//		bestDist = DistanceSqr(inter);
+				//		continue;
+				//	}
 
-				foreach (var inter in set)
-				{
-					if (current == null)
-					{
-						current = inter;
-						bestDist = DistanceSqr(inter);
-						continue;
-					}
-
-					if (inter.Priority > current.Priority)
-					{
-						current = inter;
-						bestDist = DistanceSqr(inter);
-					}
-					else if (inter.Priority == current.Priority)
-					{
-						float d = DistanceSqr(inter);
-						if (d < bestDist)
-						{
-							current = inter;
-							bestDist = d;
-						}
-					}
-				}
-				Debug.Log(Interactable);
+				//	if (inter.Priority > current.Priority)
+				//	{
+				//		current = inter;
+				//		bestDist = DistanceSqr(inter);
+				//	}
+				//	else if (inter.Priority == current.Priority)
+				//	{
+				//		float d = DistanceSqr(inter);
+				//		if (d < bestDist)
+				//		{
+				//			current = inter;
+				//			bestDist = d;
+				//		}
+				//	}
+				//}
+				//Debug.Log(Interactable);
 			})
 			.AddTo(disposables);
 	}

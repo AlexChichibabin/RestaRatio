@@ -6,18 +6,18 @@ public class ActionTakeFrom : IGameAction
 
 	public int Priority => 50;
 
-	public bool CanExecute(ActionContext ctx)
+	public bool CanExecute(ActionContext ctx, IInteractable inter)
 	{
 		if (ctx.ItemSlot.HasItem) return false; // У персонажа не должно быть предмета
-		if (!ctx.Interactable.Flags.HasFlag(InteractableFlags.ItemSlot)) return false; // У интера должен быть флаг ItemSlot
-		if (!ctx.Interactable.TryGetCapability<IItemSlot>(out var slot)) return false; // У интера должен быть интерфейс ItemSlot
+		if (!inter.Flags.HasFlag(InteractableFlags.ItemSlot)) return false; // У интера должен быть флаг ItemSlot
+		if (!inter.TryGetCapability<IItemSlot>(out var slot)) return false; // У интера должен быть интерфейс ItemSlot
 		if (slot.HasItem && ctx.Button == ButtonId.Button1) return true; //
 		return false;
 	}
 
-	public void Execute(ActionContext ctx)
+	public void Execute(ActionContext ctx, IInteractable inter)
 	{
-		if (ctx.Interactable.TryGetCapability<IItemSlot>(out var slot))
+		if (inter.TryGetCapability<IItemSlot>(out var slot))
 		{
 			Transform go = slot.Container.GetChild(0);
 			if (go.TryGetComponent(out IItem item))

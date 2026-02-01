@@ -11,11 +11,11 @@ public sealed class ActionChop : IActionHold
 	private readonly ReactiveProperty<float> progress = new(0f);
 	public IReadOnlyReactiveProperty<float> Progress01 => progress;
 
-	public bool CanExecute(ActionContext ctx)
+	public bool CanExecute(ActionContext ctx, IInteractable inter)
 	{
-		if (!ctx.Interactable.Flags.HasFlag(InteractableFlags.ChopStation)
-			|| !ctx.Interactable.TryGetCapability<IChopStation>(out var chop)) return false;
-		if(!ctx.Interactable.TryGetCapability<IItemSlot>(out var slot)) return false;
+		if (!inter.Flags.HasFlag(InteractableFlags.ChopStation)
+			|| !inter.TryGetCapability<IChopStation>(out var chop)) return false;
+		if(!inter.TryGetCapability<IItemSlot>(out var slot)) return false;
 		if(!slot.HasItem || !slot.Container.GetChild(0).GetComponent<IInteractable>()
 			.TryGetCapability<IItem>(out var item)) return false;
 		if (item.ItemFlags.HasFlag(ItemFlags.Cuttable)
@@ -25,7 +25,7 @@ public sealed class ActionChop : IActionHold
 	}
 
 
-    public void Execute(ActionContext ctx) { }
+    public void Execute(ActionContext ctx, IInteractable inter) { }
 
     public IObservable<Unit> ExecuteHold(ActionContext ctx)
     {

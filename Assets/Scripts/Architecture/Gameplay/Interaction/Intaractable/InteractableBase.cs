@@ -20,7 +20,8 @@ public abstract class InteractableBase : MonoBehaviour, IInteractable
     public int Priority => priority;
     public virtual string DisplayName => gameObject.name;
     public InteractableFlags Flags => flags;
-    public abstract IEnumerable<IGameAction> GetActions(ActionContext ctx);
+	public Vector3 Position => transform.position;
+	public abstract IEnumerable<IGameAction> GetActions(ActionContext ctx);
 
     [SerializeField] private int priority = 0;
     [SerializeField] private InteractableFlags flags;

@@ -7,4 +7,5 @@ public interface IInteractable
     int Priority { get; }
     InteractableFlags Flags { get; }
     bool TryGetCapability<T>(out T cap) where T : class;
+    Vector3 Position { get; }
 }

@@ -7,11 +7,11 @@ public sealed class ActionPut : IGameAction
 	public string Id => "put";
 	public int Priority => 50;
 
-    public bool CanExecute(ActionContext ctx)
+    public bool CanExecute(ActionContext ctx, IInteractable inter)
     {
-        if (ctx.Interactable == null) return false;
-        if (ctx.Interactable.Flags.HasFlag(InteractableFlags.ItemSlot)
-            && ctx.Interactable.TryGetCapability<IItemSlot>(out var slot))
+        if (inter == null) return false;
+        if (inter.Flags.HasFlag(InteractableFlags.ItemSlot)
+            && inter.TryGetCapability<IItemSlot>(out var slot))
         {
             if (!ctx.ItemSlot.HasItem) return false;
 
@@ -21,7 +21,7 @@ public sealed class ActionPut : IGameAction
         return false;
     }
 
-    public void Execute(ActionContext ctx)
+    public void Execute(ActionContext ctx, IInteractable inter)
     {
         var itemGo = ctx.ItemSlot.Container.GetChild(0);
 
@@ -29,7 +29,7 @@ public sealed class ActionPut : IGameAction
 
         if (itemGo.TryGetComponent(out IItem item))
         {
-            if (ctx.Interactable.TryGetCapability<IItemSlot>(out var place))
+            if (inter.TryGetCapability<IItemSlot>(out var place))
             {
                 item.Put(place.Container);
             }

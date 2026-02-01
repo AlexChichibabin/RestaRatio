@@ -6,18 +6,18 @@ public class ActionTakeItem : IGameAction
 
 	public int Priority => 40;
 
-	public bool CanExecute(ActionContext ctx)
+	public bool CanExecute(ActionContext ctx, IInteractable inter)
 	{
 		if (ctx.ItemSlot.HasItem) return false;
-		if (!ctx.Interactable.Flags.HasFlag(InteractableFlags.Item)
-			|| !ctx.Interactable.TryGetCapability<IItem>(out var item)) return false;
+		if (!inter.Flags.HasFlag(InteractableFlags.Item)
+			|| !inter.TryGetCapability<IItem>(out var item)) return false;
 		if (ctx.Button == ButtonId.Button1) return true;
 		return false;
 	}
 
-	public void Execute(ActionContext ctx)
+	public void Execute(ActionContext ctx, IInteractable inter)
 	{
-		if (ctx.Interactable.TryGetCapability<IItem>(out var item))
+		if (inter.TryGetCapability<IItem>(out var item))
 		{
 			item.Take(ctx.ItemSlot.Container);
 		}

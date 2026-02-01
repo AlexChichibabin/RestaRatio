@@ -6,11 +6,11 @@ public class ActionDrop : IGameAction
 
 	public int Priority => 20;
 
-	public bool CanExecute(ActionContext ctx)
+	public bool CanExecute(ActionContext ctx, IInteractable inter)
 	{
-		if (ctx.Interactable == null) return false;
-		if (ctx.Interactable.Flags.HasFlag(InteractableFlags.Item)
-			&& ctx.Interactable.TryGetCapability<IItem>(out var item))
+		if (inter == null) return false;
+		if (inter.Flags.HasFlag(InteractableFlags.Item)
+			&& inter.TryGetCapability<IItem>(out var item))
 		{
 			return item.Parent == ctx.ItemSlot.Container
 				&& ctx.Button == ButtonId.Button1;
@@ -18,11 +18,12 @@ public class ActionDrop : IGameAction
 		return false;
 	}
 
-	public void Execute(ActionContext ctx)
+	public void Execute(ActionContext ctx, IInteractable inter)
 	{
-        if (ctx.Interactable.TryGetCapability<IItem>(out var item))
+        if (inter.TryGetCapability<IItem>(out var item))
 		{
 			item.Drop(ctx.Actor.transform.parent);
 		}
 	}
+
 }

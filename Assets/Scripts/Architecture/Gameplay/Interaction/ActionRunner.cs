@@ -6,9 +6,9 @@ public class ActionRunner
     private IActionHold currentHold;
     private IDisposable holdSub; 
 
-    public void Run(ActionContext ctx, IGameAction action)
+    public void Run(ActionContext ctx, IGameAction action, IInteractable inter)
     {
-        action.Execute(ctx);
+        action.Execute(ctx, inter);
     }
 
     public void StartHold(ActionContext ctx, IActionHold action)
