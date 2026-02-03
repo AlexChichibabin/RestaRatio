@@ -41,7 +41,7 @@ public class ActionController : MonoBehaviour
         if (!resolvedAction.HasValue) return;
 
         if (resolvedAction.Value.Action is IActionHold hold)
-            runner.StartHold(ctx, hold);
+            runner.StartHold(ctx, hold, resolvedAction.Value.Target);
         else
             runner.Run(ctx, resolvedAction.Value.Action, resolvedAction.Value.Target);
     }

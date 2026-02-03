@@ -4,19 +4,20 @@ using Zenject;
 using System;
 
 [Flags]
-public enum ItemFlags
+public enum ItemAbilityFlags
 {
 	None = 0,
 	Cuttable = 1 << 0,
 	Roastable = 1 << 1,
+	Bakable = 1 << 2
 }
 
 public class Item : InteractableBase, IItem
 {
 	public Transform Parent => transform.parent;
-	public ItemFlags ItemFlags => itemFlags;
+	public ItemAbilityFlags ItemFlags => itemFlags;
 
-	[SerializeField] private ItemFlags itemFlags;
+	[SerializeField] private ItemAbilityFlags itemFlags;
 
     private Rigidbody rb;
 	private Collider[] cols;

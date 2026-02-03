@@ -11,13 +11,13 @@ public class ActionRunner
         action.Execute(ctx, inter);
     }
 
-    public void StartHold(ActionContext ctx, IActionHold action)
+    public void StartHold(ActionContext ctx, IActionHold action, IInteractable inter)
     {
         CancelHold();
 
         currentHold = action;
 
-        holdSub = action.ExecuteHold(ctx)
+        holdSub = action.ExecuteHold(ctx, inter)
             .Subscribe(
                 _ => CancelHold(),  // OnNext
                 ex => // Exception

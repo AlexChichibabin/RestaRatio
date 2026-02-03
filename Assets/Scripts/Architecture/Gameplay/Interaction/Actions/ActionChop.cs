@@ -18,7 +18,7 @@ public sealed class ActionChop : IActionHold
 		if(!inter.TryGetCapability<IItemSlot>(out var slot)) return false;
 		if(!slot.HasItem || !slot.Container.GetChild(0).GetComponent<IInteractable>()
 			.TryGetCapability<IItem>(out var item)) return false;
-		if (item.ItemFlags.HasFlag(ItemFlags.Cuttable)
+		if (item.ItemFlags.HasFlag(ItemAbilityFlags.Cuttable)
 			&& ctx.Button == ButtonId.Button2) return true;
 		return false; 
 		// ≈сли в руках предмет, то начать можно, но он должен быть выкинут из рук (это уже в Execute)
@@ -27,7 +27,7 @@ public sealed class ActionChop : IActionHold
 
     public void Execute(ActionContext ctx, IInteractable inter) { }
 
-    public IObservable<Unit> ExecuteHold(ActionContext ctx)
+    public IObservable<Unit> ExecuteHold(ActionContext ctx, IInteractable inter)
     {
         return Observable.Defer(() =>
         {
@@ -49,7 +49,11 @@ public sealed class ActionChop : IActionHold
                 .Do(p => progress.Value = p)
                 .Where(p => p >= 1f)
                 .Take(1)
-                .Do(_ => Debug.Log("Cutted"))
+                .Do(_ =>
+                {
+                    if (inter.TryGetCapability<IChopStation>(out var station))
+                        station.FinishChop();
+				})
                 .AsUnitObservable();
         });
     }
