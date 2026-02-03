@@ -10,14 +10,15 @@ public sealed class ActionPut : IGameAction
     public bool CanExecute(ActionContext ctx, IInteractable inter)
     {
         if (inter == null) return false;
-        if (inter.Flags.HasFlag(InteractableFlags.ItemSlot)
-            && inter.TryGetCapability<IItemSlot>(out var slot))
+        if (inter.Flags.HasFlag(InteractableFlags.ItemSlot))
         {
-            if (!ctx.ItemSlot.HasItem) return false;
+            if (!inter.TryGetCapability<IItemSlot>(out var slot)) return false;
+            if (!ctx.ItemSlot.TryGetItem(out var actorItem)) return false;
 
-			return !slot.HasItem
+			return !slot.TryGetItem(out var InterItem)
                 && ctx.Button == ButtonId.Button1;
         }
+
         return false;
     }
 

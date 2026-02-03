@@ -64,5 +64,6 @@ public class LevelInstaller : MonoInstaller
 		Container.Bind<ActionPut>().FromNew().AsSingle();
         Container.Bind<ActionChop>().FromNew().AsSingle();
         Container.Bind<ActionDrop>().FromNew().AsSingle();
+        Container.Bind<ActionRoast>().FromNew().AsSingle();
     }
 }

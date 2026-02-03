@@ -2,6 +2,6 @@ using UnityEngine;
 
 public interface IItemSlot
 {
-	abstract bool HasItem { get; }
+    abstract bool TryGetItem(out IItem item);
     abstract Transform Container { get; }
 }

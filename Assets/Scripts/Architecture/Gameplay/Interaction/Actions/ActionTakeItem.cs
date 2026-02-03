@@ -8,10 +8,11 @@ public class ActionTakeItem : IGameAction
 
 	public bool CanExecute(ActionContext ctx, IInteractable inter)
 	{
-		if (ctx.ItemSlot.HasItem) return false;
-		if (!inter.Flags.HasFlag(InteractableFlags.Item)
-			|| !inter.TryGetCapability<IItem>(out var item)) return false;
+		if (ctx.ItemSlot.TryGetItem(out var actorItem)) return false;
+		if (!inter.Flags.HasFlag(InteractableFlags.Item)) return false;
+        if (!inter.TryGetCapability<IItem>(out var item)) return false;
 		if (ctx.Button == ButtonId.Button1) return true;
+
 		return false;
 	}
 

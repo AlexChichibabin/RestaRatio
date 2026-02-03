@@ -4,7 +4,15 @@ using Zenject;
 public abstract class StaticInteractable : InteractableBase, IItemSlot
 {
 	public Transform Container => itemContainer;
-	public bool HasItem => itemContainer.childCount > 0;
+	//public bool HasItem => itemContainer.childCount > 0;
+    public bool TryGetItem(out IItem item)
+    {
+        if (itemContainer.childCount > 0
+            && itemContainer.GetChild(0).TryGetComponent(out item)) return true;
+
+        item = null;
+        return false;
+    }
 
     [SerializeField] private float toCenterPower;
     [SerializeField] private float unWrapDistance;
@@ -19,10 +27,4 @@ public abstract class StaticInteractable : InteractableBase, IItemSlot
 		this.putDown = putDown;
 		this.take = take;
 	}
-
-	//public void Place(Transform item)
- //   {
- //       item.SetParent(itemContainer, false);
-	//	item.localPosition = Vector3.zero;
- //   }
 }

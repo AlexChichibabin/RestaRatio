@@ -2,5 +2,5 @@ using UnityEngine;
 
 public interface IChopStation
 {
-	void FinishChop();
+	void FinishChop(IItem item);
 }

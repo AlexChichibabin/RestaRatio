@@ -4,10 +4,7 @@ using Zenject;
 
 public class CuttingBoard : StaticInteractable, IChopStation
 {
-	public bool HasItemToChop => itemContainer.childCount > 0;
-
 	[Inject] ActionChop chopHold;
-
 
 	public override IEnumerable<IGameAction> GetActions(ActionContext ctx)
 	{
@@ -15,8 +12,9 @@ public class CuttingBoard : StaticInteractable, IChopStation
 		yield return take;
 		yield return chopHold;
 	}
-	public void FinishChop()
+	public void FinishChop(IItem item)
 	{
-		Debug.Log("Блюдо нарезано");
+		item.SetState(ItemStateFlags.Cutted);
+		Debug.Log("Ингридиент нарезан");
 	}
 }

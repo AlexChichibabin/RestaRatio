@@ -2,35 +2,35 @@ using System;
 using UniRx;
 using UnityEngine;
 
-public sealed class ActionChop : IActionHold
+public sealed class ActionRoast : IActionHold
 {
-	public string Id => "chop";
-	public int Priority => 80;
+    public string Id => "roast";
+    public int Priority => 80;
 
-	private bool cancel;
-	private ReactiveProperty<float> progress = new(0f);
-	public IReadOnlyReactiveProperty<float> Progress01 => progress;
+    private bool cancel;
+    private ReactiveProperty<float> progress = new(0f);
+    public IReadOnlyReactiveProperty<float> Progress01 => progress;
 
-	public bool CanExecute(ActionContext ctx, IInteractable inter)
-	{
-		if (!inter.Flags.HasFlag(InteractableFlags.ChopStation)) return false;
+    public bool CanExecute(ActionContext ctx, IInteractable inter)
+    {
+        if (!inter.Flags.HasFlag(InteractableFlags.ChopStation)) return false;
         if (!inter.TryGetCapability<IChopStation>(out var chop)) return false;
         if (!inter.TryGetCapability<IItemSlot>(out var slot)) return false;
         if (!slot.TryGetItem(out var interItem)) return false;
         if (interItem.State.HasFlag(ItemStateFlags.Cutted)) return false;
         if (interItem.ItemFlags.HasFlag(ItemAbilityFlags.Cuttable)
-			&& ctx.Button == ButtonId.Button2) return true;
+            && ctx.Button == ButtonId.Button2) return true;
 
-		return false; 
-		// ≈сли в руках предмет, то начать можно, но он должен быть выкинут из рук (это уже в Execute)
-	}
+        return false;
+        // ≈сли в руках предмет, то начать можно, но он должен быть выкинут из рук (это уже в Execute)
+    }
 
 
     public void Execute(ActionContext ctx, IInteractable inter) { }
 
     public IObservable<Unit> ExecuteHold(ActionContext ctx, IInteractable inter)
     {
-        if(ctx.ItemSlot.TryGetItem(out var actorItem)) (actorItem as Transform).SetParent(ctx.Actor.transform.parent);
+        if (ctx.ItemSlot.TryGetItem(out var actorItem)) (actorItem as Transform).SetParent(ctx.Actor.transform.parent);
 
         return Observable.Defer(() =>
         {
@@ -54,22 +54,22 @@ public sealed class ActionChop : IActionHold
                 .Take(1)
                 .Do(_ =>
                 {
-                    if (inter.TryGetCapability<IChopStation>(out var station) 
+                    if (inter.TryGetCapability<IChopStation>(out var station)
                     && inter.TryGetCapability<IItemSlot>(out var slot))
                     {
                         slot.TryGetItem(out var interItem);
                         station.FinishChop(interItem);
                     }
-                        
-				})
+
+                })
                 .AsUnitObservable();
         });
     }
 
 
     public void Cancel()
-	{
-		cancel = true;
-		//progress.Value = 0f;
-	}
+    {
+        cancel = true;
+        //progress.Value = 0f;
+    }
 }
