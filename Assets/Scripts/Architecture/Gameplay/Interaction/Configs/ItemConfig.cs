@@ -70,7 +70,7 @@ public class ItemConfig : ScriptableObject
 		if (TryGetRule(state, out var rule))
 			return rule.AllowedAbilities;
 
-		// fallback: if no rule exists, use base Abilities
+		// fallback: если правил нет, то возвращает дефолтные абилки. Может стоит возвращать None
 		return Abilities;
 	}
 
@@ -100,31 +100,31 @@ public class ItemConfig : ScriptableObject
 	}
 
 
-	//public bool TryGetNextState(ItemStateFlags current, ItemAbilityFlags action, out ItemStateFlags next) // data-driven. На потом
-	//{
-	//	next = ItemStateFlags.None;
+	public bool TryGetNextState(ItemStateFlags currentState, ItemAbilityFlags actionAbility, out ItemStateFlags nextState) // data-driven. На потом
+	{
+		nextState = ItemStateFlags.None;
 
-	//	if (!TryGetRule(current, out var rule))
-	//		return false;
+		if (!TryGetRule(currentState, out var rule))
+			return false;
 
-	//	if (action == ItemAbilityFlags.Cuttable && rule.OnCutResult != ItemStateFlags.None)
-	//	{
-	//		next = rule.OnCutResult;
-	//		return true;
-	//	}
+		if (actionAbility == ItemAbilityFlags.Cuttable && rule.OnCutResult != ItemStateFlags.None)
+		{
+			nextState = rule.OnCutResult;
+			return true;
+		}
 
-	//	if (action == ItemAbilityFlags.Roastable && rule.OnRoastResult != ItemStateFlags.None)
-	//	{
-	//		next = rule.OnRoastResult;
-	//		return true;
-	//	}
+		if (actionAbility == ItemAbilityFlags.Roastable && rule.OnRoastResult != ItemStateFlags.None)
+		{
+			nextState = rule.OnRoastResult;
+			return true;
+		}
 
-	//	if (action == ItemAbilityFlags.Bakable && rule.OnBakeResult != ItemStateFlags.None)
-	//	{
-	//		next = rule.OnBakeResult;
-	//		return true;
-	//	}
+		if (actionAbility == ItemAbilityFlags.Bakable && rule.OnBakeResult != ItemStateFlags.None)
+		{
+			nextState = rule.OnBakeResult;
+			return true;
+		}
 
-	//	return false;
-	//}
+		return false;
+	}
 }

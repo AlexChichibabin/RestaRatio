@@ -29,18 +29,25 @@ public sealed class ActionChop : IActionHold
 
     public IObservable<Unit> ExecuteHold(ActionContext ctx, IInteractable inter)
     {
-        if(ctx.ItemSlot.TryGetItem(out var actorItem)) (actorItem as Transform).SetParent(ctx.Actor.transform.parent);
+        if (ctx.ItemSlot.TryGetItem(out var actorItem))
+        {
+            if ((actorItem as IInteractable).TryGetCapability<IItem>(out var item))
+            {
+                item.Drop(ctx.Actor.transform.parent);
+            }
+        }
+
 
         return Observable.Defer(() =>
         {
             cancel = false;
             progress.Value = 0f;
 
-            if (actorItem != null)
-            {
-                Debug.Log("False hold execute because has item");
-                return Observable.Empty<Unit>();
-            }
+            //if (actorItem != null)
+            //{
+            //    Debug.Log("False hold execute because has item");
+            //    return Observable.Empty<Unit>();
+            //}
 
             const float duration = 2f;
 

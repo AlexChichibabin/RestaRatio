@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TomatoConfig
   m_EditorClassIdentifier: Assembly-CSharp::ItemConfig
   Id: Tomato
-  Abilities: 1
+  Abilities: 0
   Views:
   - State: 0
     ViewPrefab: {fileID: 1340602892772111847, guid: f7636e8a9fe183945a2a197b7fc67990, type: 3}
