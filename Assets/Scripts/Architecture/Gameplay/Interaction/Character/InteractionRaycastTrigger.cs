@@ -57,7 +57,6 @@ public class InteractionRaycastTrigger : InteractTriggerBase
 				Vector3 p2 = centerWorld - Vector3.up * half;
 
 				int count = Physics.OverlapCapsuleNonAlloc(p2, p1, radius, hits, interactableMask);
-				Debug.Log(count);
 
 				for (int i = 0; i < count; i++)
 				{

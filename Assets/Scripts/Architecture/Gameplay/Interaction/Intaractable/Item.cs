@@ -17,19 +17,20 @@ public enum ItemStateFlags
     None = 0,
     Cutted = 1 << 0,
     Roasted = 1 << 1,
-    Baked = 1 << 2
+    Baked = 1 << 2,
+	Burnt = 1 << 3
 }
 
 public class Item : InteractableBase, IItem
 {
     public Transform Parent => transform.parent;
-    public ItemAbilityFlags ItemFlags => config != null ? config.Abilities : itemFlags;
-    public ItemStateFlags State => stateFlags;
+	public ItemAbilityFlags AbilityFlags => config != null ? config.GetAllowedAbilities(stateFlags) : abilityFlags;
+	public ItemStateFlags StateFlags => stateFlags;
 
     [Header("Data")]
     [SerializeField] private ItemConfig config;
 
-    [SerializeField] private ItemAbilityFlags itemFlags; 
+    [SerializeField] private ItemAbilityFlags abilityFlags; 
     [SerializeField] private ItemStateFlags stateFlags;       
 
     [Header("View")]
@@ -67,50 +68,27 @@ public class Item : InteractableBase, IItem
     }
 
     public bool HasState(ItemStateFlags s) => (stateFlags & s) == s;
+    public bool HasAbility(ItemAbilityFlags a) => (AbilityFlags & a) == a;
 
-    public void AddState(ItemStateFlags s)
-    {
-        if (HasState(s)) return;
-
-        stateFlags |= s;
-
-      
-        RefreshView();
-    }
-
+	public void AddAbility(ItemAbilityFlags a)
+	{
+		if (HasAbility(a)) return;
+        abilityFlags |= a;
+	}
+	public void AddState(ItemStateFlags s)
+	{
+		if (HasState(s)) return;
+		stateFlags |= s;
+		RefreshView();
+	}
+	public void SetAbility(ItemAbilityFlags a)
+	{
+		abilityFlags = a;
+	}
     public void SetState(ItemStateFlags s)
     {
         stateFlags = s;
-
-        if (stateFlags.HasFlag(ItemStateFlags.Cutted)) itemFlags |= ItemAbilityFlags.Roastable; // Testing
         RefreshView();
-    }
-
-    private void RefreshView()
-    {
-        if (currentView != null)
-        {
-            Destroy(currentView);
-            //currentView.SetActive(false);
-            currentView = null;
-        }
-
-        GameObject prefab = null;
-
-        if (config != null && config.TryGetView(stateFlags, out var cfgPrefab))
-            prefab = cfgPrefab;
-
-        if (prefab == null && config != null && config.TryGetView(ItemStateFlags.None, out var nonePrefab))
-            prefab = nonePrefab;
-
-        if (prefab == null)
-            prefab = defaultViewPrefab;
-
-        if (prefab == null) return;
-
-        currentView = Instantiate(prefab, viewRoot);
-        currentView.transform.localPosition = Vector3.zero;
-        currentView.transform.localRotation = Quaternion.identity;
     }
 
     public void Take(Transform hand)
@@ -145,4 +123,30 @@ public class Item : InteractableBase, IItem
         if (drop != null) yield return drop;
         if (takeItem != null) yield return takeItem;
     }
+	private void RefreshView()
+	{
+		if (currentView != null)
+		{
+			Destroy(currentView);
+			//currentView.SetActive(false);
+			currentView = null;
+		}
+
+		GameObject prefab = null;
+
+		if (config != null && config.TryGetView(stateFlags, out var cfgPrefab))
+			prefab = cfgPrefab;
+
+		if (prefab == null && config != null && config.TryGetView(ItemStateFlags.None, out var nonePrefab))
+			prefab = nonePrefab;
+
+		if (prefab == null)
+			prefab = defaultViewPrefab;
+
+		if (prefab == null) return;
+
+		currentView = Instantiate(prefab, viewRoot);
+		currentView.transform.localPosition = Vector3.zero;
+		currentView.transform.localRotation = Quaternion.identity;
+	}
 }

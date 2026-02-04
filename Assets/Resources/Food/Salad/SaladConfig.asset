@@ -10,30 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ba9abf2dd06f6e4aae4b59069a0f2a1, type: 3}
-  m_Name: TomatoConfig
+  m_Name: SaladConfig
   m_EditorClassIdentifier: Assembly-CSharp::ItemConfig
-  Id: Tomato
+  Id: Salad
   Abilities: 1
   Views:
   - State: 0
-    ViewPrefab: {fileID: 1340602892772111847, guid: f7636e8a9fe183945a2a197b7fc67990, type: 3}
+    ViewPrefab: {fileID: 0}
   - State: 1
-    ViewPrefab: {fileID: 7315800124776417938, guid: 92f9086c4cb6d784a885e034e4425a0d, type: 3}
+    ViewPrefab: {fileID: 0}
   - State: 2
-    ViewPrefab: {fileID: 6112519890327297158, guid: 01c234a668833eb45b0a43137485b2d4, type: 3}
+    ViewPrefab: {fileID: 0}
   Rules:
   - State: 0
     AllowedAbilities: 1
     OnCutResult: 1
     OnRoastResult: 0
-    OnBakeResult: 0
-  - State: 1
-    AllowedAbilities: 2
-    OnCutResult: 0
-    OnRoastResult: 2
-    OnBakeResult: 0
-  - State: 2
-    AllowedAbilities: 2
-    OnCutResult: 0
-    OnRoastResult: 8
     OnBakeResult: 0

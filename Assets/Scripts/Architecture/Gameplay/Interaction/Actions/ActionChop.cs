@@ -17,12 +17,11 @@ public sealed class ActionChop : IActionHold
         if (!inter.TryGetCapability<IChopStation>(out var chop)) return false;
         if (!inter.TryGetCapability<IItemSlot>(out var slot)) return false;
         if (!slot.TryGetItem(out var interItem)) return false;
-        if (interItem.State.HasFlag(ItemStateFlags.Cutted)) return false;
-        if (interItem.ItemFlags.HasFlag(ItemAbilityFlags.Cuttable)
+        if (interItem.HasState(ItemStateFlags.Cutted) == true) return false;
+        if (interItem.HasAbility(ItemAbilityFlags.Cuttable) == true
 			&& ctx.Button == ButtonId.Button2) return true;
 
 		return false; 
-		// ≈сли в руках предмет, то начать можно, но он должен быть выкинут из рук (это уже в Execute)
 	}
 
 

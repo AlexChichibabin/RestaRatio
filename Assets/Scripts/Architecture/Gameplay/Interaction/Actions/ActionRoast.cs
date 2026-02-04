@@ -13,12 +13,12 @@ public sealed class ActionRoast : IActionHold
 
     public bool CanExecute(ActionContext ctx, IInteractable inter)
     {
-        if (!inter.Flags.HasFlag(InteractableFlags.ChopStation)) return false;
-        if (!inter.TryGetCapability<IChopStation>(out var chop)) return false;
+        if (!inter.Flags.HasFlag(InteractableFlags.CookStation)) return false;
+        if (!inter.TryGetCapability<ICookStation>(out var cookStation)) return false;
         if (!inter.TryGetCapability<IItemSlot>(out var slot)) return false;
         if (!slot.TryGetItem(out var interItem)) return false;
-        if (interItem.State.HasFlag(ItemStateFlags.Cutted)) return false;
-        if (interItem.ItemFlags.HasFlag(ItemAbilityFlags.Cuttable)
+        if (interItem.StateFlags.HasFlag(ItemStateFlags.Roasted)) return false;
+        if (interItem.AbilityFlags.HasFlag(ItemAbilityFlags.Roastable)
             && ctx.Button == ButtonId.Button2) return true;
 
         return false;
@@ -54,11 +54,11 @@ public sealed class ActionRoast : IActionHold
                 .Take(1)
                 .Do(_ =>
                 {
-                    if (inter.TryGetCapability<IChopStation>(out var station)
+                    if (inter.TryGetCapability<ICookStation>(out var station)
                     && inter.TryGetCapability<IItemSlot>(out var slot))
                     {
                         slot.TryGetItem(out var interItem);
-                        station.FinishChop(interItem);
+                        station.FinishCook(interItem);
                     }
 
                 })
