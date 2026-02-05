@@ -8,7 +8,7 @@ public interface IItem
     void Put(Transform place);
     void Drop(Transform world);
     bool HasState(ItemStateFlags s);
+    bool HasAbility(ItemAbilityFlags a);
     void AddState(ItemStateFlags s);
     void SetState(ItemStateFlags s);
-	bool HasAbility(ItemAbilityFlags a);
 }

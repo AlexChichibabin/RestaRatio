@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public interface IItemContainer
 {
-	bool HasItem { get; }
-	GameObject Item { get; }
+	bool TryGetItem(out IItem item);
+	List<GameObject> Items { get; }
 
 	bool CanAdd(GameObject item);
 	void Add(GameObject item);
