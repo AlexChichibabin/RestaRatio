@@ -5,23 +5,16 @@ using Zenject;
 public class LevelLostState : IEnterableState
 {
     private IInputService inputService;
-    private IGameFactory gameFactory;
-    //private IWindowProvider windowProvider;
 
     [Inject]
-    public LevelLostState(IInputService inputService, IGameFactory gameFactory/*,
-        IWindowProvider windowProvider*/)
+    public LevelLostState(
+        IInputService inputService)
     {
         this.inputService = inputService;
-        this.gameFactory = gameFactory;
-        /*this.windowProvider = windowProvider*/;
     }
 
     public void Enter()
     {
         inputService.DisableGameplay();
-        //gameFactory.VirtualJoystick.gameObject.SetActive(false);
-
-        //windowProvider.Open(WindowId.LoseWindow);
     }
 }

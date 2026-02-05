@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class WindowProvider : IWindowProvider
 {
 	private IUIFactory uIFactory;

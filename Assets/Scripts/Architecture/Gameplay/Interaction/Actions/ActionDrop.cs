@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class ActionDrop : IGameAction
 {
 	public string Id => "drop";
@@ -25,5 +23,4 @@ public class ActionDrop : IGameAction
 			item.Drop(ctx.Actor.transform.parent);
 		}
 	}
-
 }

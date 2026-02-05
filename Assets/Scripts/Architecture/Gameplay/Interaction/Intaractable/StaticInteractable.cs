@@ -4,7 +4,6 @@ using Zenject;
 public abstract class StaticInteractable : InteractableBase, IItemSlot
 {
 	public Transform Container => itemContainer;
-	//public bool HasItem => itemContainer.childCount > 0;
     public bool TryGetItem(out IItem item)
     {
         if (itemContainer.childCount > 0

@@ -11,10 +11,10 @@ public class LevelStateMachineTicker : MonoBehaviour
         this.levelStateSwitcher = levelStateSwitcher;
     }
 
-    private void Update()
-    {
-        //levelStateSwitcher.UpdateTick();
+    //private void Update()
+    //{
+    //    levelStateSwitcher.UpdateTick();
 
-        //Debug.Log(levelStateSwitcher.CurrentState.ToString());
-    }
+    //    Debug.Log(levelStateSwitcher.CurrentState.ToString());
+    //}
 }

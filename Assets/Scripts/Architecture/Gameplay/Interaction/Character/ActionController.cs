@@ -1,8 +1,6 @@
 using UnityEngine;
 using Zenject;
 
-
-
 public class ActionController : MonoBehaviour
 {
     [SerializeField] private InventoryHands handsInventory;

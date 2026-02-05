@@ -1,7 +1,3 @@
-using System;
-using UniRx;
-using UnityEngine;
-
 public sealed class ActionPut : IGameAction
 {
 	public string Id => "put";
@@ -35,32 +31,6 @@ public sealed class ActionPut : IGameAction
                 item.Put(place.Container);
             }
         }
-
-
-
-        //Observable
-        //	.EveryUpdate()
-        //	.TakeWhile(_ => item.parent == ctx.Target.ItemContainer)
-        //	.Select(rb => item.GetComponent<Rigidbody>())
-        //	.Subscribe(rb => 
-        //		{
-        //			if (rb == null) return;
-
-        //			Vector3 targetPos = ctx.Target.ItemContainer.position;
-        //			Vector3 targetVel = Vector3.zero;
-
-        //			Vector3 pos = rb.position;
-        //			Vector3 vel = rb.linearVelocity;
-
-        //			float spring = 120f; 
-        //			float damper = 18f;    
-
-        //			Vector3 force = (targetPos - pos) * spring + (targetVel - vel) * damper;
-        //			rb.AddForce(force, ForceMode.Force);
-
-        //			if(Vector3.Distance(targetPos, pos) > 0.5) item.SetParent(ctx.Target.ItemContainer.parent.parent);
-        //		})
-        //	.AddTo(item);
     }
 }
 

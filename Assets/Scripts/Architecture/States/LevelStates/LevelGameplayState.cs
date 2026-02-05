@@ -1,11 +1,9 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
 
 public class LevelGameplayState : IEnterableState, ITickableState, IExitableState
 {
-    private IGameFactory gameFactory;
     private ILevelStateSwitcher levelStateSwitcher;
     private IConfigProvider configProvider;
     private IInputService inputService;
@@ -13,12 +11,11 @@ public class LevelGameplayState : IEnterableState, ITickableState, IExitableStat
     private LevelConfig levelConfig;
 
     [Inject]
-    public LevelGameplayState(IGameFactory gameFactory, 
+    public LevelGameplayState(
         ILevelStateSwitcher levelStateSwitcher,
 		IInputService inputService,
 	    IConfigProvider configProvider)
     {
-        this.gameFactory = gameFactory;
         this.levelStateSwitcher = levelStateSwitcher;
         this.inputService = inputService;
         this.configProvider = configProvider;
@@ -26,28 +23,13 @@ public class LevelGameplayState : IEnterableState, ITickableState, IExitableStat
 
     public void Enter()
     {
-        //gameFactory.HeroHealth.Die += OnHeroDie;
         Debug.Log("LEVEL: Gameplay");
 
         levelConfig = configProvider.GetLevel(SceneManager.GetActiveScene().name);
 		
 		inputService.EnableGameplay();
 	}
-    public void Exit()
-    {
-        //gameFactory.HeroHealth.Die -= OnHeroDie;
-    }
+    public void Exit() { }
 
-    public void Tick()
-    {
-        /*if (Vector3.Distance(gameFactory.HeroObject.transform.position, levelConfig.FinishPoint) < FinishPoint.Radius)
-        {
-            levelStateSwitcher.Enter<LevelVictoryState>();
-        }*/
-    }
-
-    /* private void OnHeroDie()
-     {
-         levelStateSwitcher.Enter<LevelLostState>();
-     }*/
+    public void Tick() { }
 }

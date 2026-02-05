@@ -1,23 +1,13 @@
-using System;
-using TMPro;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UI;
-using Zenject;
-
 public class LevelResultPresenter : WindowPresenterBase<LevelResultWindow>
 {
 	private IGameStateSwitcher gameStateSwitcher;
-	//private IAdsService adsService;
 
 	private LevelResultWindow window;
 
 	public LevelResultPresenter(
-		IGameStateSwitcher gameStateSwitcher/*,
-		IAdsService adsService*/)
+		IGameStateSwitcher gameStateSwitcher)
 	{
 		this.gameStateSwitcher = gameStateSwitcher;
-		//this.adsService = adsService;
 	}
 	public override void SetWindow(LevelResultWindow window)
 	{
@@ -33,6 +23,5 @@ public class LevelResultPresenter : WindowPresenterBase<LevelResultWindow>
 	private void OnLoadMainMenuButtonClicked()
 	{
 		gameStateSwitcher.Enter<LoadMainMenuState>();
-		//adsService.ShowInterstitial();
 	}
 }

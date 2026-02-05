@@ -30,6 +30,7 @@ public class Item : InteractableBase, IItem
     [Header("Data")]
     [SerializeField] private ItemConfig config;
 
+    [Header("States abd abilities")]
     [SerializeField] private ItemAbilityFlags abilityFlags; 
     [SerializeField] private ItemStateFlags stateFlags;       
 

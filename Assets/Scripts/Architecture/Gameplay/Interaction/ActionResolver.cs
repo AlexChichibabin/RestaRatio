@@ -1,7 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-
 public struct ResolvedAction
 {
 	public IInteractable Target;
@@ -13,7 +9,6 @@ public struct ResolvedAction
 		Action = action;
 	}
 }
-
 
 public class ActionResolver : IActionResolver
 {
@@ -35,9 +30,8 @@ public class ActionResolver : IActionResolver
 
 				int ap = action.Priority;
 				int tp = target.Priority;
-				float d = (target.Position - ctx.Actor.transform.position).sqrMagnitude; // или distance to sensor
+				float d = (target.Position - ctx.Actor.transform.position).sqrMagnitude;
 
-				// сравнение: action priority > target priority > distance
 				bool better =
 					ap > bestActionPrio ||
 					(ap == bestActionPrio && tp > bestTargetPrio) ||
@@ -54,15 +48,6 @@ public class ActionResolver : IActionResolver
 
 		return best;
 	}
-	//public IGameAction ResolveForCandidate(ActionContext ctx, int id)
-	//{
-	//	if (ctx.Candidates[id] == null) return null;
-
-	//	return ctx.Candidates[id].GetActions(ctx)
-	//		.Where(a => a.CanExecute(ctx))
-	//		.OrderByDescending(a => a.Priority)
-	//		.FirstOrDefault();
-	//}
 }
 
 

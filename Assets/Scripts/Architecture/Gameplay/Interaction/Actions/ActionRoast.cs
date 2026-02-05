@@ -1,7 +1,6 @@
 using System;
 using UniRx;
 using UnityEngine;
-
 public sealed class ActionRoast : IActionHold
 {
     public string Id => "roast";
@@ -22,17 +21,22 @@ public sealed class ActionRoast : IActionHold
             && ctx.Button == ButtonId.Button2) return true;
 
         return false;
-        // ≈сли в руках предмет, то начать можно, но он должен быть выкинут из рук (это уже в Execute)
     }
 
 
     public void Execute(ActionContext ctx, IInteractable inter) { }
 
-    public IObservable<Unit> ExecuteHold(ActionContext ctx, IInteractable inter)
+    public IObservable<Unit> ExecuteHold(ActionContext ctx, IInteractable inter) 
     {
-        if (ctx.ItemSlot.TryGetItem(out var actorItem)) (actorItem as Transform).SetParent(ctx.Actor.transform.parent);
+		if (ctx.ItemSlot.TryGetItem(out var actorItem))
+		{
+			if ((actorItem as IInteractable).TryGetCapability<IItem>(out var item))
+			{
+				item.Drop(ctx.Actor.transform.parent);
+			}
+		}
 
-        return Observable.Defer(() =>
+		return Observable.Defer(() =>
         {
             cancel = false;
             progress.Value = 0f;

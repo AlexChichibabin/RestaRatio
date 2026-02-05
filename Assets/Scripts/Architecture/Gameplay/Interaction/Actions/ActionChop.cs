@@ -1,7 +1,6 @@
 using System;
 using UniRx;
 using UnityEngine;
-
 public sealed class ActionChop : IActionHold
 {
 	public string Id => "chop";
@@ -38,16 +37,10 @@ public sealed class ActionChop : IActionHold
         }
 
 
-        return Observable.Defer(() =>
-        {
+        return Observable.Defer(() => // TODO Доделать отмену
+		{
             cancel = false;
             progress.Value = 0f;
-
-            //if (actorItem != null)
-            //{
-            //    Debug.Log("False hold execute because has item");
-            //    return Observable.Empty<Unit>();
-            //}
 
             const float duration = 2f;
 

@@ -26,7 +26,7 @@ public abstract class InteractableBase : MonoBehaviour, IInteractable
     [SerializeField] private int priority = 0;
     [SerializeField] private InteractableFlags flags;
 
-    private readonly Dictionary<System.Type, object> capabilities = new();
+    private readonly Dictionary<Type, object> capabilities = new();
 
     protected virtual void Awake()
     {

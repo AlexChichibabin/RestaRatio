@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class LoadMainMenuState : IEnterableState
 {
     private ISceneLoader sceneLoader;

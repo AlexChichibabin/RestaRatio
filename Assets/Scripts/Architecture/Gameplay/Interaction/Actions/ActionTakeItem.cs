@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class ActionTakeItem : IGameAction
 {
 	public string Id => "take_item";

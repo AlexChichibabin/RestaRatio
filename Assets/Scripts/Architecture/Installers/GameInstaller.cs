@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UniRx;
 using Zenject;
 
 public class GameInstaller : MonoInstaller

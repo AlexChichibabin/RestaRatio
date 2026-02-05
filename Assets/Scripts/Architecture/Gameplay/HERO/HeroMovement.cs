@@ -1,4 +1,3 @@
-using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 
 public class HeroMovement : MonoBehaviour
@@ -52,8 +51,4 @@ public class HeroMovement : MonoBehaviour
 		TargetDirectionControl.x = moveDirection.x;
 		TargetDirectionControl.z = moveDirection.y;
     }
-    private void MoveDown()
-    {
-		characterController.Move(new Vector3(0, -1, 0) * movementSpeed * Time.deltaTime);
-	}
 }

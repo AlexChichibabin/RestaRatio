@@ -1,9 +1,7 @@
 using Cysharp.Threading.Tasks;
-using Cysharp.Threading;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
-using Zenject;
 
 public class GameBootstrappState : IEnterableState          // Сделать еще загрузку сохранений и сервиса покупок/рекламы
 {
@@ -31,13 +29,10 @@ public class GameBootstrappState : IEnterableState          // Сделать еще загру
 
 		Application.targetFrameRate = (int)Screen.currentResolution.refreshRateRatio.numerator;
 
-		// Дожидаюсь Addressables
 		await Addressables.InitializeAsync().ToUniTask();
 
-		// Подгружаю конфиги
 		configProvider.Load();
 
-		// Прогреваю UI
 		await uIFactory.WarmUpAsync();
 
 		// Когда все загрузидось загружаю сцену

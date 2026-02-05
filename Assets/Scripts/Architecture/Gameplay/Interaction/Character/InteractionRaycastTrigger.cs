@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UniRx;
@@ -7,7 +6,6 @@ using UnityEngine;
 public class InteractionRaycastTrigger : InteractTriggerBase
 {
 	public override IList<IInteractable> Candidates => candidates;
-	//public override IInteractable Interactable => current;
 
 	[SerializeField] private CharacterController characterController;
     [SerializeField] private float radius = 0.8f;
@@ -16,7 +14,6 @@ public class InteractionRaycastTrigger : InteractTriggerBase
 
     private readonly HashSet<IInteractable> set = new();
     private Collider[] hits;
-    //private IInteractable current;
 	private List<IInteractable> candidates;
 
 	private CompositeDisposable disposables = new();
@@ -33,12 +30,6 @@ public class InteractionRaycastTrigger : InteractTriggerBase
 	{
 		disposables.Clear();
 	}
-	private float DistanceSqr(IInteractable inter)
-	{
-		var mb = (MonoBehaviour)inter;
-		return Mathf.Sqrt((mb.transform.position - (characterController.transform.position + new Vector3(0, 2, 0))).sqrMagnitude);
-	}
-
 	private void SubscribeTargeting()
 	{
 		Observable
@@ -46,8 +37,6 @@ public class InteractionRaycastTrigger : InteractTriggerBase
 			.Subscribe(_ =>
 			{
 				set.Clear();
-				//Candidates.Clear();
-				//current = null;
 
 				var cc = characterController;
 
@@ -70,33 +59,6 @@ public class InteractionRaycastTrigger : InteractTriggerBase
 				}
 				candidates = set.ToList();
 				Debug.Log(candidates.Count);
-				//float bestDist = float.PositiveInfinity;
-
-				//foreach (var inter in set)
-				//{
-				//	if (current == null)
-				//	{
-				//		current = inter;
-				//		bestDist = DistanceSqr(inter);
-				//		continue;
-				//	}
-
-				//	if (inter.Priority > current.Priority)
-				//	{
-				//		current = inter;
-				//		bestDist = DistanceSqr(inter);
-				//	}
-				//	else if (inter.Priority == current.Priority)
-				//	{
-				//		float d = DistanceSqr(inter);
-				//		if (d < bestDist)
-				//		{
-				//			current = inter;
-				//			bestDist = d;
-				//		}
-				//	}
-				//}
-				//Debug.Log(Interactable);
 			})
 			.AddTo(disposables);
 	}

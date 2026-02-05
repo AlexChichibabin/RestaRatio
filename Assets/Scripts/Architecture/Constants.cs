@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class Constants
 {
     public static string BootstrappSceneName = "Bootstrapp";

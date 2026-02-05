@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class ActionTakeFrom : IGameAction
 {
 	public string Id => "take_from";
