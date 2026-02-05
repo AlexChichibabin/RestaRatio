@@ -11,6 +11,4 @@ public interface IItem
     void AddState(ItemStateFlags s);
     void SetState(ItemStateFlags s);
 	bool HasAbility(ItemAbilityFlags a);
-	void AddAbility(ItemAbilityFlags a);
-	void SetAbility(ItemAbilityFlags a);
 }

@@ -53,7 +53,6 @@ public class ItemConfig : ScriptableObject
 		return false;
 	}
 
-
 	public ItemAbilityFlags GetAllowedAbilities(ItemStateFlags state)
 	{
 		if (TryGetRule(state, out var rule))

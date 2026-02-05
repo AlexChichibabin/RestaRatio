@@ -30,7 +30,7 @@ public class Item : InteractableBase, IItem
     [Header("Data")]
     [SerializeField] private ItemConfig config;
 
-    [Header("States abd abilities")]
+    [Header("States and abilities")]
     [SerializeField] private ItemAbilityFlags abilityFlags; 
     [SerializeField] private ItemStateFlags stateFlags;       
 
@@ -55,6 +55,9 @@ public class Item : InteractableBase, IItem
 
         if (viewRoot == null) viewRoot = transform;
 
+        if (viewRoot.childCount != 0) // Вначале убирает вьюшку (для теста)
+            for (int i = 0; i < viewRoot.childCount; i++) 
+                Destroy(viewRoot.GetChild(i).gameObject);
         RefreshView();
     }
 
@@ -71,20 +74,11 @@ public class Item : InteractableBase, IItem
     public bool HasState(ItemStateFlags s) => (stateFlags & s) == s;
     public bool HasAbility(ItemAbilityFlags a) => (AbilityFlags & a) == a;
 
-	public void AddAbility(ItemAbilityFlags a)
-	{
-		if (HasAbility(a)) return;
-        abilityFlags |= a;
-	}
 	public void AddState(ItemStateFlags s)
 	{
 		if (HasState(s)) return;
 		stateFlags |= s;
 		RefreshView();
-	}
-	public void SetAbility(ItemAbilityFlags a)
-	{
-		abilityFlags = a;
 	}
     public void SetState(ItemStateFlags s)
     {

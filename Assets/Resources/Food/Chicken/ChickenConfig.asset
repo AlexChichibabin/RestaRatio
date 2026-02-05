@@ -16,24 +16,17 @@ MonoBehaviour:
   Abilities: 5
   Views:
   - State: 0
-    ViewPrefab: {fileID: 0}
+    ViewPrefab: {fileID: 5025211219289055379, guid: 8b9f200042af62745aa2894620846077, type: 3}
   - State: 1
-    ViewPrefab: {fileID: 0}
+    ViewPrefab: {fileID: 9211304060166678144, guid: 986b2e09313bfe24aba14d0bc7297a07, type: 3}
   - State: 2
-    ViewPrefab: {fileID: 0}
+    ViewPrefab: {fileID: 9211304060166678144, guid: 689bce3b14ea48e4b8c6f7c33a8589bd, type: 3}
+  - State: 4
+    ViewPrefab: {fileID: 2369797104470566364, guid: ef34a1c9dface224299a539afffc0c26, type: 3}
   Rules:
   - State: 0
     AllowedAbilities: 5
-    OnCutResult: 1
-    OnRoastResult: 0
-    OnBakeResult: 4
   - State: 1
     AllowedAbilities: 2
-    OnCutResult: 0
-    OnRoastResult: 2
-    OnBakeResult: 0
   - State: 1
     AllowedAbilities: 2
-    OnCutResult: 0
-    OnRoastResult: 2
-    OnBakeResult: 0

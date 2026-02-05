@@ -36,7 +36,6 @@ public sealed class ActionChop : IActionHold
             }
         }
 
-
         return Observable.Defer(() => // TODO Доделать отмену
 		{
             cancel = false;

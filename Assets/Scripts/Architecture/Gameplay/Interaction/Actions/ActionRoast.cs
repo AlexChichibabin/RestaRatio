@@ -41,12 +41,6 @@ public sealed class ActionRoast : IActionHold
             cancel = false;
             progress.Value = 0f;
 
-            if (actorItem != null)
-            {
-                Debug.Log("False hold execute because has item");
-                return Observable.Empty<Unit>();
-            }
-
             const float duration = 2f;
 
             return Observable.EveryUpdate()

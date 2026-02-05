@@ -76,8 +76,8 @@ MonoBehaviour:
   priority: 10
   flags: 1
   config: {fileID: 11400000, guid: e1bdac225b5d066418021e7b1a1e4b18, type: 2}
-  itemFlags: 1
-  state: 0
+  abilityFlags: 0
+  stateFlags: 0
   viewRoot: {fileID: 4082154786141442593}
   defaultViewPrefab: {fileID: 1340602892772111847, guid: f7636e8a9fe183945a2a197b7fc67990, type: 3}
 --- !u!1 &8197417573410967785
