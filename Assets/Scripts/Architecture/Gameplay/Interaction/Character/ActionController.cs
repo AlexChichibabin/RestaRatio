@@ -1,13 +1,16 @@
 using UnityEngine;
 using Zenject;
 
-public class ActionController : MonoBehaviour
+// Можно сделать тоже интерактаблом
+public class ActionController : MonoBehaviour, ISlot 
 {
-    [SerializeField] private InventoryHands handsInventory;
+    [SerializeField] private Transform handsInventory;
     [SerializeField] private InteractTriggerBase interractionTrigger;
 
     public ActionRunner runner;
     private IActionResolver actionResolver;
+
+    public Transform Container => handsInventory;
 
     [Inject]
     public void Construct(ActionRunner runner,
@@ -17,7 +20,7 @@ public class ActionController : MonoBehaviour
         this.actionResolver = actionResolver;
     }
 
-    public void OnInteractDown1() =>
+    public void OnInteractDown1() => // Можно обобщить
         InteractDown(buttonId: ButtonId.Button1);
     public void OnInteractDown2() =>
         InteractDown(buttonId: ButtonId.Button2);
@@ -31,7 +34,7 @@ public class ActionController : MonoBehaviour
 
         var ctx = new ActionContext(
         actor: gameObject,
-        itemSlot: handsInventory,
+        slot: this,
         candidates: interractionTrigger.Candidates,
         button: buttonId);
 
@@ -42,5 +45,20 @@ public class ActionController : MonoBehaviour
             runner.StartHold(ctx, hold, resolvedAction.Value.Target);
         else
             runner.Run(ctx, resolvedAction.Value.Action, resolvedAction.Value.Target);
+    }
+
+    public bool TryGetContentAs<T>(out T portable)
+    {
+        if (handsInventory.childCount > 0
+            && handsInventory.GetChild(0)
+            .TryGetComponent(out portable)) return true;
+
+        portable = default(T);
+        return false;
+    }
+    public bool TryGetCapability<T>(out T cap) where T : class
+    {
+        cap = default(T);
+        return false;
     }
 }

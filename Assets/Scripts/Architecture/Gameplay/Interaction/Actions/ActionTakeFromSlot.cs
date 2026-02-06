@@ -7,10 +7,10 @@ public class ActionTakeFromSlot : IGameAction
 
 	public bool CanExecute(ActionContext ctx, IInteractable inter)
 	{
-		if (ctx.ItemSlot.TryGetChildAs<IPortable>(out var actorPortable)) return false; // У персонажа не должно быть предмета
+		if (ctx.Slot.TryGetContentAs<IPortable>(out var actorPortable)) return false; // У персонажа не должно быть предмета
 		if (!inter.Flags.HasFlag(InteractableFlags.ItemSlot)) return false; // У интера должен быть флаг ItemSlot
 		if (!inter.TryGetCapability<ISlot>(out var slot)) return false; // У интера должен быть интерфейс ItemSlot
-		if (slot.TryGetChildAs<IPortable>(out var interPortable) && ctx.Button == ButtonId.Button1) return true; //
+		if (slot.TryGetContentAs<IPortable>(out var interPortable) && ctx.Button == ButtonId.Button1) return true; //
 		return false;
 	}
 
@@ -21,7 +21,7 @@ public class ActionTakeFromSlot : IGameAction
 			Transform go = slot.Container.GetChild(0);
 			if (go.TryGetComponent(out IPortable portable))
 			{
-				portable.Take(ctx.ItemSlot.Container);
+				portable.Take(ctx.Slot.Container);
 			}
 		}
 	}

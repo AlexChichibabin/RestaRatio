@@ -15,7 +15,7 @@ public sealed class ActionRoast : IActionHold
         if (!inter.Flags.HasFlag(InteractableFlags.CookStation)) return false;
         if (!inter.TryGetCapability<ICookStation>(out var cookStation)) return false;
         if (!inter.TryGetCapability<ISlot>(out var slot)) return false;
-        if (!slot.TryGetChildAs<IItem>(out var interItem)) return false;
+        if (!slot.TryGetContentAs<IItem>(out var interItem)) return false;
         if (interItem.StateFlags.HasFlag(ItemStateFlags.Roasted)) return false;
         if (interItem.AbilityFlags.HasFlag(ItemAbilityFlags.Roastable)
             && ctx.Button == ButtonId.Button2) return true;
@@ -28,7 +28,7 @@ public sealed class ActionRoast : IActionHold
 
     public IObservable<Unit> ExecuteHold(ActionContext ctx, IInteractable inter) 
     {
-		if (ctx.ItemSlot.TryGetChildAs<IPortable>(out var actorPortable))
+		if (ctx.Slot.TryGetContentAs<IPortable>(out var actorPortable))
 		{
 			if ((actorPortable as IInteractable).TryGetCapability<IPortable>(out var portable))
 			{
@@ -55,7 +55,7 @@ public sealed class ActionRoast : IActionHold
                     if (inter.TryGetCapability<ICookStation>(out var station)
                     && inter.TryGetCapability<ISlot>(out var slot))
                     {
-                        slot.TryGetChildAs<IItem>(out var interItem);
+                        slot.TryGetContentAs<IItem>(out var interItem);
                         station.FinishCook(interItem);
                     }
 

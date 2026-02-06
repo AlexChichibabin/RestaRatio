@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f617265b653dde49a4650daa479cab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActionController
-  handsInventory: {fileID: 7662708085541887453}
+  handsInventory: {fileID: 6646425128386232282}
   interractionTrigger: {fileID: 5332185809184964460}
 --- !u!114 &6588013158234626060
 MonoBehaviour:
@@ -272,7 +272,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6646425128386232282}
-  - component: {fileID: 7662708085541887453}
   m_Layer: 0
   m_Name: HandsInventory
   m_TagString: Untagged
@@ -295,18 +294,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 802105588761965757}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7662708085541887453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7909912188596603116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6dbff341b0d0fe4aae71243dc84d188, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventoryHands
 --- !u!1001 &6753390825951782906
 PrefabInstance:
   m_ObjectHideFlags: 0

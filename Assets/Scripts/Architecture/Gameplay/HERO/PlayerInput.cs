@@ -45,7 +45,7 @@ public class PlayerInput : MonoBehaviour
 			.Subscribe(dir => playerMovement.SetMoveDirection(dir))
 			.AddTo(disposables);
 
-		input.InteractDown1
+		input.InteractDown1 // Можно обобщить
 			.Subscribe(_ => actionController.OnInteractDown1())
 			.AddTo(disposables);
         input.InteractDown2

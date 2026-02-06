@@ -4,15 +4,8 @@ using Zenject;
 public abstract class StaticInteractable : BaseInteractable, ISlot
 {
 	public Transform Container => itemContainer;
-    //public bool TryGetPortable(out IPortable portable)
-    //{
-    //    if (itemContainer.childCount > 0
-    //        && itemContainer.GetChild(0).TryGetComponent(out portable)) return true;
 
-    //    portable = null;
-    //    return false;
-    //}
-	public bool TryGetChildAs<T>(out T portable)
+	public bool TryGetContentAs<T>(out T portable)
 	{
 		if (itemContainer.childCount > 0
 			&& itemContainer.GetChild(0).TryGetComponent(out portable)) return true;

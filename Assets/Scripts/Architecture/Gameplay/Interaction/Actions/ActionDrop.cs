@@ -10,7 +10,7 @@ public class ActionDrop : IGameAction
 		if (inter.Flags.HasFlag(InteractableFlags.Item) == true
 			&& inter.TryGetCapability<IPortable>(out var portable) == true)
 		{
-			return portable.Parent == ctx.ItemSlot.Container
+			return portable.Parent == ctx.Slot.Container
 				&& ctx.Button == ButtonId.Button1;
         }
 		return false;
