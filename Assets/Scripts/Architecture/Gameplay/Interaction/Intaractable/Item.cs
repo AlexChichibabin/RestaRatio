@@ -21,7 +21,7 @@ public enum ItemStateFlags
 	Burnt = 1 << 3
 }
 
-public class Item : InteractableBase, IItem
+public class Item : BaseInteractable, IItem, IPortable
 {
     public Transform Parent => transform.parent;
 	public ItemAbilityFlags AbilityFlags => config != null ? config.GetAllowedAbilities(stateFlags) : abilityFlags;
@@ -44,7 +44,7 @@ public class Item : InteractableBase, IItem
     private Collider[] cols;
 
     private ActionDrop drop;
-    private ActionTakeItem takeItem;
+    private ActionTakePortable takeItem;
 
     protected override void Awake()
     {
@@ -64,7 +64,7 @@ public class Item : InteractableBase, IItem
     [Inject]
     public void Construct(
         ActionDrop drop,
-        ActionTakeItem takeItem
+        ActionTakePortable takeItem
     )
     {
         this.drop = drop;

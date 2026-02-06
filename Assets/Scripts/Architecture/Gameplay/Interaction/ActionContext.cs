@@ -10,7 +10,7 @@ public sealed class ActionContext
     /// <summary>
     /// Actor's inventory (his hands)
     /// </summary>
-    public IItemSlot ItemSlot;
+    public ISlot ItemSlot;
     /// <summary>
     /// What we interact to
     /// </summary>
@@ -22,7 +22,7 @@ public sealed class ActionContext
 
     public ActionContext(
         GameObject actor, 
-        IItemSlot itemSlot,
+        ISlot itemSlot,
 		IList<IInteractable> candidates, 
         ButtonId button)
     {

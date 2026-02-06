@@ -1,20 +1,48 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using Zenject;
 
-public class Plate : InteractableBase
+public class Plate : BaseInteractable, IPortable
 {
-    //public bool TryGetItem(out IItem item)
-    //{
-    //    //if (itemContainer.childCount > 0
-    //    //    && itemContainer.GetChild(0).TryGetComponent(out item)) return true;
+	private Rigidbody rb;
+	private Collider[] cols;
 
-    //    //item = null;
-    //    return false;
-    //}
 
-    List<GameObject> Items => throw new System.NotImplementedException();
+	private ActionDrop drop;
+	private ActionTakePortable takeItem;
+	//public bool TryGetItem(out IItem item)
+	//{
+	//    //if (itemContainer.childCount > 0
+	//    //    && itemContainer.GetChild(0).TryGetComponent(out item)) return true;
 
-    public void Add(GameObject item)
+	//    //item = null;
+	//    return false;
+	//}
+
+	List<GameObject> Items => throw new System.NotImplementedException();
+
+	public Transform Parent => transform.parent;
+
+	protected override void Awake()
+	{
+		base.Awake();
+
+		rb = GetComponent<Rigidbody>();
+		cols = GetComponentsInChildren<Collider>();
+	}
+
+	[Inject]
+	public void Construct(
+		ActionDrop drop,
+		ActionTakePortable takeItem
+	)
+	{
+		this.drop = drop;
+		this.takeItem = takeItem;
+	}
+
+	public void Add(GameObject item)
     {
         throw new System.NotImplementedException();
     }
@@ -24,19 +52,36 @@ public class Plate : InteractableBase
         throw new System.NotImplementedException();
     }
 
-    public bool CanTake()
+	public override IEnumerable<IGameAction> GetActions(ActionContext ctx)
     {
-        throw new System.NotImplementedException();
-    }
+		if (drop != null) yield return drop;
+		if (takeItem != null) yield return takeItem;
+	}
 
-    public override IEnumerable<IGameAction> GetActions(ActionContext ctx)
-    {
-        throw new System.NotImplementedException();
-    }
+	public void Take(Transform hand)
+	{
+		rb.isKinematic = true;
 
-    public GameObject Take()
-    {
-        throw new System.NotImplementedException();
-    }
+		transform.SetParent(hand, false);
+		transform.localPosition = Vector3.zero;
+		transform.localRotation = Quaternion.identity;
+	}
 
+	public void Put(Transform place)
+	{
+		rb.isKinematic = true;
+
+		transform.SetParent(place, false);
+		transform.localPosition = Vector3.zero;
+		transform.localRotation = Quaternion.identity;
+	}
+
+	public void Drop(Transform world)
+	{
+		rb.isKinematic = false;
+
+		transform.SetParent(world, true);
+		rb.linearVelocity = Vector3.zero;
+		rb.angularVelocity = Vector3.zero;
+	}
 }

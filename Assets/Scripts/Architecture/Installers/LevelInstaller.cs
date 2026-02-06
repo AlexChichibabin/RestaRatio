@@ -57,9 +57,9 @@ public class LevelInstaller : MonoInstaller
     }
     private void BindActions()
     {
-        Container.Bind<ActionTakeFrom>().FromNew().AsSingle();
-		Container.Bind<ActionTakeItem>().FromNew().AsSingle();
-		Container.Bind<ActionPut>().FromNew().AsSingle();
+        Container.Bind<ActionTakeFromSlot>().FromNew().AsSingle();
+		Container.Bind<ActionTakePortable>().FromNew().AsSingle();
+		Container.Bind<ActionPutOnSlot>().FromNew().AsSingle();
         Container.Bind<ActionChop>().FromNew().AsSingle();
         Container.Bind<ActionDrop>().FromNew().AsSingle();
         Container.Bind<ActionRoast>().FromNew().AsSingle();

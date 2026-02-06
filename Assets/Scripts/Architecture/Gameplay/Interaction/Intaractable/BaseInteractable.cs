@@ -15,7 +15,7 @@ public enum InteractableFlags
     Trash = 1 << 6,
 }
 
-public abstract class InteractableBase : MonoBehaviour, IInteractable
+public abstract class BaseInteractable : MonoBehaviour, IInteractable
 {
     public int Priority => priority;
     public virtual string DisplayName => gameObject.name;

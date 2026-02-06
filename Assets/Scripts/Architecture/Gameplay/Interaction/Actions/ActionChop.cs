@@ -14,8 +14,8 @@ public sealed class ActionChop : IActionHold
 	{
 		if (!inter.Flags.HasFlag(InteractableFlags.ChopStation)) return false;
         if (!inter.TryGetCapability<IChopStation>(out var chop)) return false;
-        if (!inter.TryGetCapability<IItemSlot>(out var slot)) return false;
-        if (!slot.TryGetItem(out var interItem)) return false;
+        if (!inter.TryGetCapability<ISlot>(out var slot)) return false;
+        if (!slot.TryGetChildAs<IItem>(out var interItem)) return false;
         if (interItem.HasState(ItemStateFlags.Cutted) == true) return false;
         if (interItem.HasAbility(ItemAbilityFlags.Cuttable) == true
 			&& ctx.Button == ButtonId.Button2) return true;
@@ -28,11 +28,11 @@ public sealed class ActionChop : IActionHold
 
     public IObservable<Unit> ExecuteHold(ActionContext ctx, IInteractable inter)
     {
-        if (ctx.ItemSlot.TryGetItem(out var actorItem))
+        if (ctx.ItemSlot.TryGetChildAs<IPortable>(out var actorPortable))
         {
-            if ((actorItem as IInteractable).TryGetCapability<IItem>(out var item))
+            if ((actorPortable as IInteractable).TryGetCapability<IPortable>(out var portable))
             {
-                item.Drop(ctx.Actor.transform.parent);
+                portable.Drop(ctx.Actor.transform.parent);
             }
         }
 
@@ -53,9 +53,9 @@ public sealed class ActionChop : IActionHold
                 .Do(_ =>
                 {
                     if (inter.TryGetCapability<IChopStation>(out var station) 
-                    && inter.TryGetCapability<IItemSlot>(out var slot))
+                    && inter.TryGetCapability<ISlot>(out var slot))
                     {
-                        slot.TryGetItem(out var interItem);
+                        slot.TryGetChildAs<IItem>(out var interItem);
                         station.FinishChop(interItem);
                     }
                         

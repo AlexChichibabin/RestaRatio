@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PortableInteractable : InteractableBase
+public class PortableInteractable : BaseInteractable
 {
     private ActionDrop drop;
-    private ActionTakeItem takeItem;
+    private ActionTakePortable takeItem;
 
     public override IEnumerable<IGameAction> GetActions(ActionContext ctx)
     {
