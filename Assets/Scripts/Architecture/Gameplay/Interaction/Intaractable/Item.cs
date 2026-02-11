@@ -27,6 +27,7 @@ public class Item : BaseInteractable, IItem, IPortable
 	public ItemAbilityFlags AbilityFlags => config != null ? config.GetAllowedAbilities(stateFlags) : abilityFlags;
 	public ItemStateFlags StateFlags => stateFlags;
 
+
     [Header("Data")]
     [SerializeField] private ItemConfig config;
 
