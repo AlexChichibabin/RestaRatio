@@ -11,11 +11,12 @@ public class ActionPutInContainer : IGameAction
         if (inter == null) return false;
         if (inter.Flags.HasFlag(InteractableFlags.Container))
         {
-            if (!inter.TryGetCapability<IItemContainer>(out var container)) return false;
-            if (!ctx.Slot.TryGetContentAs<IPortable>(out var actorPortable)) return false;
-            if (!actorPortable.TryGetCapability<IItem>(out var actorItem)) return false;
+            if (!inter.TryGetCapability<IItemContainer<IInteractable>>(out var container)) return false;
+            if (!ctx.Slot.TryGetContentAs<IInteractable>(out var actorHandInter)) return false;
+            if (!actorHandInter.TryGetCapability<IPortable>(out var actorPortable)) return false;
+            //if (!actorHandInter.TryGetCapability<IItem>(out var actorItem)) return false;
 
-            return container.CanAdd(actorItem) == true
+            return container.CanAdd(actorHandInter) == true
                 && ctx.Button == ButtonId.Button1;
         }
 
@@ -24,12 +25,13 @@ public class ActionPutInContainer : IGameAction
 
     public void Execute(ActionContext ctx, IInteractable inter)
     {
-        if (!ctx.Slot.TryGetContentAs<IPortable>(out var portable)) return;
-        if (!portable.TryGetCapability<IItem>(out var item)) return;
+        if (!ctx.Slot.TryGetContentAs<IInteractable>(out var actorInter)) return;
+        if (!actorInter.TryGetCapability<IPortable>(out var portable)) return;
+        //if (!actorInter.TryGetCapability<IItem>(out var item)) return;
 
-        if (inter.TryGetCapability<IItemContainer>(out var container))
+        if (inter.TryGetCapability<IItemContainer<IInteractable>>(out var container))
         {
-            container.Add(item);
+            container.Add(actorInter);
         }
     }
 }

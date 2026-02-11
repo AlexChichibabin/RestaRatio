@@ -2,10 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class Portable : BaseInteractable, IPortable
+public class Portable : MonoBehaviour, IPortable, IActionProvider
 {
 	public Transform Parent => transform.parent;
-
 
 	private Rigidbody rb;
 	private Collider[] cols;
@@ -21,10 +20,8 @@ public class Portable : BaseInteractable, IPortable
 		this.drop = drop;
 		this.takeItem = takeItem;
 	}
-	protected override void Awake()
+	protected void Awake()
 	{
-		base.Awake();
-
 		rb = GetComponent<Rigidbody>();
 		cols = GetComponentsInChildren<Collider>();
 
@@ -56,9 +53,9 @@ public class Portable : BaseInteractable, IPortable
 		rb.angularVelocity = Vector3.zero;
 	}
 
-	public override IEnumerable<IGameAction> GetActions(ActionContext ctx)
-	{
-		if (drop != null) yield return drop;
-		if (takeItem != null) yield return takeItem;
-	}
+    public IEnumerable<IGameAction> GetActionsByCapability()
+    {
+		yield return drop;
+		yield return takeItem;
+    }
 }

@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 4126564906070920147}
   - component: {fileID: 3792151921119299519}
   - component: {fileID: 2664438985616216717}
+  - component: {fileID: 2851760127705273182}
   m_Layer: 3
   m_Name: Chicken_Prefab
   m_TagString: Untagged
@@ -112,6 +113,18 @@ MonoBehaviour:
   stateFlags: 0
   viewRoot: {fileID: 7330430879133539309}
   defaultViewPrefab: {fileID: 5025211219289055379, guid: 8b9f200042af62745aa2894620846077, type: 3}
+--- !u!114 &2851760127705273182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6798916008473264944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdabfe8abc97fa7449caeba5d325a168, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portable
 --- !u!1001 &5097172494004994154
 PrefabInstance:
   m_ObjectHideFlags: 0

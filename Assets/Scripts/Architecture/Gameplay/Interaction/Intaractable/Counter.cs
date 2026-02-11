@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 
-public class Counter : StaticInteractable
+public class Counter : Interactable
 {
-	public override IEnumerable<IGameAction> GetActions(ActionContext ctx)
-	{
-		yield return putDown;
-		yield return take;
-	}
+	//public override IEnumerable<IGameAction> GetActions(ActionContext ctx)
+	//{
+	//	yield return putDown;
+	//	yield return take;
+	//}
 }

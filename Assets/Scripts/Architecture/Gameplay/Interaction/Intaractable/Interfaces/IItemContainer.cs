@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IItemContainer : IHasCapabilities
+public interface IItemContainer<T>
 {
-	bool TryGetItems(out List<IItem> item);
-	IReadOnlyList<IItem> Items { get; }
-	bool CanAdd(IItem item);
-	void Add(IItem item);
+	bool TryGetContent(out List<T> item);
+	IReadOnlyList<T> Items { get; }
+	bool CanAdd(T item);
+	void Add(T item);
 }

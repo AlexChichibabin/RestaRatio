@@ -43,7 +43,8 @@ GameObject:
   - component: {fileID: 1747503421260888399}
   - component: {fileID: 8975704334459419242}
   - component: {fileID: 7759928442344805237}
-  - component: {fileID: 925932424578222393}
+  - component: {fileID: 2943362117589736164}
+  - component: {fileID: 7172411018746470415}
   m_Layer: 0
   m_Name: Counter
   m_TagString: Untagged
@@ -145,7 +146,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &925932424578222393
+--- !u!114 &2943362117589736164
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,11 +155,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 6875777716897371994}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 410f96159db2c484bb602b2c1db1cb8e, type: 3}
+  m_Script: {fileID: 11500000, guid: 79431ff8ef35fb24395f09bc04837166, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Counter
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
   priority: 100
   flags: 2
-  toCenterPower: 0
-  unWrapDistance: 0
+--- !u!114 &7172411018746470415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6875777716897371994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8308a78470270cf4099a43e47c92bcd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SlotCapability
   itemContainer: {fileID: 8390538253117155360}

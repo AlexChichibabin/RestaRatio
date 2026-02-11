@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using Zenject;
 
-public class Plate : BaseInteractable, IPortable, IItemContainer
+public class Plate : BaseInteractable//, IItemContainer//, IPortable
 {
     public Transform Parent => transform.parent;
     public IReadOnlyList<IItem> Items => items;
@@ -70,39 +70,39 @@ public class Plate : BaseInteractable, IPortable, IItemContainer
         return true;
     }
 
-	public override IEnumerable<IGameAction> GetActions(ActionContext ctx)
-    {
-		if (drop != null) yield return drop;
-		if (takeItem != null) yield return takeItem;
-        if (putInContainer != null) yield return putInContainer;
-    }
+	//public override IEnumerable<IGameAction> GetActions(ActionContext ctx)
+ //   {
+	//	if (drop != null) yield return drop;
+	//	if (takeItem != null) yield return takeItem;
+ //       if (putInContainer != null) yield return putInContainer;
+ //   }
 
     #region IPortable
-    public void Take(Transform hand)
-	{
-		rb.isKinematic = true;
+ //   public void Take(Transform hand)
+	//{
+	//	rb.isKinematic = true;
 
-		transform.SetParent(hand, false);
-		transform.localPosition = Vector3.zero;
-		transform.localRotation = Quaternion.identity;
-	}
+	//	transform.SetParent(hand, false);
+	//	transform.localPosition = Vector3.zero;
+	//	transform.localRotation = Quaternion.identity;
+	//}
 
-	public void Put(Transform place)
-	{
-		rb.isKinematic = true;
+	//public void Put(Transform place)
+	//{
+	//	rb.isKinematic = true;
 
-		transform.SetParent(place, false);
-		transform.localPosition = Vector3.zero;
-		transform.localRotation = Quaternion.identity;
-	}
+	//	transform.SetParent(place, false);
+	//	transform.localPosition = Vector3.zero;
+	//	transform.localRotation = Quaternion.identity;
+	//}
 
-	public void Drop(Transform world)
-	{
-		rb.isKinematic = false;
+	//public void Drop(Transform world)
+	//{
+	//	rb.isKinematic = false;
 
-		transform.SetParent(world, true);
-		rb.linearVelocity = Vector3.zero;
-		rb.angularVelocity = Vector3.zero;
-	}
+	//	transform.SetParent(world, true);
+	//	rb.linearVelocity = Vector3.zero;
+	//	rb.angularVelocity = Vector3.zero;
+	//}
     #endregion
 }

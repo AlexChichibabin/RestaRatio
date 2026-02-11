@@ -23,7 +23,7 @@ public class ActionResolver : IActionResolver
 		{
 			if (target == null) continue;
 
-			foreach (var action in target.GetActions(ctx))
+			foreach (var action in target.GetActions())
 			{
 				if (action == null) continue;
 				if (!action.CanExecute(ctx, target)) continue;

@@ -1,4 +1,4 @@
-public interface IChopStation : IHasCapabilities
+public interface IChopStation
 {
 	void FinishChop(IItem item);
 }

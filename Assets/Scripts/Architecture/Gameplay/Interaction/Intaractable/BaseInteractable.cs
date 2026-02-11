@@ -21,11 +21,11 @@ public abstract class BaseInteractable : MonoBehaviour, IInteractable
     public virtual string DisplayName => gameObject.name;
     public InteractableFlags Flags => flags;
 	public Vector3 Position => transform.position;
-	public abstract IEnumerable<IGameAction> GetActions(ActionContext ctx);
 
     [SerializeField] private int priority = 0;
     [SerializeField] private InteractableFlags flags;
 
+    private IActionProvider[] providers;
     private readonly Dictionary<Type, object> capabilities = new();
 
     protected virtual void Awake()
@@ -36,8 +36,14 @@ public abstract class BaseInteractable : MonoBehaviour, IInteractable
             foreach (var i in type.GetInterfaces())
                 capabilities[i] = comp;
         }
+        providers = GetComponents<IActionProvider>();
     }
-
+    public IEnumerable<IGameAction> GetActions()
+    {
+        foreach (var p in providers)
+            foreach (var a in p.GetActionsByCapability())
+                yield return a;
+    }
     public bool TryGetCapability<T>(out T cap) where T : class
     {
         if (capabilities.TryGetValue(typeof(T), out var obj))

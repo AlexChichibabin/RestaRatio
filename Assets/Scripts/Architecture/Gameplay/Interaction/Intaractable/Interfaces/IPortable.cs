@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface IPortable : IHasCapabilities
+public interface IPortable
 {
 	Transform Parent { get; }
 	void Take(Transform hand);

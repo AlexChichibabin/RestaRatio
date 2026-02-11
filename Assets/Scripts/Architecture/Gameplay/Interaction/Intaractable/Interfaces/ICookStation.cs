@@ -1,4 +1,4 @@
-public interface ICookStation : IHasCapabilities
+public interface ICookStation : IActionProvider
 {
     void FinishCook(IItem item);
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public interface IInteractable : IHasCapabilities
 {
-    abstract IEnumerable<IGameAction> GetActions(ActionContext ctx);
+    IEnumerable<IGameAction> GetActions();
     int Priority { get; }
     InteractableFlags Flags { get; }
     Vector3 Position { get; }
