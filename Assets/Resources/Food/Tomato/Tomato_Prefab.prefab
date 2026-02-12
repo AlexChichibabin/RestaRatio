@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3180206534290235704}
   - component: {fileID: 4502560885221908841}
-  - component: {fileID: 6275530268940479786}
   - component: {fileID: 5503712577004151277}
+  - component: {fileID: 7100154023762566453}
+  - component: {fileID: 1219351864123972368}
   m_Layer: 3
   m_Name: Tomato_Prefab
   m_TagString: Untagged
@@ -62,25 +63,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!114 &6275530268940479786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5534219030240603155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fa9e8d55f0c0aa49b25950d839aa28e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Pickupable
-  priority: 10
-  flags: 1
-  config: {fileID: 11400000, guid: e1bdac225b5d066418021e7b1a1e4b18, type: 2}
-  abilityFlags: 0
-  stateFlags: 0
-  viewRoot: {fileID: 4082154786141442593}
-  defaultViewPrefab: {fileID: 1340602892772111847, guid: f7636e8a9fe183945a2a197b7fc67990, type: 3}
 --- !u!114 &5503712577004151277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,8 +75,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdabfe8abc97fa7449caeba5d325a168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portable
-  priority: 0
-  flags: 0
+--- !u!114 &7100154023762566453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5534219030240603155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79431ff8ef35fb24395f09bc04837166, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  priority: 10
+  flags: 1
+--- !u!114 &1219351864123972368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5534219030240603155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09398a18bcdda6e4d835c9fa41655e94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemCapability
+  config: {fileID: 11400000, guid: e1bdac225b5d066418021e7b1a1e4b18, type: 2}
+  abilityFlags: 0
+  stateFlags: 0
+  viewRoot: {fileID: 4082154786141442593}
+  defaultViewPrefab: {fileID: 1340602892772111847, guid: f7636e8a9fe183945a2a197b7fc67990, type: 3}
 --- !u!1 &8197417573410967785
 GameObject:
   m_ObjectHideFlags: 0

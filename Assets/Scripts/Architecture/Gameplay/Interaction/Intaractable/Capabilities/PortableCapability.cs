@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class Portable : MonoBehaviour, IPortable, IActionProvider
+public class PortableCapability : MonoBehaviour, IPortable, IActionProvider
 {
 	public Transform Parent => transform.parent;
 

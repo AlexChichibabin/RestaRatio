@@ -1,5 +1,5 @@
 using UnityEngine;
-public interface IItem : IHasCapabilities
+public interface IItem
 {
     ItemAbilityFlags AbilityFlags { get; }
     ItemStateFlags StateFlags { get; }

@@ -12,8 +12,11 @@ public class ItemContainerCapability : MonoBehaviour, IItemContainer<IInteractab
     private List<IInteractable> interactables;
 
     [Inject] private ActionPutInContainer put;
-
-    public void Add(IInteractable inter)
+	private  void Awake()
+	{
+		interactables = new List<IInteractable>(capacity: capacity);
+	}
+	public void Add(IInteractable inter)
     {
         if (CanAdd(inter) == false) return;
         // item.IsDone Проверка на возможность сдать, решается в правиле конфига

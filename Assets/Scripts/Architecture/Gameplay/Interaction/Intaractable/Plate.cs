@@ -52,16 +52,16 @@ public class Plate : BaseInteractable//, IItemContainer//, IPortable
 		return true;
     }
 
-    public void Add(IItem item)
-    {
-		if (CanAdd(item) == false) return;
-        // item.IsDone Проверка на возможность сдать, решается в правиле конфига
-		if (item.TryGetCapability<IPortable>(out var portable))
-		{
-			portable.Put(container);
-			items.Add(item);
-        }	
-    }
+  //  public void Add(IItem item)
+  //  {
+		//if (CanAdd(item) == false) return;
+  //      // item.IsDone Проверка на возможность сдать, решается в правиле конфига
+		//if (item.TryGetCapability<IPortable>(out var portable))
+		//{
+		//	portable.Put(container);
+		//	items.Add(item);
+  //      }	
+  //  }
 
     public bool CanAdd(IItem item)
     {

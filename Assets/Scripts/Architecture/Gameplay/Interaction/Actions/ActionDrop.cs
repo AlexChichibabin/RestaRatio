@@ -2,7 +2,7 @@ public class ActionDrop : IGameAction
 {
 	public string Id => "drop";
 
-	public int Priority => 20;
+	public int Priority => 40;
 
 	public bool CanExecute(ActionContext ctx, IInteractable inter)
 	{
