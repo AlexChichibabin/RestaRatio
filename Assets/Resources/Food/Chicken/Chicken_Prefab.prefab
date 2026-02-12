@@ -42,8 +42,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4126564906070920147}
   - component: {fileID: 3792151921119299519}
-  - component: {fileID: 2664438985616216717}
+  - component: {fileID: 1703149524837628887}
   - component: {fileID: 2851760127705273182}
+  - component: {fileID: 7672404342962009620}
   m_Layer: 3
   m_Name: Chicken_Prefab
   m_TagString: Untagged
@@ -94,7 +95,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!114 &2664438985616216717
+--- !u!114 &1703149524837628887
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,16 +104,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6798916008473264944}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fa9e8d55f0c0aa49b25950d839aa28e, type: 3}
+  m_Script: {fileID: 11500000, guid: 79431ff8ef35fb24395f09bc04837166, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Item
-  priority: 10
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  priority: 20
   flags: 1
-  config: {fileID: 11400000, guid: 01e2c999256b397448a7734f1d489775, type: 2}
-  abilityFlags: 0
-  stateFlags: 0
-  viewRoot: {fileID: 7330430879133539309}
-  defaultViewPrefab: {fileID: 5025211219289055379, guid: 8b9f200042af62745aa2894620846077, type: 3}
 --- !u!114 &2851760127705273182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,6 +121,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdabfe8abc97fa7449caeba5d325a168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portable
+--- !u!114 &7672404342962009620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6798916008473264944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09398a18bcdda6e4d835c9fa41655e94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemCapability
+  config: {fileID: 11400000, guid: 01e2c999256b397448a7734f1d489775, type: 2}
+  abilityFlags: 0
+  stateFlags: 0
+  viewRoot: {fileID: 7330430879133539309}
+  defaultViewPrefab: {fileID: 5025211219289055379, guid: 8b9f200042af62745aa2894620846077, type: 3}
 --- !u!1001 &5097172494004994154
 PrefabInstance:
   m_ObjectHideFlags: 0

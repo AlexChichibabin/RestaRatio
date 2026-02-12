@@ -1,10 +1,9 @@
 using System.Collections.Generic;
-using UnityEngine;
 
-public interface IItemContainer<T>
+public interface IItemContainer
 {
-	bool TryGetContent(out List<T> item);
-	IReadOnlyList<T> Items { get; }
-	bool CanAdd(T item);
-	void Add(T item);
+	bool TryGetContent(out List<IInteractable> inter);
+	IReadOnlyList<IInteractable> Inters { get; }
+	bool CanAdd(IInteractable inter);
+	void Add(IInteractable inter);
 }

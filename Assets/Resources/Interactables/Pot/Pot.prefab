@@ -234,14 +234,26 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 5e65c1b75ac551e4ca0599a6cf475354, type: 2}
+    - target: {fileID: -391268320553695201, guid: 1374ddf1a5e7cf14aa2bd5ba5d9a3c1c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1374ddf1a5e7cf14aa2bd5ba5d9a3c1c, type: 3}
       propertyPath: m_Name
       value: Pot
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1374ddf1a5e7cf14aa2bd5ba5d9a3c1c, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1762265187507135282, guid: 1374ddf1a5e7cf14aa2bd5ba5d9a3c1c, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 0dd4a6e3bd9f9ca4b9ccfff8ecc4ff42, type: 2}
+    - target: {fileID: 6000430046758800301, guid: 1374ddf1a5e7cf14aa2bd5ba5d9a3c1c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

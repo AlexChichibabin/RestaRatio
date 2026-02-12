@@ -2,11 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class ItemContainerCapability : MonoBehaviour, IItemContainer<IInteractable>, IActionProvider
+public class ItemContainerCapability : MonoBehaviour, IItemContainer, IActionProvider
 {
-    public IReadOnlyList<IInteractable> Items => interactables;
+    public IReadOnlyList<IInteractable> Inters => interactables;
 
-    [SerializeField] private int capacity = 5;
+	[SerializeField] private int capacity = 5;
     [SerializeField] private Transform container;
 
     private List<IInteractable> interactables;
