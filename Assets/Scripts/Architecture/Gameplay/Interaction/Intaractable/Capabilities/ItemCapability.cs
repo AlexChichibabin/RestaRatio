@@ -5,6 +5,8 @@ public class ItemCapability : MonoBehaviour, IItem, IActionProvider
 {
 	public ItemAbilityFlags AbilityFlags => config != null ? config.GetAllowedAbilities(stateFlags) : abilityFlags;
 	public ItemStateFlags StateFlags => stateFlags;
+	public bool IsServable => config != null ? config.GetServableByState(stateFlags) : true;
+
 	public bool HasState(ItemStateFlags s) => (stateFlags & s) == s;
 	public bool HasAbility(ItemAbilityFlags a) => (AbilityFlags & a) == a;
 
@@ -20,7 +22,14 @@ public class ItemCapability : MonoBehaviour, IItem, IActionProvider
 	[SerializeField] private GameObject defaultViewPrefab;
 
 	private GameObject currentView;
-
+	private void Awake()
+	{
+		if (viewRoot.childCount != 0) // Для теста
+		{
+			currentView = viewRoot.GetChild(0).gameObject;
+			RefreshView();
+		}
+	}
 	public void AddState(ItemStateFlags s)
 	{
 		if (HasState(s)) return;

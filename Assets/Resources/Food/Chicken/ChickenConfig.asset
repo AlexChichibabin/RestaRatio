@@ -26,7 +26,13 @@ MonoBehaviour:
   Rules:
   - State: 0
     AllowedAbilities: 5
+    IsServable: 0
   - State: 1
     AllowedAbilities: 2
-  - State: 1
+    IsServable: 0
+  - State: 2
     AllowedAbilities: 2
+    IsServable: 1
+  - State: 4
+    AllowedAbilities: 4
+    IsServable: 1

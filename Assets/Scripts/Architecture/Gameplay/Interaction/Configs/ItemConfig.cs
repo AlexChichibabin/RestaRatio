@@ -27,6 +27,7 @@ public class ItemConfig : ScriptableObject
 	{
 		public ItemStateFlags State;
 		public ItemAbilityFlags AllowedAbilities;
+		public bool IsServable;
 	}
 
 	public bool TryGetView(ItemStateFlags state, out GameObject prefab)
@@ -50,6 +51,13 @@ public class ItemConfig : ScriptableObject
 		}
 
 		prefab = null;
+		return false;
+	}
+
+	public bool GetServableByState(ItemStateFlags state)
+	{
+		if (TryGetRule(state, out var rule))
+			return rule.IsServable;
 		return false;
 	}
 

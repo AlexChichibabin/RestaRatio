@@ -29,8 +29,8 @@ public class ItemContainerCapability : MonoBehaviour, IItemContainer, IActionPro
 
     public bool CanAdd(IInteractable inter)
     {
-        //inter.TryGetCapability<>
         if (interactables.Count >= capacity) return false;
+        if(!inter.TryGetCapability<IItem>(out var item) || item.IsServable == false) return false;
         Debug.Log(interactables.Count);
         return true;
     }

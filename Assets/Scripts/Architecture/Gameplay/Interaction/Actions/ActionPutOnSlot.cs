@@ -9,7 +9,7 @@ public sealed class ActionPutOnSlot : IGameAction
         if (inter.Flags.HasFlag(InteractableFlags.ItemSlot))
         {
             if (!inter.TryGetCapability<ISlot>(out var slot)) return false;
-            if (ctx.Slot.TryGetContentAs<ISlot>(out var actorSlot) && slot.Equals(actorSlot)) return false;
+            if (ctx.Slot.TryGetContentAs<IInteractable>(out var actorInter) && inter.Equals(actorInter)) return false;
             if (!ctx.Slot.TryGetContentAs<IPortable>(out var actorPortable)) return false;
 
 			return !slot.TryGetContentAs<IPortable>(out var interPortable)

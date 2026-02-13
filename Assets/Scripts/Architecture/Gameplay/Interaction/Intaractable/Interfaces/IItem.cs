@@ -3,6 +3,7 @@ public interface IItem
 {
     ItemAbilityFlags AbilityFlags { get; }
     ItemStateFlags StateFlags { get; }
+    bool IsServable { get; }
 
     bool HasState(ItemStateFlags s);
     bool HasAbility(ItemAbilityFlags a);

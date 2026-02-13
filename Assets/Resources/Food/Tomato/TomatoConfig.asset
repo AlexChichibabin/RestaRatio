@@ -24,16 +24,10 @@ MonoBehaviour:
   Rules:
   - State: 0
     AllowedAbilities: 1
-    OnCutResult: 1
-    OnRoastResult: 0
-    OnBakeResult: 0
+    IsServable: 0
   - State: 1
     AllowedAbilities: 2
-    OnCutResult: 0
-    OnRoastResult: 2
-    OnBakeResult: 0
+    IsServable: 1
   - State: 2
     AllowedAbilities: 2
-    OnCutResult: 0
-    OnRoastResult: 8
-    OnBakeResult: 0
+    IsServable: 1

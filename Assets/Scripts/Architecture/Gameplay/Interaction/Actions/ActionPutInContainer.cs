@@ -12,7 +12,8 @@ public class ActionPutInContainer : IGameAction
         if (inter.Flags.HasFlag(InteractableFlags.Container))
         {
             if (!inter.TryGetCapability<IItemContainer>(out var container)) return false;
-            if (!ctx.Slot.TryGetContentAs<IInteractable>(out var actorHandInter)) return false;
+			if (ctx.Slot.TryGetContentAs<IInteractable>(out var actorInter) && inter.Equals(actorInter)) return false;
+			if (!ctx.Slot.TryGetContentAs<IInteractable>(out var actorHandInter)) return false;
             if (!actorHandInter.TryGetCapability<IPortable>(out var actorPortable)) return false;
 
             return container.CanAdd(actorHandInter) == true
