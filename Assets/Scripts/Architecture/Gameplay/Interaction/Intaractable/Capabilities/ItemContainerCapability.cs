@@ -11,21 +11,22 @@ public class ItemContainerCapability : MonoBehaviour, IItemContainer, IActionPro
 
     private List<IInteractable> interactables;
 
-    [Inject] private ActionPutInContainer put;
+
+	[Inject] private ActionPutInContainer put;
 	private  void Awake()
 	{
 		interactables = new List<IInteractable>(capacity: capacity);
 	}
 	public void Add(IInteractable inter)
-    {
-        if (CanAdd(inter) == false) return;
-        // item.IsDone Проверка на возможность сдать, решается в правиле конфига
-        if (inter.TryGetCapability<IPortable>(out var portable))
-        {
-            portable.Put(container);
-            interactables.Add(inter);
-        }
-    }
+	{
+		if (CanAdd(inter) == false) return;
+		// item.IsDone Проверка на возможность сдать, решается в правиле конфига
+		if (inter.TryGetCapability<IPortable>(out var portable))
+		{
+			portable.Put(container);
+			interactables.Add(inter);
+		}
+	}
 
     public bool CanAdd(IInteractable inter)
     {
