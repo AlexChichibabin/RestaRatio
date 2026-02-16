@@ -1,9 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
+public struct ItemData
+{
+	public ItemStateFlags StateFlags;
+	public ItemId Id;
+    public ItemData(ItemStateFlags states, ItemId id)
+	{
+        StateFlags = states;
+		Id = id;
+    }
+}
 
 public class ItemCapability : MonoBehaviour, IItem, IActionProvider
 {
-	public ItemAbilityFlags AbilityFlags => config != null ? config.GetAllowedAbilities(stateFlags) : abilityFlags;
+    public ItemData Data => config != null ? new ItemData(StateFlags, config.ItemId) : new ItemData();
+    public ItemAbilityFlags AbilityFlags => config != null ? config.GetAllowedAbilities(stateFlags) : abilityFlags;
 	public ItemStateFlags StateFlags => stateFlags;
 	public bool IsServable => config != null ? config.GetServableByState(stateFlags) : true;
 
@@ -12,6 +23,7 @@ public class ItemCapability : MonoBehaviour, IItem, IActionProvider
 
 	[Header("Data")]
 	[SerializeField] private ItemConfig config;
+
 
 	[Header("States and abilities")]
 	[SerializeField] private ItemAbilityFlags abilityFlags;

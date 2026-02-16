@@ -1,6 +1,7 @@
 using UnityEngine;
 public interface IItem
 {
+    ItemData Data { get; }
     ItemAbilityFlags AbilityFlags { get; }
     ItemStateFlags StateFlags { get; }
     bool IsServable { get; }

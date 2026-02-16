@@ -4,7 +4,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ItemConfig", menuName = "Configs/Item")]
 public class ItemConfig : ScriptableObject
 {
-	public string Id;
+	public string Name;
+
+	public ItemId ItemId;
 
 	public ItemAbilityFlags Abilities;
 

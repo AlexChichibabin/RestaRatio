@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ba9abf2dd06f6e4aae4b59069a0f2a1, type: 3}
   m_Name: SaladConfig
   m_EditorClassIdentifier: Assembly-CSharp::ItemConfig
-  Id: Salad
+  Name: Salad
+  ItemId: 3
   Abilities: 1
   Views:
   - State: 0
@@ -24,6 +25,4 @@ MonoBehaviour:
   Rules:
   - State: 0
     AllowedAbilities: 1
-    OnCutResult: 1
-    OnRoastResult: 0
-    OnBakeResult: 0
+    IsServable: 0

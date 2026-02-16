@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ba9abf2dd06f6e4aae4b59069a0f2a1, type: 3}
   m_Name: TomatoConfig
   m_EditorClassIdentifier: Assembly-CSharp::ItemConfig
-  Id: Tomato
+  Name: Tomato
+  ItemId: 1
   Abilities: 0
   Views:
   - State: 0
