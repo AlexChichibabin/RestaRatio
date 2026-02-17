@@ -1,10 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-
-public interface IPlateItemViewFactory
-{
-	GameObject CreateView(ItemData data);
-}
+using Zenject;
 
 public class PlateView : MonoBehaviour
 {
@@ -13,6 +9,7 @@ public class PlateView : MonoBehaviour
 	[SerializeField] private float yOffset = 0.01f; 
 	[SerializeField] private bool randomYaw = true;
 
+	[Inject] private IPlateItemViewFactory factory;
 	private readonly List<GameObject> spawned = new();
 
 	private void Awake()
@@ -20,14 +17,14 @@ public class PlateView : MonoBehaviour
 		if (contentRoot == null) contentRoot = transform;
 	}
 
-	public void Render(IReadOnlyList<ItemData> contents, IPlateItemViewFactory factory)
+	public void Render(IReadOnlyList<ItemData> contents)
 	{
 		Clear();
 
 		int count = contents?.Count ?? 0;
 		if (count == 0) return;
 
-		var positions = GetLocalPositions(count);
+		Vector3[] positions = GetLocalPositions(count);
 
 		for (int i = 0; i < count; i++)
 		{

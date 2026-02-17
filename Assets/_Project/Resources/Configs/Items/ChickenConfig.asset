@@ -17,13 +17,17 @@ MonoBehaviour:
   Abilities: 5
   Views:
   - State: 0
-    ViewPrefab: {fileID: 5025211219289055379, guid: 8b9f200042af62745aa2894620846077, type: 3}
+    ViewFullPrefab: {fileID: 5025211219289055379, guid: 8b9f200042af62745aa2894620846077, type: 3}
+    ViewSimplePrefab: {fileID: 5860351498216938632, guid: 5bf086eb1d58cca4d98de9b1b5655081, type: 3}
   - State: 1
-    ViewPrefab: {fileID: 9211304060166678144, guid: 986b2e09313bfe24aba14d0bc7297a07, type: 3}
+    ViewFullPrefab: {fileID: 9211304060166678144, guid: 986b2e09313bfe24aba14d0bc7297a07, type: 3}
+    ViewSimplePrefab: {fileID: 3224671909296388118, guid: 8826aae34b3c0de49bcd9fa57bb35f57, type: 3}
   - State: 2
-    ViewPrefab: {fileID: 9211304060166678144, guid: 689bce3b14ea48e4b8c6f7c33a8589bd, type: 3}
+    ViewFullPrefab: {fileID: 9211304060166678144, guid: 689bce3b14ea48e4b8c6f7c33a8589bd, type: 3}
+    ViewSimplePrefab: {fileID: 649054265410923764, guid: b48c1e4f51fe6da4fb314b20d7c8198b, type: 3}
   - State: 4
-    ViewPrefab: {fileID: 2369797104470566364, guid: ef34a1c9dface224299a539afffc0c26, type: 3}
+    ViewFullPrefab: {fileID: 2369797104470566364, guid: ef34a1c9dface224299a539afffc0c26, type: 3}
+    ViewSimplePrefab: {fileID: 5067060463104913400, guid: 90f68282953818e499e503ef2f8c8cb7, type: 3}
   Rules:
   - State: 0
     AllowedAbilities: 5

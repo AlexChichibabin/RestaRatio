@@ -18,7 +18,8 @@ public class ItemConfig : ScriptableObject
 	public struct StateView
 	{
 		public ItemStateFlags State;
-		public GameObject ViewPrefab;
+		public GameObject ViewFullPrefab;
+		public GameObject ViewSimplePrefab;
 	}
 
 	/// <summary>
@@ -32,22 +33,13 @@ public class ItemConfig : ScriptableObject
 		public bool IsServable;
 	}
 
-	public bool TryGetView(ItemStateFlags state, out GameObject prefab)
+	public bool TryGetView(ItemStateFlags state, out GameObject prefab, bool isFullView)
 	{
 		for (int i = 0; i < Views.Length; i++)
 		{
-			if (Views[i].State == state)
+			if (Views[i].State == state /*|| Views[i].State == ItemStateFlags.None*/)
 			{
-				prefab = Views[i].ViewPrefab;
-				return prefab != null;
-			}
-		}
-
-		for (int i = 0; i < Views.Length; i++)
-		{
-			if (Views[i].State == ItemStateFlags.None)
-			{
-				prefab = Views[i].ViewPrefab;
+				prefab = isFullView? Views[i].ViewFullPrefab : Views[i].ViewSimplePrefab;
 				return prefab != null;
 			}
 		}

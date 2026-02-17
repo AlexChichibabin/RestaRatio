@@ -17,11 +17,14 @@ MonoBehaviour:
   Abilities: 0
   Views:
   - State: 0
-    ViewPrefab: {fileID: 1340602892772111847, guid: f7636e8a9fe183945a2a197b7fc67990, type: 3}
+    ViewFullPrefab: {fileID: 1340602892772111847, guid: f7636e8a9fe183945a2a197b7fc67990, type: 3}
+    ViewSimplePrefab: {fileID: 4318819556329616834, guid: 40e0a2562ecfd834a91b588dddc029bb, type: 3}
   - State: 1
-    ViewPrefab: {fileID: 7315800124776417938, guid: 92f9086c4cb6d784a885e034e4425a0d, type: 3}
+    ViewFullPrefab: {fileID: 7315800124776417938, guid: 92f9086c4cb6d784a885e034e4425a0d, type: 3}
+    ViewSimplePrefab: {fileID: 870658582392090742, guid: 8a981fa71ab82b34cb2b52336431a56c, type: 3}
   - State: 2
-    ViewPrefab: {fileID: 6112519890327297158, guid: 01c234a668833eb45b0a43137485b2d4, type: 3}
+    ViewFullPrefab: {fileID: 6112519890327297158, guid: 01c234a668833eb45b0a43137485b2d4, type: 3}
+    ViewSimplePrefab: {fileID: 2696915885243883501, guid: 01fa422ab8de6cb49808c0c332dfe715, type: 3}
   Rules:
   - State: 0
     AllowedAbilities: 1

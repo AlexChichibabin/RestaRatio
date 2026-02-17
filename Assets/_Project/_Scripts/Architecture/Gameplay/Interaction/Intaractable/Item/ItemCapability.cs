@@ -30,7 +30,7 @@ public class ItemCapability : MonoBehaviour, IItem, IActionProvider
 
 	[Header("View")]
 	[SerializeField] private Transform viewRoot;
-	[SerializeField] private GameObject defaultViewPrefab;
+	[SerializeField] private GameObject defaultFullViewPrefab;
 
 	private GameObject currentView;
 	private void Awake()
@@ -64,20 +64,19 @@ public class ItemCapability : MonoBehaviour, IItem, IActionProvider
 		if (currentView != null)
 		{
 			Destroy(currentView);
-			//currentView.SetActive(false);
 			currentView = null;
 		}
 
 		GameObject prefab = null;
 
-		if (config != null && config.TryGetView(stateFlags, out var cfgPrefab))
+		if (config != null && config.TryGetView(stateFlags, out var cfgPrefab, true))
 			prefab = cfgPrefab;
 
-		if (prefab == null && config != null && config.TryGetView(ItemStateFlags.None, out var nonePrefab))
+		if (prefab == null && config != null && config.TryGetView(ItemStateFlags.None, out var nonePrefab, true))
 			prefab = nonePrefab;
 
 		if (prefab == null)
-			prefab = defaultViewPrefab;
+			prefab = defaultFullViewPrefab;
 
 		if (prefab == null) return;
 

@@ -54,6 +54,7 @@ public class LevelInstaller : MonoInstaller
         Container.Bind<IOrderService>().To<OrderService>().AsSingle();
         Container.BindInterfacesTo<OrderGenerator>().AsSingle().NonLazy();
         Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
+        Container.Bind<IPlateItemViewFactory>().To<PlateItemViewFactory>().AsSingle();
     }
     private void BindActions()
     {

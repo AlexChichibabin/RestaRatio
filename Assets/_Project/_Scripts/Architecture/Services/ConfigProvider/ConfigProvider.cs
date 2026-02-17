@@ -25,4 +25,6 @@ public class ConfigProvider : IConfigProvider
 	public LevelConfig GetLevel(int index) => levelList[index];
 	public LevelConfig GetLevel(string name) => levels[name];
 	public WindowConfig GetWindow(WindowId windowId) => windows[windowId];
+	public ItemConfig GetItem(ItemId itemId) => items[itemId];
+
 }
