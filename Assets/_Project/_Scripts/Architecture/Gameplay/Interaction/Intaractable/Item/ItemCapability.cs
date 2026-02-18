@@ -84,4 +84,9 @@ public class ItemCapability : MonoBehaviour, IItem, IActionProvider
 		currentView.transform.localPosition = Vector3.zero;
 		currentView.transform.localRotation = Quaternion.identity;
 	}
+
+	public void Destroy()
+	{
+		throw new System.NotImplementedException();
+	}
 }

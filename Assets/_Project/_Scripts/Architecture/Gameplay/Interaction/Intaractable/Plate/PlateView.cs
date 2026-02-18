@@ -11,10 +11,13 @@ public class PlateView : MonoBehaviour
 
 	[Inject] private IPlateItemViewFactory factory;
 	private readonly List<GameObject> spawned = new();
+	private ItemContainerOnViewCapability containerCap;
 
 	private void Awake()
 	{
 		if (contentRoot == null) contentRoot = transform;
+		containerCap = GetComponent<ItemContainerOnViewCapability>();
+		//containerCap.Datas.Subscribe(_ => Render(_));
 	}
 
 	public void Render(IReadOnlyList<ItemData> contents)

@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class ActionPutInContainerByView : IGameAction
+public class ActionPutInContainerOnView : IGameAction
 {
-	public string Id => "put_in_container_by_view";
+	public string Id => "put_in_container_on_view";
 
 	public int Priority => 50;
 
@@ -11,10 +11,10 @@ public class ActionPutInContainerByView : IGameAction
 		if (inter == null) return false;
 		if (inter.Flags.HasFlag(InteractableFlags.Container))
 		{
-			if (!inter.TryGetCapability<IItemContainer>(out var container)) return false;
+			if (!inter.TryGetCapability<IItemContainerOnView>(out var container)) return false;
 			if (ctx.Slot.TryGetContentAs<IInteractable>(out var actorInter) && inter.Equals(actorInter)) return false;
 			if (!ctx.Slot.TryGetContentAs<IInteractable>(out var actorHandInter)) return false;
-			if (!actorHandInter.TryGetCapability<IPortable>(out var actorPortable)) return false;
+			if (!actorHandInter.TryGetCapability<IItem>(out var actorItem)) return false;
 
 			return container.CanAdd(actorHandInter) == true
 				&& ctx.Button == ButtonId.Button1;
@@ -26,11 +26,15 @@ public class ActionPutInContainerByView : IGameAction
 	public void Execute(ActionContext ctx, IInteractable inter)
 	{
 		if (!ctx.Slot.TryGetContentAs<IInteractable>(out var actorInter)) return;
-		if (!actorInter.TryGetCapability<IPortable>(out var portable)) return;
+		if (!actorInter.TryGetCapability<IItem>(out var actorItem)) return;
+		if (!actorItem.TryGetItemData(out var data)) return;
 
-		if (inter.TryGetCapability<IItemContainer>(out var container))
+		if (inter.TryGetCapability<IItemContainerOnView>(out var container))
 		{
 			container.Add(actorInter);
+
+			if (actorInter is MonoBehaviour mb)
+				Object.Destroy(mb.gameObject);
 		}
 	}
 }

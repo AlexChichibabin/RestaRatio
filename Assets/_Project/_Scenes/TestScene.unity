@@ -1824,7 +1824,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemContainerByViewCapability
   capacity: 5
-  viewRoot: {fileID: 0}
+  viewRoot: {fileID: 1094985719}
+  viewer: {fileID: 810295549}
+--- !u!114 &810295549 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -4822139532553605648, guid: c335f605518601f479c37fd097886c06, type: 3}
+  m_PrefabInstance: {fileID: 810295545}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810295547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 075e4254775e0b540bdbe3d8457ed6c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlateView
 --- !u!4 &812718501 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2860033250577011104, guid: 6f3b3b02302fe3d4a9f0781578e12e97, type: 3}
@@ -2476,6 +2488,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89eafe2a6eb729141848af41ee20d321, type: 3}
+--- !u!4 &1094985719 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5823553168844436356, guid: c335f605518601f479c37fd097886c06, type: 3}
+  m_PrefabInstance: {fileID: 810295545}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1125207450
 GameObject:
   m_ObjectHideFlags: 0

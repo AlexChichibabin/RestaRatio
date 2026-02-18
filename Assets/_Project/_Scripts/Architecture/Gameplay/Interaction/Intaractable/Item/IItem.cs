@@ -10,4 +10,5 @@ public interface IItem
     bool HasAbility(ItemAbilityFlags a);
     void AddState(ItemStateFlags s);
     void SetState(ItemStateFlags s);
+    void Destroy();
 }
