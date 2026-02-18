@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 5117334276386565001}
   - component: {fileID: 4960052598686230089}
   - component: {fileID: 7862318290366403734}
-  - component: {fileID: 2219608141861056221}
+  - component: {fileID: 2730947999672929507}
   - component: {fileID: -4822139532553605648}
   m_Layer: 3
   m_Name: Plate
@@ -92,7 +92,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7305568229239368627}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -100,7 +100,7 @@ Transform:
   - {fileID: 980961143558747788}
   - {fileID: 5823553168844436356}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!54 &5117334276386565001
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -124,7 +124,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdabfe8abc97fa7449caeba5d325a168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portable
---- !u!114 &2219608141861056221
+--- !u!114 &2730947999672929507
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,11 +163,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7305568229239368627}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daa6813bd3d515040b28a5b58534b1e8, type: 3}
+  m_Script: {fileID: 11500000, guid: be79a93e2f017c24393dd0c7731c0271, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ItemContainerCapability
+  m_EditorClassIdentifier: Assembly-CSharp::ItemContainerByViewCapability
   capacity: 5
-  container: {fileID: 5823553168844436356}
+  viewRoot: {fileID: 5823553168844436356}
+  viewer: {fileID: -4822139532553605648}
 --- !u!114 &-4822139532553605648
 MonoBehaviour:
   m_ObjectHideFlags: 0

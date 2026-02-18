@@ -12,7 +12,7 @@ GameObject:
   m_Layer: 3
   m_Name: TomatoRoated_ColVM
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -60,7 +60,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.0326, y: 0.18540017, z: -0.0434}
-  m_LocalScale: {x: 0.74449134, y: 0.30706853, z: 0.6480345}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4468761810847934107}
@@ -84,8 +84,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
-  m_Center: {x: 0.00000023841856, y: 0, z: 0}
+  m_Size: {x: 0.26356912, y: 0.1470195, z: 0.23272228}
+  m_Center: {x: -0.02543199, y: -0.12050623, z: 0.04288411}
 --- !u!1001 &5827482900228513901
 PrefabInstance:
   m_ObjectHideFlags: 0
