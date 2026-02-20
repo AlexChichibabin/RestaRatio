@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 using Zenject;
 
@@ -13,17 +14,20 @@ public class PlateView : MonoBehaviour
 	private readonly List<GameObject> spawned = new();
 	private ItemContainerOnViewCapability containerCap;
 
-	private void Awake()
+	private void Start()
 	{
 		if (contentRoot == null) contentRoot = transform;
 		containerCap = GetComponent<ItemContainerOnViewCapability>();
-		//containerCap.Datas.Subscribe(_ => Render(_));
+		containerCap.Datas
+			.ObserveAdd()
+			.Subscribe(_ => Render(containerCap.Datas))
+			.AddTo(gameObject);
 	}
 
-	public void Render(IReadOnlyList<ItemData> contents)
+	private void Render(IReactiveCollection<ItemData> contents)
 	{
 		Clear();
-
+		Debug.Log("dgsdfg");
 		int count = contents?.Count ?? 0;
 		if (count == 0) return;
 
@@ -66,30 +70,6 @@ public class PlateView : MonoBehaviour
 		{
 			case 1:
 				return new[] { Vector3.zero };
-
-			case 2:
-				return new[]
-				{
-					new Vector3(-1f, 0f, 0f),
-					new Vector3( 1f, 0f, 0f),
-				};
-
-			case 3:
-				return new[]
-				{
-					DirFromAngleDeg( 90f),
-					DirFromAngleDeg(210f),
-					DirFromAngleDeg(330f),
-				};
-
-			case 4:
-				return new[]
-				{
-					new Vector3(-1f, 0f, -1f).normalized,
-					new Vector3(-1f, 0f,  1f).normalized,
-					new Vector3( 1f, 0f,  1f).normalized,
-					new Vector3( 1f, 0f, -1f).normalized,
-				};
 
 			default:
 				var result = new Vector3[count];

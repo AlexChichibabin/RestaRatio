@@ -1,29 +1,22 @@
-using System;
 using System.Collections.Generic;
+using System.Linq;
 using UniRx;
 using UnityEngine;
 using Zenject;
 
 public class ItemContainerOnViewCapability : MonoBehaviour, IItemContainerOnView, IActionProvider
 {
-	//public IReadOnlyList<ItemData> Datas => datas.Value;
-
-
 	[SerializeField] private int capacity = 5;
 	[SerializeField] private Transform viewRoot;
 
-	private ReactiveProperty<List<ItemData>> datas;
-	public IReactiveProperty<List<ItemData>> Datas => datas;
+	private ReactiveCollection<ItemData> datas;
+	public IReactiveCollection<ItemData> Datas => datas;
 
 	[Inject] private ActionPutInContainerOnView put;
 
-
-	[SerializeField] private PlateView viewer;
-
 	private void Awake()
 	{
-		datas = new ReactiveProperty<List<ItemData>>();
-		datas.Value = new List<ItemData>(capacity: capacity);
+		datas = new ReactiveCollection<ItemData>();
 	}
 	public void Add(IInteractable inter)
 	{
@@ -33,19 +26,17 @@ public class ItemContainerOnViewCapability : MonoBehaviour, IItemContainerOnView
 		{
 			if (item.TryGetItemData(out var data))
 			{
-				datas.Value.Add(data);
-				viewer.Render(datas.Value);
+				datas.Add(data);
 				Debug.Log("Объект положен в контейнер");
 			}
-				
 		}
 	}
 
 	public bool CanAdd(IInteractable inter)
 	{
-		if (datas.Value.Count >= capacity) return false;
+		if (datas.Count >= capacity) return false;
 		if (!inter.TryGetCapability<IItem>(out var item) || item.IsServable == false) return false;
-		Debug.Log(datas.Value.Count);
+		Debug.Log(datas.Count);
 		return true;
 	}
 
@@ -56,12 +47,12 @@ public class ItemContainerOnViewCapability : MonoBehaviour, IItemContainerOnView
 
 	public bool TryGetContent(out List<ItemData> datas)
 	{
-		if (this.datas == null || this.datas.Value.Count == 0)
+		if (this.datas == null || this.datas.Count == 0)
 		{
 			datas = default(List<ItemData>);
 			return false;
 		}
-		datas = this.datas.Value;
+		datas = this.datas.ToList<ItemData>();
 		return true;
 	}
 }

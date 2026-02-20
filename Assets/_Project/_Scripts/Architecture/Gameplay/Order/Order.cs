@@ -19,7 +19,6 @@ public class Order : IOrder
 
     private CompositeDisposable disposables = new();
     private float totalSeconds;
-
     public Order(string id, float totalSeconds)
     {
         Id = id;
@@ -68,7 +67,6 @@ public class Order : IOrder
 
         status.Value = OrderStatus.Failed;
         failed?.OnNext(Unit.Default);
-        //failed?.OnCompleted();
 
         Dispose();
     }

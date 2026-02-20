@@ -3,7 +3,7 @@ using UniRx;
 
 public interface IItemContainerOnView
 {
-	IReactiveProperty<List<ItemData>> Datas { get; }
+	IReactiveCollection<ItemData> Datas { get; }
 	bool CanAdd(IInteractable inter);
 	void Add(IInteractable inter);
 
