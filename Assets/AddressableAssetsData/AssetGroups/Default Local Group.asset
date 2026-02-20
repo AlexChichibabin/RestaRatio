@@ -15,13 +15,23 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 1a49f87c0a00997429a9401b79ce99bc
   m_SerializeEntries:
+  - m_GUID: 0611eb07213b58d49b283fea233f4beb
+    m_Address: Hero/Hero
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 293152d875b436f4883ec63df601cf5f
-    m_Address: Assets/Resources_moved/GUI/MainMenuWindow.prefab
+    m_Address: GUI/MainMenuWindow
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8f0aaa0e8cf771a4a8721a5443d07be4
+    m_Address: Player/Player
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e47d66d33d48a7f4296af385bcbe9b35
-    m_Address: Assets/Resources_moved/GUI/ResultWindow.prefab
+    m_Address: GUI/ResultWindow
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
