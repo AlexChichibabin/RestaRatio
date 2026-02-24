@@ -1,5 +1,3 @@
-using UnityEditor.Timeline.Actions;
-
 public interface IGameAction
 {
     string Id { get; }
