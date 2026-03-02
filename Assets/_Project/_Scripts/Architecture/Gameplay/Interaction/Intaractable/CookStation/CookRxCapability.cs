@@ -8,12 +8,17 @@ public class CookRxCapability : MonoBehaviour, ICookRxStation
 
 	[SerializeField] private float heatPerSecond = 1.0f;
 
+	private IInteractable interactable;
+
 	private Subject<float> heatTick = new();
 
 	private CompositeDisposable disposables = new();
 
-	private void Awake()
+	private void Start()
 	{
+		interactable = GetComponent<Interactable>();
+		interactable.TryGetCapability<ISlot>(out var slot);
+
 		Observable
 			.EveryUpdate()
 			.Select(_ => heatPerSecond * Time.deltaTime)

@@ -1,12 +1,19 @@
+using System;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 using Zenject;
 
 public class SlotCapability : MonoBehaviour, ISlot, IActionProvider
 {
     public Transform Container => itemContainer;
+    public IObservable<Unit> PutEvent => putEvent;
+    public IObservable<Unit> RemoveEvent => removeEvent;
 
     [SerializeField] protected Transform itemContainer;
+
+    private Subject<Unit> putEvent;
+    private Subject<Unit> removeEvent;
 
     private ActionPutOnSlot putDown;
     private ActionTakeFromSlot take;

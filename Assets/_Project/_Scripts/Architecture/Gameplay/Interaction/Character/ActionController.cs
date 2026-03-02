@@ -1,16 +1,21 @@
+using System;
+using UniRx;
 using UnityEngine;
 using Zenject;
 
 // Можно сделать тоже интерактаблом
 public class ActionController : MonoBehaviour, ISlot 
 {
+    public Transform Container => handsInventory;
+    public IObservable<Unit> PutEvent => throw new NotImplementedException(); // Добавить
+    public IObservable<Unit> RemoveEvent => throw new NotImplementedException();
+
+
     [SerializeField] private Transform handsInventory;
     [SerializeField] private InteractTriggerBase interractionTrigger;
 
-    public ActionRunner runner;
+    public ActionRunner runner; // Наверно private все таки
     private IActionResolver actionResolver;
-
-    public Transform Container => handsInventory;
 
     [Inject]
     public void Construct(ActionRunner runner,
